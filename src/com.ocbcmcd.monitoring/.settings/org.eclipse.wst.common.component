@@ -3,7 +3,6 @@
     <wb-module deploy-name="com.ocbcmcd.monitoring">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="com.ocbcmcd.monitoring"/>
         <property name="java-output-path" value="/com.ocbcmcd.monitoring/build/classes"/>
     </wb-module>
