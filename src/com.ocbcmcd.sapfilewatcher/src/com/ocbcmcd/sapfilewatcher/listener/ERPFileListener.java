@@ -29,5 +29,6 @@ public class ERPFileListener {
 		transformer.create();
 		
 		jmsTemplate.convertAndSend(new SapFileEncrypted(file.getName()));
+		
 	}
 }
