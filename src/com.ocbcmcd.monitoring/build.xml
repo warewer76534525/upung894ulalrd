@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+
+<project name="ocbcmcdmonitoring" basedir=".">
+	<import file="..\common.xml" />
+
+	<property file="build.properties" />
+	<property file="src/scheduller.properties" />
+
+	<property name="name" value="ocbcmcdmonitoring" />
+
+	<property name="web.dir" value="WebContent" />
+	<property name="webinf.dir" value="WebContent/WEB-INF" />
+
+	<property name="service.dir" value="${dist.dir}/war" />
+	<property name="service.lib.dir" value="WebContent/WEB-INF/lib" />
+	<property name="service.name" value="${name}" />
+
+	<property name="dependency.project" value="../com.ocbcmcd.message" />
+	<property name="dependency.build.dir" value="${dependency.project}/build" />
+	<property name="dependency.src.dir" value="${dependency.project}/src" />
+	
+
+	<path id="master-classpath">
+		<fileset dir="${external.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${appserver.lib}">
+			<include name="servlet*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete file="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" />
+		<delete file="${dist.dir}/${name}.war" />
+		<delete dir="${dependency.build.dir}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dependency.build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="compile-dep" description="Compile project dependency">
+		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${dependency.src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+
+	<target name="package-dep" depends="init, compile-dep" description="Compile project dependency">
+		<delete file="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" />
+		<jar destfile="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" basedir="${dependency.build.dir}" includes="**/*.class" />
+	</target>
+
+
+	<target name="package" depends="package-dep, compile" description="Package service project">
+		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+			<fileset dir="${build.dir}">
+				<include name="**/*.*class" />
+			</fileset>
+			<fileset dir="${build.dir}">
+				<include name="**/*.*class" />
+			</fileset>
+		</copy>
+		<copy todir="${web.dir}/WEB-INF/lib/" preservelastmodified="true">
+			<fileset dir="${external.lib.dir}">
+					<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<war destfile="${dist.dir}/${name}.war" webxml="${web.dir}/WEB-INF/web.xml">
+			<fileset dir="${web.dir}">
+				<include name="**/**.**" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="deploy" depends="package" description="Deploy application">
+		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${deploy.path}/${name}/WEB-INF/classes/" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="undeploy" description="Un-Deploy application">
+		<delete>
+			<fileset dir="${deploy.path}/${name}">
+				<include name="**/*.*" />
+			</fileset>
+			<fileset file="${deploy.path}/${name}.war">
+				<include name="**/*.*" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
+	<!-- ============================================================== -->
+
+	<path id="catalina-ant-classpath">
+		<!-- We need the Catalina jars for Tomcat -->
+		<!--  * for other app servers - check the docs -->
+		<fileset dir="${appserver.lib}">
+			<include name="catalina-ant.jar" />
+		</fileset>
+	</path>
+
+	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+
+	<taskdef name="list" classname="org.apache.catalina.ant.ListTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask">
+		<classpath refid="catalina-ant-classpath" />
+	</taskdef>
+
+	<target name="install" description="Install application in Tomcat">
+		<install url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/moneychanger" war="{name}.war" />
+	</target>
+
+	<target name="reload" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="remove" description="Remove application in Tomcat">
+		<delete dir="${deploy.path}/${name}">
+		</delete>
+	</target>
+
+	<target name="start" description="Start Tomcat application">
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="stop" description="Stop Tomcat application">
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+	</target>
+
+	<target name="list" description="List Tomcat applications">
+		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" />
+	</target>
+
+	<target name="tomcat-start" description="Start tomcat service">
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+		</java>
+	</target>
+
+	<target name="tomcat-stop" description="Stop tomcat service">
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+			<arg line="stop" />
+		</java>
+	</target>
+
+
+	<!-- End Tomcat tasks -->
+
+</project>

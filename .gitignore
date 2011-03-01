@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+
+/src/com.ocbcmcd.monitoring/ocbcmcdmonitoring.war
+/src/com.ocbcmcd.monitoring/WebContent/WEB-INF/lib
+=======
 build/
 classes/
 *.war
 dist/
 *-service/
 bin/
+>>>>>>> cbd4651cd9c0f595d8c04b4a549bd20666271c0e
