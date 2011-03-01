@@ -25,8 +25,8 @@ public class ERPFileListener {
 		for (String k : headers.keySet())
 			System.out.println(String.format("%s=%s", k, headers.get(k)));
 		
-		EncryptedFileTransformer transformer = new EncryptedFileTransformer(file);
-		transformer.create();
+		EncryptedFileTransformer transformer = new EncryptedFileTransformer();
+		transformer.create(file);
 		
 		File encryptedFile = new File("C:\\erpfile\\encrypted\\", file.getName());
 		
