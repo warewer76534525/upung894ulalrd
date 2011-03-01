@@ -28,7 +28,9 @@ public class ERPFileListener {
 		EncryptedFileTransformer transformer = new EncryptedFileTransformer(file);
 		transformer.create();
 		
-		jmsTemplate.convertAndSend(new SapFileEncrypted(file.getName()));
+		File encryptedFile = new File("C:\\erpfile\\encrypted\\", file.getName());
+		
+		jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getAbsolutePath()));
 		
 	}
 }

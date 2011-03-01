@@ -5,13 +5,13 @@
 	xmlns:ftp="http://www.springframework.org/schema/integration/ftp"
 	xmlns:jms="http://www.springframework.org/schema/integration/jms"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd 
-	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
 	http://www.springframework.org/schema/integration 
 	http://www.springframework.org/schema/integration/spring-integration-2.0.xsd  
 	http://www.springframework.org/schema/integration/ftp 
-	http://www.springframework.org/schema/integration/ftp/spring-integration-ftp-2.0.xsd     
+	http://www.springframework.org/schema/integration/ftp/spring-integration-ftp-2.0.xsd      
 	http://www.springframework.org/schema/integration/jms 
 	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
 
@@ -30,9 +30,6 @@
 		<property name="cacheProducers" value="false" />
 	</bean>
 
-	<bean id="inboundJMSMessageToFileTransformer"
-		class="com.ocbcmcd.ftpfilesender.eventhandler.JMSMessageToFileTransformer" />
-
 	<si:channel id="encryptedFileChannel" />
 
 	<bean id="fileEncryptedDestination" class="org.apache.activemq.command.ActiveMQTopic">
@@ -43,8 +40,11 @@
 		channel="encryptedFileChannel" extract-payload="false"
 		connection-factory="connectionFactory" destination="fileEncryptedDestination" />
 
-	<si:transformer input-channel="encryptedFileChannel"
-		ref="inboundJMSMessageToFileTransformer" output-channel="outChannel" />
+	<bean id="encryptedFileMessageHandler"
+		class="com.ocbcmcd.ftpfilesender.eventhandler.EncryptedFileMessageHandler" />
+
+	<si:service-activator input-channel="encryptedFileChannel"
+		ref="encryptedFileMessageHandler" />
 
 	<si:channel id="outChannel" />
 
@@ -56,5 +56,5 @@
 	</bean>
 
 	<ftp:outbound-channel-adapter
-		remote-directory="/remote/" channel="outChannel" session-factory="ftpClientFactory" />		
+		remote-directory="/remote/" channel="outChannel" session-factory="ftpClientFactory" />
 </beans>

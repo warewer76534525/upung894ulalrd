@@ -5,25 +5,38 @@ import java.io.File;
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.Message;
+import org.springframework.integration.MessageHandlingException;
 import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.integration.channel.DirectChannel;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.jms.support.JmsUtils;
 
 import com.ocbcmcd.message.SapFileEncrypted;
 
 public class EncryptedFileMessageHandler {
 	
+	@Autowired
+	@Qualifier("outChannel")
+	private DirectChannel ftpChannel;
+	
 	@ServiceActivator
-	public Message<File> handleMessage(Message<javax.jms.Message> message) {
-//		ObjectMessage objectMessage = (ObjectMessage) message.getPayload();
-//		
-//		try {
-//			SapFileEncrypted event = (SapFileEncrypted) objectMessage.getObject();
-//			System.out.println(event.getFileName());
-//			return null;
-//		} catch (JMSException e) {
-//			throw JmsUtils.convertJmsAccessException(e);
-//		}
-		return null;
+	public void handleMessage(Message<javax.jms.Message> message) {
+		ObjectMessage objectMessage = (ObjectMessage) message.getPayload();
+		
+		try {
+			SapFileEncrypted event = (SapFileEncrypted) objectMessage.getObject();
+			System.out.println(event.getFileName());
+			
+			Message<File> fileMessage =  MessageBuilder.withPayload(new File(event.getFileName())).build();
+			ftpChannel.send(fileMessage);
+			System.out.println("sent");
+		} catch (JMSException e) {
+			throw JmsUtils.convertJmsAccessException(e);
+		} catch (MessageHandlingException e) {
+			System.out.println("error send message");
+		}
 	}
 }
