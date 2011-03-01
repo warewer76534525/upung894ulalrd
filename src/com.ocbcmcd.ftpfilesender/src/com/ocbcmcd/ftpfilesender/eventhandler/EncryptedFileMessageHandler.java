@@ -12,11 +12,16 @@ import org.springframework.integration.MessageHandlingException;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.support.MessageBuilder;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.JmsUtils;
 
+import com.ocbcmcd.message.OcbcFileSent;
 import com.ocbcmcd.message.SapFileEncrypted;
 
 public class EncryptedFileMessageHandler {
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
 	
 	@Autowired
 	@Qualifier("outChannel")
@@ -31,8 +36,10 @@ public class EncryptedFileMessageHandler {
 			System.out.println(event.getFileName());
 			
 			Message<File> fileMessage =  MessageBuilder.withPayload(new File(event.getFileName())).build();
-			ftpChannel.send(fileMessage);
+//			ftpChannel.send(fileMessage);
 			System.out.println("sent");
+			
+			jmsTemplate.convertAndSend(new OcbcFileSent(event.getFileName()));
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {

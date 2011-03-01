@@ -17,7 +17,7 @@
 
 	<context:annotation-config />
 	<context:property-placeholder location="application.properties" />
-	<context:component-scan base-package="com.ocbcmcd.ftpfilesender" />
+	<context:component-scan base-package="com.ocbcmcd" />
 
 	<bean id="connectionFactory"
 		class="org.springframework.jms.connection.CachingConnectionFactory">
@@ -39,6 +39,17 @@
 	<jms:message-driven-channel-adapter
 		channel="encryptedFileChannel" extract-payload="false"
 		connection-factory="connectionFactory" destination="fileEncryptedDestination" />
+	
+	<bean id="ftpSentDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sent.topic}" />
+	</bean>
+		
+	<bean class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="ftpSentDestination" />
+		<property name="messageConverter" ref="serializableMessageConverter" />
+	</bean>
 
 	<bean id="encryptedFileMessageHandler"
 		class="com.ocbcmcd.ftpfilesender.eventhandler.EncryptedFileMessageHandler" />

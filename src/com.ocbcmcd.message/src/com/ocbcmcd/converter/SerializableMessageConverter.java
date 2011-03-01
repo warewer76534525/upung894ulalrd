@@ -1,4 +1,4 @@
-package com.ocbcmcd.sapfilewatcher.serializer;
+package com.ocbcmcd.converter;
 
 import java.io.Serializable;
 
