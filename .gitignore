@@ -1,0 +1,6 @@
+build/
+classes/
+*.war
+dist/
+*-service/
+bin/

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:si="http://www.springframework.org/schema/integration"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/integration 
+	http://www.springframework.org/schema/integration/spring-integration-2.0.xsd 
+	http://www.springframework.org/schema/integration/file 
+	http://www.springframework.org/schema/integration/file/spring-integration-file-2.0.xsd">
+
+	<context:annotation-config />
+	<context:property-placeholder location="application.properties" />
+	<context:component-scan base-package="com.ocbcmcd.sapfilewatcher" />
+
+	<bean id="erpFileListenerProcessor" class="com.ocbcmcd.sapfilewatcher.listener.ERPFileListener" />
+
+	<si:channel id="erpFileChannel" />
+
+	<file:inbound-channel-adapter directory="C:\erpfile\incoming"
+		channel="erpFileChannel" filename-pattern="*.*">
+		<si:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<si:service-activator input-channel="erpFileChannel"
+		ref="erpFileListenerProcessor" />
+
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="${jms.brokerURL}" />
+	</bean>
+
+	<bean id="fileEncryptedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.encrypted.topic}" />
+	</bean>
+
+	<bean id="kursJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="fileEncryptedDestination" />
+		<property name="messageConverter" ref="serializableMessageConverter" />
+	</bean>
+</beans>
