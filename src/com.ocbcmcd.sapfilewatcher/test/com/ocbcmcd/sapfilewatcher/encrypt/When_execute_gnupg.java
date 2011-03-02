@@ -23,7 +23,7 @@ public class When_execute_gnupg {
 	public void Should_encrypt_file_with_parameter() throws Exception {
 		GPGWindowsEncryptor gpgWindowsEncryptor = new GPGWindowsEncryptor();
 		File originalFile = new File("D:\\ocbcsite\\movie-hunt.txt");
-		gpgWindowsEncryptor.encrypt("544F85D3", originalFile);
+		gpgWindowsEncryptor.encrypt("McDonald", originalFile);
 	}
 	
 	@Test

@@ -25,7 +25,7 @@ public class EncryptedFileTransformer {
 		
 		writer.close();
 		
-		File encryptedFile = encryptor.encrypt("544F85D3", tempAppendedHeaderFile);
+		File encryptedFile = encryptor.encrypt("McDonald", tempAppendedHeaderFile);
 		
 		tempAppendedHeaderFile.delete();
 		
