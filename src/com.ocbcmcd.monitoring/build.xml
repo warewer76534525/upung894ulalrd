@@ -15,13 +15,11 @@
 	<property name="service.lib.dir" value="WebContent/WEB-INF/lib" />
 	<property name="service.name" value="${name}" />
 
-	<property name="dependency.project" value="../com.ocbcmcd.message" />
-	<property name="dependency.build.dir" value="${dependency.project}/build" />
-	<property name="dependency.src.dir" value="${dependency.project}/src" />
-	
-
 	<path id="master-classpath">
 		<fileset dir="${external.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${internal.lib.dir}">
 			<include name="*.jar" />
 		</fileset>
 		<fileset dir="${appserver.lib}">
@@ -32,32 +30,17 @@
 
 	<target name="clean">
 		<delete dir="${build.dir}" />
-		<delete file="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" />
 		<delete file="${dist.dir}/${name}.war" />
-		<delete dir="${dependency.build.dir}" />
 	</target>
 
 	<target name="init" depends="clean">
 		<mkdir dir="${dist.dir}" />
-		<mkdir dir="${dependency.build.dir}" />
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
 	</target>
 
-	<target name="compile-dep" description="Compile project dependency">
-		<javac destdir="${dependency.build.dir}" source="1.6" target="1.6" debug="true" deprecation="false" optimize="false" failonerror="true">
-			<src path="${dependency.src.dir}" />
-			<classpath refid="master-classpath" />
-		</javac>
-	</target>
 
-	<target name="package-dep" depends="init, compile-dep" description="Compile project dependency">
-		<delete file="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" />
-		<jar destfile="${web.dir}/WEB-INF/lib/com.ocbcmcd.message.jar" basedir="${dependency.build.dir}" includes="**/*.class" />
-	</target>
-
-
-	<target name="package" depends="package-dep, compile" description="Package service project">
+	<target name="package" depends="compile" description="Package service project">
 		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
@@ -71,7 +54,10 @@
 		</copy>
 		<copy todir="${web.dir}/WEB-INF/lib/" preservelastmodified="true">
 			<fileset dir="${external.lib.dir}">
-					<include name="**/*.jar" />
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${internal.lib.dir}">
+				<include name="**/*.jar" />
 			</fileset>
 		</copy>
 		<war destfile="${dist.dir}/${name}.war" webxml="${web.dir}/WEB-INF/web.xml">
@@ -101,7 +87,14 @@
 	</target>
 
 	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
-		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
+		<!--<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />-->
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+			<arg line="stop" />
+		</java>
+		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
+			<jvmarg value="-Dcatalina.home=${appserver.home}" />
+		</java>
 	</target>
 
 	<target name="undeploy" description="Un-Deploy application">

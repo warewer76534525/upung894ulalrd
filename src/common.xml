@@ -2,6 +2,7 @@
 
 <project>
 	<property name="external.lib.dir" value="../../external-lib" />
+	<property name="internal.lib.dir" value="../../internal-lib" />
 	<property name="dist.dir" location="." />
 	<property name="build.dir" value="bin" />
 	<property name="lib.dir" value="../com.ocbcmcd.message" />
