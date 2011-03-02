@@ -1,8 +1,12 @@
 package com.ocbcmcd.message;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OcbcFileSent {
+public class OcbcFileSent implements Serializable {
+	
+	private static final long serialVersionUID = -6422628080620165997L;
+	
 	private String fileName;
 	private Date time = new Date();
 	
