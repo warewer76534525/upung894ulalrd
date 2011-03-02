@@ -18,6 +18,9 @@ public class ERPFileListener {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
+	@Autowired
+	private EncryptedFileTransformer transformer;
+	
 	@ServiceActivator
 	public void onNewFileArrival(@Headers Map<String, Object> headers,
 			@Payload File file) throws Exception {
@@ -25,12 +28,8 @@ public class ERPFileListener {
 		for (String k : headers.keySet())
 			System.out.println(String.format("%s=%s", k, headers.get(k)));
 		
-		EncryptedFileTransformer transformer = new EncryptedFileTransformer();
-		transformer.create(file);
-		
-		File encryptedFile = new File("C:\\erpfile\\encrypted\\", file.getName());
+		File encryptedFile = transformer.create(file);
 		
 		jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getAbsolutePath()));
-		
 	}
 }
