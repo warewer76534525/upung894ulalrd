@@ -36,7 +36,7 @@ public class EncryptedFileMessageHandler {
 			System.out.println(event.getFileName());
 			
 			Message<File> fileMessage =  MessageBuilder.withPayload(new File(event.getFileName())).build();
-//			ftpChannel.send(fileMessage);
+			ftpChannel.send(fileMessage);
 			System.out.println("sent");
 			
 			jmsTemplate.convertAndSend(new OcbcFileSent(event.getFileName()));

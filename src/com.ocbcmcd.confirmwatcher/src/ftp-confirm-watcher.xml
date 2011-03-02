@@ -30,27 +30,28 @@
 		<property name="cacheProducers" value="false" />
 	</bean>
 
-	<si:channel id="encryptedFileChannel" />
+	<si:channel id="fileSentChannel" />
 
-	<bean id="fileEncryptedDestination" class="org.apache.activemq.command.ActiveMQTopic">
-		<constructor-arg value="${jms.encrypted.topic}" />
-	</bean>
-
-	<jms:message-driven-channel-adapter
-		channel="encryptedFileChannel" extract-payload="false"
-		connection-factory="connectionFactory" destination="fileEncryptedDestination" />
-	
 	<bean id="ftpSentDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.sent.topic}" />
 	</bean>
-		
+
+	<jms:message-driven-channel-adapter
+		channel="fileSentChannel" extract-payload="false"
+		connection-factory="connectionFactory" destination="ftpSentDestination" />
+	
 	<bean class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="receiveTimeout" value="10000" />
 		<property name="defaultDestination" ref="ftpSentDestination" />
 		<property name="messageConverter" ref="serializableMessageConverter" />
 	</bean>
-
+	
+	<si:service-activator input-channel="fileSentChannel"
+		ref="ftpFileSentMessageHandler" />
+	
+	
+	<!-- 
 	<bean id="encryptedFileMessageHandler"
 		class="com.ocbcmcd.ftpfilesender.eventhandler.EncryptedFileMessageHandler" />
 
@@ -68,4 +69,5 @@
 	
 	<ftp:outbound-channel-adapter
 		channel="outChannel" session-factory="ftpClientFactory" remote-directory="\"/>
+	 -->
 </beans>
