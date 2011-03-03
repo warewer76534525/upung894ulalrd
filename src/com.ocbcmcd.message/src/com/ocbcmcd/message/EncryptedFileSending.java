@@ -1,8 +1,9 @@
 package com.ocbcmcd.message;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EncryptedFileSending {
+public class EncryptedFileSending implements Serializable {
 private static final long serialVersionUID = -4742193782275583068L;
 	
 	private String fileName;

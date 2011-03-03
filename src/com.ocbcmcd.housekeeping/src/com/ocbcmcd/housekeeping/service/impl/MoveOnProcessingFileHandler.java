@@ -1,4 +1,4 @@
-package com.ocbcmcd.monitoring.service.impl;
+package com.ocbcmcd.housekeeping.service.impl;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -9,26 +9,26 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.support.JmsUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.ocbcmcd.message.OcbcFileSent;
-import com.ocbcmcd.monitoring.service.IMonitoringService;
+import com.ocbcmcd.housekeeping.service.IHouseKeepingService;
+import com.ocbcmcd.message.EncryptedFileSending;
 
-@Component
-public class LogFileSentHandler implements MessageListener {
+@Service
+public class MoveOnProcessingFileHandler implements MessageListener {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
-	IMonitoringService monitoringService;
+	IHouseKeepingService houseKeepingService;
 
 	@Override
 	public void onMessage(Message message) {
 		ObjectMessage mapMessage = (ObjectMessage) message;
-		OcbcFileSent event;
+		EncryptedFileSending event;
 		try {
-			event = (OcbcFileSent) mapMessage.getObject();
+			event = (EncryptedFileSending) mapMessage.getObject();
 			log.info("incoming event: " + event);
-			monitoringService.logFileSentEvent(event);
+			houseKeepingService.moveOnProcessingFile(event);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		}
