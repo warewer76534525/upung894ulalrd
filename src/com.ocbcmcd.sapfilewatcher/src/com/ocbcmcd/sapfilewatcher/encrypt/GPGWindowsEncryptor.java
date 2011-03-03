@@ -13,7 +13,7 @@ public class GPGWindowsEncryptor {
 		File encryptedFile = new File(originalFile.getParent(), originalFile.getName() + ".gpg"); 
 		
 		if (encryptedFile.exists()) {
-//			encryptedFile.delete();
+			encryptedFile.delete();
 			System.out.println("delete previous encrypted file");
 		}
 		
