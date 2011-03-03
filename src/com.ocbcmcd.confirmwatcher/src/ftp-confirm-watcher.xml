@@ -56,9 +56,9 @@
 	
 	<bean id="ftpClientFactory"
 		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
-		<property name="host" value="localhost" />
-		<property name="username" value="welly" />
-		<property name="password" value="1234" />
+		<property name="host" value="${ftp.host}" />
+		<property name="username" value="${ftp.username}" />
+		<property name="password" value="${ftp.password}" />
 	</bean>
 	
 	<!-- 
