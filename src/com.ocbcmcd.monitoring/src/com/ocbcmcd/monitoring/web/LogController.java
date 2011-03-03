@@ -7,13 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ocbcmcd.monitoring.query.ILogQuery;
+import com.ocbcmcd.monitoring.query.ILogEventQuery;
 
 @Controller
 @RequestMapping("/log")
 public class LogController {
 	@Autowired
-	ILogQuery logQuery;
+	ILogEventQuery logQuery;
 	
 	@RequestMapping(method = GET)
 	public ModelMap list(){
