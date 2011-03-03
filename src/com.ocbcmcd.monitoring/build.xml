@@ -86,6 +86,14 @@
 		</copy>
 	</target>
 
+	<target name="deploy-webcontent" description="Deploy application">
+		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
 	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
 		<!--<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />-->
 		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">

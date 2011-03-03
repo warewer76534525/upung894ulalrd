@@ -3,6 +3,7 @@ package com.ocbcmcd.housekeeping.service.impl;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.ocbcmcd.housekeeping.service.IHouseKeepingService;
 import com.ocbcmcd.message.EncryptedFileSending;
 import com.ocbcmcd.message.OcbcFileProcessedSucessfully;
-import com.triplelands.common.util.CopyFileUtil;
 
 @Service
 public class HouseKeepingService implements IHouseKeepingService {
@@ -33,11 +33,6 @@ public class HouseKeepingService implements IHouseKeepingService {
 	@Value("${outgoing.dir}")
 	private String outgoingDirectory;
 
-	private CopyFileUtil copyFileUtil;
-
-	public HouseKeepingService() {
-		copyFileUtil = new CopyFileUtil();
-	}
 
 	public void setProcessingDirectory(String processingDirectory) {
 		this.processingDirectory = processingDirectory;
@@ -53,7 +48,7 @@ public class HouseKeepingService implements IHouseKeepingService {
 		File outgoing = getOutgoingFile(event.getFileName());
 		File encrypted = getEncryptedFile(event.getFileName());
 		try {
-			copyFileUtil.move(processing, outgoing);
+			FileUtils.moveFile(processing, outgoing);
 			encrypted.delete();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -66,7 +61,7 @@ public class HouseKeepingService implements IHouseKeepingService {
 		File processing = getProcessingFile(event.getFileName());
 		
 		try {
-			copyFileUtil.move(incoming, processing);
+			FileUtils.moveFile(incoming, processing);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

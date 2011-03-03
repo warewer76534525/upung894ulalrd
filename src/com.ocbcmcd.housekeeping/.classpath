@@ -67,5 +67,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.ocbcmcd.message"/>
 	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
+	<classpathentry kind="lib" path="/external-lib/commons-io-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
