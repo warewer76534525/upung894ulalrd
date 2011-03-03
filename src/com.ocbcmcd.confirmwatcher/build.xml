@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project name="com.ocbcmcd.confirmwatcher">
+	<property name="service.name" value="confirmwatcher-service" />
+	<property name="main.class" value="com.ocbcmcd.confirmwatcher.main.Main" />
+	<import file="..\common.xml" />
+
+	<property name="service.dir" value="${dist.dir}/${service.name}" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
+</project>
