@@ -16,7 +16,7 @@
 	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
 	
 	<context:annotation-config />
-	<context:component-scan base-package="com.ocbcmcd" />
+	<context:component-scan base-package="com.ocbcmcd.confirmwatcher.checker" />
 	
 	<bean id="ftpClientFactory"
 		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">

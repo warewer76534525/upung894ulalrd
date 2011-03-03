@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project name="com.ocbcmcd.sapfilewatcher">
+	<property name="service.name" value="sapfilewatcher-service" />
+	<property name="main.class" value="com.ocbcmcd.sapfilewatcher.main.Main" />
+	<import file="..\common.xml" />
+
+	<property name="service.dir" value="${dist.dir}/${service.name}" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
+</project>

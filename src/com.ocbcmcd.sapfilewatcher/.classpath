@@ -23,10 +23,7 @@
 	<classpathentry kind="lib" path="/external-lib/jms-1.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.jms-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.transaction-3.0.5.RELEASE.jar"/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
-=======
 	<classpathentry kind="lib" path="/external-lib/commons-exec-1.1.jar"/>
->>>>>>> d9cbf5e5a9bc00505fa83bf235631a0de36c71d4
 	<classpathentry kind="output" path="bin"/>
 </classpath>

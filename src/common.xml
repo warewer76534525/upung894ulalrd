@@ -11,7 +11,15 @@
 	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
 	
 	<path id="master-classpath">
+		<!--
 		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		-->
+		<fileset dir="${external.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${internal.lib.dir}">
 			<include name="*.jar" />
 		</fileset>
 		<pathelement path="${build.dir}" />
@@ -65,17 +73,27 @@
 	</target>
 
 	<target name="copy-service-tools" depends="copy-service-config">
+		<!--
 		<copy todir="${service.dir}">
 			<fileset dir="${winrun4j.dir}">
 				<include name="*.exe" />
 				<include name="*.jar" />
 			</fileset>
 		</copy>
+		-->
 	</target>
 
 	<target name="copy-service-libs" depends="copy-service-tools">
 		<copy todir="${service.lib.dir}">
+			<!--
 			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+			-->
+			<fileset dir="${external.lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${internal.lib.dir}">
 				<include name="*.jar" />
 			</fileset>
 		</copy>

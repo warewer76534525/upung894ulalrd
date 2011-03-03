@@ -17,8 +17,11 @@ public class ChkConfirmationChecker {
 		System.out.println("chk file name : " + chkFileName);
 		
 		if (fileChecker.fileExist(chkFileName)) {
+			fileChecker.deleteFile(chkFileName);
 			return ConfirmationStatus.Success;
 		}
+		
+		fileChecker.close();
 		
 		return ConfirmationStatus.Unavailable;
 	}
