@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
-<project name="com.ocbcmcd.sapfilewatcher">
-	<property name="service.name" value="sapfilewatcher-service" />
-	<property name="main.class" value="com.ocbcmcd.sapfilewatcher.main.Main" />
+<project name="com.ocbcmcd.ftpfilesender">
+	<property name="service.name" value="ftpfilesender-service" />
+	<property name="main.class" value="com.ocbcmcd.ftpfilesender.main.Main" />
 	<import file="..\common.xml" />
 
 	<property name="service.dir" value="${dist.dir}/${service.name}" />
