@@ -1,4 +1,4 @@
-package com.ocbcmcd.housekeeping.stub;
+package com.ocbcmcd.monitoring.stub;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -12,15 +12,15 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ocbcmcd.message.OcbcFileProcessedSucessfully;
+import com.ocbcmcd.message.OcbcFileSent;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:jms-context.xml")
-public class FileProcessedSuccesfullyPublisherTest {
+public class FileSentPublisherTest {
 
 	@Autowired
-	@Qualifier("fileProcessedTemplate")
-	JmsTemplate fileProcessedTemplate;
+	@Qualifier("fileSentTemplate")
+	JmsTemplate fileSentTemplate;
 
 	@Before
 	public void setUp() {
@@ -31,7 +31,7 @@ public class FileProcessedSuccesfullyPublisherTest {
 
 	@Test
 	public void shoud_publish_messsage_to_success_topic() {
-		fileProcessedTemplate.convertAndSend(new OcbcFileProcessedSucessfully("data.txt"));
+		fileSentTemplate.convertAndSend(new OcbcFileSent("data.txt"));
 	}
 
 }

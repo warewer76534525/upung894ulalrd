@@ -12,7 +12,7 @@
 
 	<!-- Basic Configuration -->
 	<tx:annotation-driven />
-	<context:component-scan base-package="com.ocbcmcd" />
+	<context:component-scan base-package="com.ocbcmcd.converter" />
 	<context:property-placeholder location="application.properties" />
 	<context:annotation-config />
 
@@ -32,6 +32,17 @@
 		<property name="messageConverter" ref="serializableMessageConverter" />
 	</bean>
 
+	
+	<bean id="sentDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sent.topic}" />
+	</bean>
+
+	<bean id="fileSentTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="sentDestination" />
+		<property name="messageConverter" ref="serializableMessageConverter" />
+	</bean>
 	
 </beans>
 

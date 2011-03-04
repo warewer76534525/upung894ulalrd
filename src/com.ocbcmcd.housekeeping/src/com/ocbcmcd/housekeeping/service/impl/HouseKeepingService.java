@@ -45,8 +45,7 @@ public class HouseKeepingService implements IHouseKeepingService {
 				fileProcessedEvent.getFileName());
 		
 		try {
-			copyFileUtil.copy(processing, outgoing);
-			processing.delete();
+			copyFileUtil.move(processing, outgoing);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

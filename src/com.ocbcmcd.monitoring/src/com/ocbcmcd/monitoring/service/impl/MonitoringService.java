@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ocbcmcd.message.OcbcFileProcessedSucessfully;
+import com.ocbcmcd.message.OcbcFileSent;
 import com.ocbcmcd.monitoring.dao.ILogEventDao;
 import com.ocbcmcd.monitoring.domain.LogEvent;
 import com.ocbcmcd.monitoring.service.IMonitoringService;
@@ -19,14 +20,26 @@ public class MonitoringService implements IMonitoringService {
 	
 	@Override
 	public void logFileProcessedEvent(OcbcFileProcessedSucessfully event) {
-		LogEvent logEvent = generateSuccessLogEvent(event);
+		LogEvent logEvent = generateProcessedLogEvent(event);
 		log.info(logEvent);
 		logEventDao.save(logEvent);
 	}
-
-	private LogEvent generateSuccessLogEvent(OcbcFileProcessedSucessfully event) {
-		LogEvent logEvent = new LogEvent(event.getFileName(), LogEvent.SUCCESS, event.getTime());
+	
+	private LogEvent generateProcessedLogEvent(OcbcFileProcessedSucessfully event) {
+		LogEvent logEvent = new LogEvent(event.getFileName(), LogEvent.PROCESSED, event.getTime());
 		return logEvent;
+	}
+	
+	private LogEvent generateSentLogEvent(OcbcFileSent event) {
+		LogEvent logEvent = new LogEvent(event.getFileName(), LogEvent.SENT, event.getTime());
+		return logEvent;
+	}
+
+	@Override
+	public void logFileSentEvent(OcbcFileSent event) {
+		LogEvent logEvent = generateSentLogEvent(event);
+		log.info(logEvent);
+		logEventDao.save(logEvent);
 	}
 
 }

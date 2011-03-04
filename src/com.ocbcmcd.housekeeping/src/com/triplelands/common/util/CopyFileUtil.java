@@ -9,7 +9,7 @@ import java.io.OutputStream;
 
 public class CopyFileUtil {
 
-	public void copy(File source, File des) throws IOException {
+	public void move(File source, File des) throws IOException {
 		InputStream in = null;
 		OutputStream out = null;
 		try {
@@ -24,7 +24,7 @@ public class CopyFileUtil {
 		} catch (IOException e) {
 			throw e;
 		} finally {
-			try { in.close(); } catch (Exception ex) { }
+			try { in.close(); source.delete();} catch (Exception ex) { }
 			try { out.close(); } catch (Exception ex) { }
 		}
 	}

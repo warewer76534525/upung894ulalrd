@@ -4,8 +4,10 @@ import java.util.Date;
 
 
 public class LogEvent {
-	public final static String SUCCESS = "success";
-	public final static String ERROR = "error";
+	public final static String SENT = "SENT";
+	public final static String ERROR = "ERROR";
+	public final static String PROCESSED = "PROCESSED";
+	public final static String FAILED = "FAILED";
 	
 	private String fileName;
 	private String type;

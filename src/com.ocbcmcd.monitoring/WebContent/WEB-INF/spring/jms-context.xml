@@ -30,6 +30,20 @@
 		<property name="messageListener" ref="logFileProcessedSuccesfullyHandler" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="monitoringpRocessedClient"></property>
+	</bean>
+	
+	<bean id="sentDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sent.topic}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="processSuccessDestination" />
+		<property name="messageListener" ref="logFileSentHandler" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="monitoringClient"></property>
 	</bean>
 	
