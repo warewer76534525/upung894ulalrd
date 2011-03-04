@@ -28,7 +28,7 @@ public class LogEventQuery extends SimpleJdbcDaoSupport implements
 
 	@Override
 	public List<LogEvent> getLogs() {
-		String sql = "SELECT * FROM log_event le ORDER BY le.date;";
+		String sql = "SELECT * FROM log_event le ORDER BY le.date desc";
 		return getJdbcTemplate().query(sql, new LogEventMapper());
 	}
 

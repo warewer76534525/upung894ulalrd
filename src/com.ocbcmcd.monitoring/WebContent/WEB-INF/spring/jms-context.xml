@@ -40,11 +40,11 @@
 	<bean
 		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destination" ref="processSuccessDestination" />
+		<property name="destination" ref="sentDestination" />
 		<property name="messageListener" ref="logFileSentHandler" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="monitoringClient"></property>
+		<property name="clientId" value="monitoringSentClient"></property>
 	</bean>
 	
 </beans>

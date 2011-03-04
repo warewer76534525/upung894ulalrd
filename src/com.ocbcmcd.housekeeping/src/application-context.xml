@@ -32,7 +32,20 @@
 		<property name="messageListener" ref="fileProcessedSuccesfullyHandler" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="houseKeepingClient"></property>
+		<property name="clientId" value="processedHouseKeepingClient"></property>
 	</bean>
 	
+	<bean id="processingDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.processing.topic}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="processingDestination" />
+		<property name="messageListener" ref="moveOnProcessingFileHandler" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="processingHouseKeepingClient"></property>
+	</bean>
 </beans>
