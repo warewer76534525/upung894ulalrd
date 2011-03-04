@@ -28,6 +28,15 @@ public class When_count_line_number {
 	}
 	
 	@Test
+	public void Should_return_line_count_from_sample_file() {
+		FileCacheReader fileCacheReader = new FileCacheReader(new File("110221130912_1111_03702.txt"));
+		Assert.assertEquals(6, fileCacheReader.getLinesCount());
+		
+		Header header = new Header(new File("110221130912_1111_03702.txt"));
+		System.out.println(header.toString());
+	}
+	
+	@Test
 	public void Should_cache_file_content() throws Exception {
 		FileCacheReader fileCacheReader = new FileCacheReader(new File("INPUT.txt"));
 		fileCacheReader.readAllText();
