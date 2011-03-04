@@ -43,6 +43,10 @@
 	<bean id="ftpSentDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.sent.topic}" />
 	</bean>
+	
+	<bean id="processingDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.processing.topic}" />
+	</bean>
 		
 	<bean class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
