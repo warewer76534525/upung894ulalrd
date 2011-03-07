@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EncryptedFileTransformer {
 	
+	private static final char NEW_LINE = '\n';
+	
 	@Value("${encrypted.file.path}")
 	private String encryptedFilePath;
 	
@@ -26,15 +28,17 @@ public class EncryptedFileTransformer {
 		
 		FileInformation fileInformation = new FileInformation(original);
 		
-		writer.println(fileInformation.getHeader());
+		writer.print(fileInformation.getHeader());
 		
-		writer.println(fileInformation.getContent());
+		writer.print(NEW_LINE);
+		
+		writer.print(fileInformation.getContent());
 		
 		writer.close();
 		
 		File encryptedFile = encryptor.encrypt(publicKeyId, tempAppendedHeaderFile);
 		
-		tempAppendedHeaderFile.delete();
+//		tempAppendedHeaderFile.delete();
 		
 		return encryptedFile;
 	}
