@@ -33,15 +33,6 @@ public class HouseKeepingService implements IHouseKeepingService {
 	@Value("${outgoing.dir}")
 	private String outgoingDirectory;
 
-
-	public void setProcessingDirectory(String processingDirectory) {
-		this.processingDirectory = processingDirectory;
-	}
-
-	public void setOutgoingDirectory(String outgoingDirectory) {
-		this.outgoingDirectory = outgoingDirectory;
-	}
-
 	@Override
 	public void moveSuccessFile(OcbcFileProcessedSucessfully event) {
 		File processing = getProcessingFile(event.getFileName());

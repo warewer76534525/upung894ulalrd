@@ -13,7 +13,7 @@ public class ChkConfirmationChecker {
 	
 	public ConfirmationStatus getStatus(String fileName) throws Exception {
 		File originalFile = new File(fileName);
-		String chkFileName = originalFile.getName().replaceAll(".txt.gpg", ".chk");
+		String chkFileName = originalFile.getName().replaceAll(".txt", ".chk");
 		System.out.println("chk file name : " + chkFileName);
 		
 		if (fileChecker.fileExist(chkFileName)) {

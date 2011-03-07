@@ -21,4 +21,12 @@ public class EncryptedFileSending implements Serializable {
 	public Date getTime() {
 		return time;
 	}
+
+	@Override
+	public String toString() {
+		return "EncryptedFileSending [fileName=" + fileName + ", time=" + time
+				+ "]";
+	}
+	
+	
 }
