@@ -18,7 +18,7 @@
 	<!-- header starts here -->
 	<div id="header-wrap"><div id="header-content">	
 				
-		<h1 id="logo"><a href="index.html" title="">Elite<span class="orange">Circle</span></a></h1>	
+		<h1 id="logo"><a href="index.html" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
 		<h2 id="slogan">Put your site slogan here...</h2>		
 		
 		<div id="header-links">
@@ -62,8 +62,8 @@
 			
 				<h1>Sidebar Menu</h1>
 				<ul class="sidemenu">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="#TemplateInfo">TemplateInfo</a></li>
+					<li><a href="<%=request.getContextPath()%>">Home</a></li>
+					<li><a href="<%=request.getContextPath()%>/log">Logs</a></li>
 					<li><a href="#SampleTags">Sample Tags</a></li>
 					<li><a href="http://www.styleshout.com/">More Templates</a></li>
 					<li><a href="http://www.dreamtemplate.com" title="Web Templates">Web Templates</a></li>
