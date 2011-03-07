@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.annotation.Headers;
 import org.springframework.integration.annotation.Payload;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -21,6 +22,9 @@ public class ERPFileListener {
 	@Autowired
 	private EncryptedFileTransformer transformer;
 	
+	@Value("${encrypted.ext}")
+	private String encryptedExt;
+	
 	@ServiceActivator
 	public void onNewFileArrival(@Headers Map<String, Object> headers,
 			@Payload File file) throws Exception {
@@ -30,6 +34,6 @@ public class ERPFileListener {
 		
 		File encryptedFile = transformer.create(file);
 		
-		jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getAbsolutePath()));
+		jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getName().replaceAll(encryptedExt,"")));
 	}
 }

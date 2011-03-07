@@ -47,6 +47,7 @@ public class HouseKeepingService implements IHouseKeepingService {
 		File processing = getProcessingFile(event.getFileName());
 		File outgoing = getOutgoingFile(event.getFileName());
 		File encrypted = getEncryptedFile(event.getFileName());
+		
 		try {
 			FileUtils.moveFile(processing, outgoing);
 			encrypted.delete();
@@ -80,6 +81,6 @@ public class HouseKeepingService implements IHouseKeepingService {
 	}
 	
 	private File getEncryptedFile(String fileName) {
-		return new File(encryptedDirectory, fileName + "." + encryptedExt);
+		return new File(encryptedDirectory, fileName + encryptedExt);
 	}
 }
