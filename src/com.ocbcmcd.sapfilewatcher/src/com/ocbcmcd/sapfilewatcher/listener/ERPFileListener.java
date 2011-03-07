@@ -3,6 +3,8 @@ package com.ocbcmcd.sapfilewatcher.listener;
 import java.io.File;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.annotation.Headers;
@@ -16,6 +18,8 @@ import com.ocbcmcd.sapfilewatcher.encrypt.EncryptedFileTransformer;
 
 @Component
 public class ERPFileListener {
+	protected Log log = LogFactory.getLog(getClass());
+	
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
@@ -29,10 +33,11 @@ public class ERPFileListener {
 	public void onNewFileArrival(@Headers Map<String, Object> headers,
 			@Payload File file) throws Exception {
 		
-		for (String k : headers.keySet())
-			System.out.println(String.format("%s=%s", k, headers.get(k)));
+		log.info("Received : " + file.getAbsolutePath());
 		
 		File encryptedFile = transformer.create(file);
+		
+		log.info("Created Encrypted File : " + encryptedFile.getAbsolutePath());
 		
 		jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getName().replaceAll(encryptedExt,"")));
 	}

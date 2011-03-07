@@ -3,6 +3,8 @@ package com.ocbcmcd.confirmwatcher.eventhandler;
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageHandlingException;
@@ -18,6 +20,8 @@ import com.ocbcmcd.message.OcbcFileSent;
 
 @Component
 public class FtpFileSentMessageHandler {
+	protected Log log = LogFactory.getLog(getClass());
+	
 	@Autowired
 	private ChkConfirmationChecker confirmationChecker;
 	
@@ -30,10 +34,11 @@ public class FtpFileSentMessageHandler {
 		
 		try {
 			OcbcFileSent event = (OcbcFileSent) objectMessage.getObject();
-			System.out.println(event.getFileName());
+			log.info("Received File Name " + event.getFileName());
 			
-			System.out.println("check file exist");
+//			System.out.println("check file exist");
 //			System.out.println("start timer");
+			log.info("check file exist");
 			
 			ConfirmationStatus status = confirmationChecker.getStatus(event.getFileName());
 			
@@ -41,13 +46,13 @@ public class FtpFileSentMessageHandler {
 				jmsTemplate.convertAndSend(new OcbcFileProcessedSucessfully(event.getFileName()));
 			}
 			
-			System.out.println(status);
+			log.info("Status : " + status);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {
-			System.out.println("error send message");
+			log.error("Error send message : ", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error(e);
 		}
 	}
 }
