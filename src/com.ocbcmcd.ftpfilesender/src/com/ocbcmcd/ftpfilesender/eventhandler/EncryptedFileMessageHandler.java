@@ -8,6 +8,7 @@ import javax.jms.ObjectMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageHandlingException;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -29,6 +30,12 @@ public class EncryptedFileMessageHandler {
 	@Qualifier("processingDestination")
 	private Destination processingDestination;
 	
+	@Value("${encrypted.ext}")
+	private String encryptedExt;
+	
+	@Value("${encrypted.dir}")
+	private String encryptedDirectory;
+	
 	@Autowired
 	@Qualifier("outChannel")
 	private DirectChannel ftpChannel;
@@ -41,7 +48,7 @@ public class EncryptedFileMessageHandler {
 			SapFileEncrypted event = (SapFileEncrypted) objectMessage.getObject();
 			System.out.println(event.getFileName());
 			
-			Message<File> fileMessage =  MessageBuilder.withPayload(new File(event.getFileName())).build();
+			Message<File> fileMessage =  MessageBuilder.withPayload(new File(encryptedDirectory, event.getFileName() + encryptedExt)).build();
 			
 			jmsTemplate.convertAndSend(processingDestination, new EncryptedFileSending(event.getFileName()));
 			
@@ -52,7 +59,7 @@ public class EncryptedFileMessageHandler {
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {
-			System.out.println("error send message");
+			e.printStackTrace();
 		}
 	}
 }
