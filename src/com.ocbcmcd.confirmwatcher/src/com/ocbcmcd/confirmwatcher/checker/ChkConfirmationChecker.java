@@ -16,7 +16,7 @@ public class ChkConfirmationChecker {
 	
 	public ConfirmationStatus getStatus(String fileName) throws Exception {
 		File originalFile = new File(fileName);
-		String chkFileName = originalFile.getName().replaceAll(".txt.gpg", ".chk");
+		String chkFileName = originalFile.getName().replaceAll(".txt", ".chk");
 		
 		log.info("chk file name : " + chkFileName);
 		

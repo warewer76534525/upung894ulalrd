@@ -36,8 +36,6 @@ public class FtpFileSentMessageHandler {
 			OcbcFileSent event = (OcbcFileSent) objectMessage.getObject();
 			log.info("Received File Name " + event.getFileName());
 			
-//			System.out.println("check file exist");
-//			System.out.println("start timer");
 			log.info("check file exist");
 			
 			ConfirmationStatus status = confirmationChecker.getStatus(event.getFileName());
