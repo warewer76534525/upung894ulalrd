@@ -31,8 +31,6 @@ public class FileCacheReader {
 			reader.close();
 			
 			text = new String(content);	
-			
-			System.out.println("reading from file");
 		}
 		
 		return text;

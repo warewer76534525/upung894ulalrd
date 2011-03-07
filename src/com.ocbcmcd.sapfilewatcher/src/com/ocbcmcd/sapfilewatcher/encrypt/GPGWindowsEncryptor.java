@@ -4,17 +4,20 @@ import java.io.File;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GPGWindowsEncryptor {
-
+	protected Log log = LogFactory.getLog(getClass());
+	
 	public File encrypt(String keyId, File originalFile) throws Exception {
 		File encryptedFile = new File(originalFile.getParent(), originalFile.getName() + ".gpg"); 
 		
 		if (encryptedFile.exists()) {
 			encryptedFile.delete();
-			System.out.println("delete previous encrypted file");
+			log.info("delete previous encrypted file");
 		}
 		
 		String line = String.format("gpg -r %s -e %s", keyId, originalFile.getAbsolutePath()); 
@@ -23,9 +26,7 @@ public class GPGWindowsEncryptor {
 		
 		int exitValue = executor.execute(cmdLine);
 		
-		System.out.println(exitValue);
-		
-		System.out.println(encryptedFile.exists());
+		log.info("Exit value of gpg : " + exitValue);
 		
 		return encryptedFile;
 	}

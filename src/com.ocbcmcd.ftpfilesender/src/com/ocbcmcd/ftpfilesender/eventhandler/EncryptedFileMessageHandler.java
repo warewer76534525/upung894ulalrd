@@ -6,6 +6,8 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +24,7 @@ import com.ocbcmcd.message.OcbcFileSent;
 import com.ocbcmcd.message.SapFileEncrypted;
 
 public class EncryptedFileMessageHandler {
+	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
@@ -46,20 +49,20 @@ public class EncryptedFileMessageHandler {
 		
 		try {
 			SapFileEncrypted event = (SapFileEncrypted) objectMessage.getObject();
-			System.out.println(event.getFileName());
+			log.info("Received event encrypteed : " + event.getFileName());
 			
 			Message<File> fileMessage =  MessageBuilder.withPayload(new File(encryptedDirectory, event.getFileName() + encryptedExt)).build();
 			
 			jmsTemplate.convertAndSend(processingDestination, new EncryptedFileSending(event.getFileName()));
 			
 			ftpChannel.send(fileMessage);
-			System.out.println("sent");
+			log.info("Ftp file successfully : sent");
 			
 			jmsTemplate.convertAndSend(new OcbcFileSent(event.getFileName()));
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {
-			e.printStackTrace();
+			log.error("Error send file", e);
 		}
 	}
 }

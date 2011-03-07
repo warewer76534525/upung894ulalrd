@@ -86,9 +86,6 @@ public class When_generate_file_with_header {
 				System.out.println(ocbc[i] + "  " + local[i]);
 			}
 		}
-//		System.out.println();
-//		System.out.println(FileUtils.readFileToString(encryptedFromLocal));
-//		Assert.assertEquals(FileUtils.readFileToString(encryptedFromOcbc), FileUtils.readFileToString(encryptedFromLocal));
 	}
 	
 	@Test
