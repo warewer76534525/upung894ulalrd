@@ -48,18 +48,15 @@
 
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="25" />
-		<property name="username" value="if05041@gmail.com" />
-		<property name="password" value="joe@satriani41" />
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
 		<property name="javaMailProperties">
 			<props>
-				<!-- Use SMTP transport protocol -->
-				<prop key="mail.transport.protocol">smtp</prop>
-				<!-- Use SMTP-AUTH to authenticate to SMTP server -->
-				<prop key="mail.smtp.auth">true</prop>
-				<!-- Use TLS to encrypt communication with SMTP server -->
-				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.transport.protocol">${mail.transport.protocol}</prop>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
 				<prop key="mail.debug">false</prop>
 			</props>
 		</property>
@@ -67,10 +64,10 @@
 
 	<bean id="alertMailMessage" class="org.springframework.mail.SimpleMailMessage">
 		<property name="from">
-			<value>if05041@gmail.com</value>
+			<value>${mail.from}</value>
 		</property>
 		<property name="to">
-			<value>if05041@gmail.com</value>
+			<value>${mail.to}</value>
 		</property>
 		<property name="subject"
 			value="Alert - Exception occurred. Please investigate" />
