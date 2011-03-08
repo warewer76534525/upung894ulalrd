@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
 	<classpathentry kind="lib" path="/external-lib/activemq-all-5.4.2.jar"/>
 	<classpathentry kind="lib" path="/external-lib/aopalliance-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-logging.jar"/>
@@ -27,5 +26,6 @@
 	<classpathentry kind="lib" path="/external-lib/spring-integration-jms-2.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.transaction-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
