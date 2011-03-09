@@ -25,5 +25,7 @@
 	<classpathentry kind="lib" path="/external-lib/org.springframework.transaction-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons.net-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/external-lib/commons-lang.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
