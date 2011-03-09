@@ -4,6 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:ftp="http://www.springframework.org/schema/integration/ftp"
 	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:mail="http://www.springframework.org/schema/integration/mail" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd  
 	http://www.springframework.org/schema/context 
@@ -13,7 +14,9 @@
 	http://www.springframework.org/schema/integration/ftp 
 	http://www.springframework.org/schema/integration/ftp/spring-integration-ftp-2.0.xsd      
 	http://www.springframework.org/schema/integration/jms 
-	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
+	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd 
+	http://www.springframework.org/schema/integration/mail 
+	http://www.springframework.org/schema/integration/mail/spring-integration-mail-2.0.xsd">
 
 	<context:annotation-config />
 	<context:property-placeholder location="application.properties" />
@@ -72,4 +75,39 @@
 		<property name="subject"
 			value="Alert - Exception occurred. Please investigate" />
 	</bean>
+	
+	<si:channel id="ftpChannel"/>
+	
+	<!-- 
+	<si:service-activator input-channel="ftpChannel"
+		ref="endOfDayFileConfirmationListener" />
+ 	-->
+ 	
+	<bean id="ftpSessionFactory"
+		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
+		<property name="host" value="${ftp.host}" />
+		<property name="username" value="${ftp.username}" />
+		<property name="password" value="${ftp.password}" />
+	</bean>
+	
+	<ftp:inbound-channel-adapter 
+		id="ftpInbound"
+		channel="ftpChannel" 
+		session-factory="ftpSessionFactory" charset="UTF-8"
+		auto-create-local-directory="true" 
+		delete-remote-files="true"
+		filename-pattern="*.txt" 
+		remote-directory="/"
+		local-directory="${ftp.temp.dir}">
+		<!-- <si:poller fixed-rate="1000" /> -->
+		<si:poller cron="0 10 22 * * ?" />
+	</ftp:inbound-channel-adapter>
+	
+	<si:channel id="outboundMail"/>
+	
+	<mail:outbound-channel-adapter channel="outboundMail"
+                              mail-sender="mailSender"/>
+                              
+    <si:transformer input-channel="ftpChannel" output-channel="outboundMail" ref="fileToMailMessageTransformer"/>                          
+	
 </beans>
