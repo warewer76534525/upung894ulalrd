@@ -10,10 +10,10 @@ import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Component;
 
 import com.ocbcmcd.mailsender.mail.MailService;
-import com.ocbcmcd.message.OcbcFileProcessFailed;
+import com.ocbcmcd.message.OcbcFileSendingFailed;
 
 @Component
-public class ErrorProcessMessageHandler {
+public class ErrorFailedMessageHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
@@ -24,7 +24,7 @@ public class ErrorProcessMessageHandler {
 		ObjectMessage objectMessage = (ObjectMessage) message.getPayload();
 		
 		try {
-			OcbcFileProcessFailed event = (OcbcFileProcessFailed) objectMessage.getObject();
+			OcbcFileSendingFailed event = (OcbcFileSendingFailed) objectMessage.getObject();
 			log.info("Received event file error processed : " + event.getFileName());
 			
 			mailService.sendErrorMessage(event.getFileName());

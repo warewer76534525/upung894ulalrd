@@ -4,7 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:ftp="http://www.springframework.org/schema/integration/ftp"
 	xmlns:jms="http://www.springframework.org/schema/integration/jms"
-	xmlns:mail="http://www.springframework.org/schema/integration/mail" 
+	xmlns:mail="http://www.springframework.org/schema/integration/mail"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd  
 	http://www.springframework.org/schema/context 
@@ -33,6 +33,7 @@
 		<property name="cacheProducers" value="false" />
 	</bean>
 
+	<!-- Event Handling for Processing CHK Confirmation from servr -->
 	<si:channel id="errorProcessChannel" />
 
 	<bean id="errorProcessDestination" class="org.apache.activemq.command.ActiveMQTopic">
@@ -43,12 +44,22 @@
 		channel="errorProcessChannel" extract-payload="false"
 		connection-factory="connectionFactory" destination="errorProcessDestination" />
 
-	<bean id="errorProcessMessageHandler"
-		class="com.ocbcmcd.mailsender.listener.ErrorProcessMessageHandler" />
-
 	<si:service-activator input-channel="errorProcessChannel"
 		ref="errorProcessMessageHandler" />
 
+	<!-- Event Handling for processing failed ftp sending -->
+	<si:channel id="errorSendingChannel" />
+
+	<bean id="errorSendingDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sentfailed.topic}" />
+	</bean>
+
+	<jms:message-driven-channel-adapter
+		channel="errorSendingChannel" extract-payload="false"
+		connection-factory="connectionFactory" destination="errorSendingDestination" />
+
+	<si:service-activator input-channel="errorSendingChannel"
+		ref="errorFailedMessageHandler" />
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />
@@ -75,39 +86,33 @@
 		<property name="subject"
 			value="Alert - Exception occurred. Please investigate" />
 	</bean>
-	
-	<si:channel id="ftpChannel"/>
-	
-	<!-- 
-	<si:service-activator input-channel="ftpChannel"
-		ref="endOfDayFileConfirmationListener" />
- 	-->
- 	
+
+	<si:channel id="ftpChannel" />
+
+	<!-- <si:service-activator input-channel="ftpChannel" ref="endOfDayFileConfirmationListener" 
+		/> -->
+
 	<bean id="ftpSessionFactory"
 		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
 		<property name="host" value="${ftp.host}" />
 		<property name="username" value="${ftp.username}" />
 		<property name="password" value="${ftp.password}" />
 	</bean>
-	
-	<ftp:inbound-channel-adapter 
-		id="ftpInbound"
-		channel="ftpChannel" 
-		session-factory="ftpSessionFactory" charset="UTF-8"
-		auto-create-local-directory="true" 
-		delete-remote-files="true"
-		filename-pattern="*.txt" 
-		remote-directory="/"
-		local-directory="${ftp.temp.dir}">
+
+	<ftp:inbound-channel-adapter id="ftpInbound"
+		channel="ftpChannel" session-factory="ftpSessionFactory" charset="UTF-8"
+		auto-create-local-directory="true" delete-remote-files="true"
+		filename-pattern="*.txt" remote-directory="/" local-directory="${ftp.temp.dir}">
 		<!-- <si:poller fixed-rate="1000" /> -->
 		<si:poller cron="0 10 22 * * ?" />
 	</ftp:inbound-channel-adapter>
-	
-	<si:channel id="outboundMail"/>
-	
+
+	<si:channel id="outboundMail" />
+
 	<mail:outbound-channel-adapter channel="outboundMail"
-                              mail-sender="mailSender"/>
-                              
-    <si:transformer input-channel="ftpChannel" output-channel="outboundMail" ref="fileToMailMessageTransformer"/>                          
-	
+		mail-sender="mailSender" />
+
+	<si:transformer input-channel="ftpChannel"
+		output-channel="outboundMail" ref="fileToMailMessageTransformer" />
+
 </beans>
