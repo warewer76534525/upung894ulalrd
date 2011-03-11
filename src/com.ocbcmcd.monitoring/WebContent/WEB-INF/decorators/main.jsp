@@ -1,8 +1,8 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -25,7 +25,14 @@
 			<p>
 				<a href="index.html">Home</a> | 
 				<a href="index.html">Contact</a> | 
-				<a href="index.html">Site Map</a>			
+				<a href="index.html">Site Map</a>
+				<security:authorize ifAllGranted="ROLE_PRS_LOG">
+					<security:authentication property="name" /> 
+					| <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
+				</security:authorize>
+				<security:authorize ifAllGranted="ROLE_ANONYMOUS"> 
+					| <a href="<c:url value="/login.jsp" />">Login</a>
+				</security:authorize>	
 			</p>		
 		</div>
 		
