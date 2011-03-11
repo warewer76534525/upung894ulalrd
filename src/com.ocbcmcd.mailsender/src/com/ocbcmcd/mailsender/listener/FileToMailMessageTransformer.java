@@ -1,10 +1,13 @@
 package com.ocbcmcd.mailsender.listener;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -14,6 +17,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 
 @Component
 public class FileToMailMessageTransformer {
@@ -29,6 +33,9 @@ public class FileToMailMessageTransformer {
 	@Value("${daily.report.dir}")
 	private String dailyReportDir;
 	
+	@Autowired
+	private VelocityEngine velocityEngine;
+	
 	@Transformer
 	public MailMessage transformFileToString(File file) throws Exception {
 		
@@ -41,10 +48,17 @@ public class FileToMailMessageTransformer {
 		
 		helper.setFrom(mailFrom);
 		helper.setTo(mailTo);
-		helper.setText(FileUtils.readFileToString(destFile));
+		helper.setText(getEmailContent(FileUtils.readFileToString(destFile)));
 		
 		helper.addAttachment(file.getName(), new FileSystemResource(destFile));
 		
 		return new MimeMailMessage(message);
+	}
+
+	private String getEmailContent(String fileList) {
+		Map model = new HashMap();
+        model.put("fileList", fileList);
+		return VelocityEngineUtils.mergeTemplateIntoString(
+		           velocityEngine, "endofday-notification.vm", model);
 	}
 }
