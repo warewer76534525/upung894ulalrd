@@ -16,11 +16,23 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-
+	
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 
 	<filter>
 		<filter-name>sitemesh</filter-name>
@@ -32,21 +44,23 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- Handles all requests into the application -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/*.xml</param-value>
+	</context-param>
+	
+	
 	<servlet>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-name>ocbcmcdmonitoring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/*.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-name>ocbcmcdmonitoring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 

@@ -1,5 +1,7 @@
 package com.ocbcmcd.monitoring.stub;
 
+import java.util.StringTokenizer;
+
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -34,5 +36,13 @@ public class FileSentPublisherTest {
 		System.out.println("sent OcbcFileSent");
 		fileSentTemplate.convertAndSend(new OcbcFileSent("data.txt"));
 	}
-
+	
+	
+	@Test
+	public void split_test() 
+	{
+		StringTokenizer st = new StringTokenizer("A||B||C", "||");
+		while (st.hasMoreTokens())
+		System.out.println(st.nextToken());
+	}
 }
