@@ -47,6 +47,10 @@
 	<bean id="processingDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.processing.topic}" />
 	</bean>
+	
+	<bean id="sendingFailedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sentfailed.topic}" />
+	</bean>
 		
 	<bean class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
@@ -60,6 +64,22 @@
 
 	<si:service-activator input-channel="encryptedFileChannel"
 		ref="encryptedFileMessageHandler" />
+
+	<si:channel id="notProcessedYetChannel" />
+
+	<bean id="notProcessedYetDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.notprocessedyet.topic}" />
+	</bean>
+
+	<jms:message-driven-channel-adapter
+		channel="notProcessedYetChannel" extract-payload="false"
+		connection-factory="connectionFactory" destination="notProcessedYetDestination" />
+
+	<bean id="notProcessedYetMessageHandler"
+		class="com.ocbcmcd.ftpfilesender.eventhandler.UnProcessedYetMessageHandler" />
+		
+	<si:service-activator input-channel="notProcessedYetChannel"
+		ref="notProcessedYetMessageHandler" />
 
 	<si:channel id="outChannel" />
 

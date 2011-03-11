@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:si="http://www.springframework.org/schema/integration"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ftp="http://www.springframework.org/schema/integration/ftp"
+	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/integration 
+	http://www.springframework.org/schema/integration/spring-integration-2.0.xsd  
+	http://www.springframework.org/schema/integration/ftp 
+	http://www.springframework.org/schema/integration/ftp/spring-integration-ftp-2.0.xsd      
+	http://www.springframework.org/schema/integration/jms 
+	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
+
+	<context:annotation-config />
+	<context:property-placeholder location="application.properties" />
+	<context:component-scan base-package="com.ocbcmcd.mailsender.mail" />
+	 
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="25" />
+		<property name="username" value="triplelands@gmail.com" />
+		<property name="password" value="tripl3lands" />
+		<property name="javaMailProperties">
+			<props>
+				<!-- Use SMTP transport protocol -->
+				<prop key="mail.transport.protocol">smtp</prop>
+				<!-- Use SMTP-AUTH to authenticate to SMTP server -->
+				<prop key="mail.smtp.auth">true</prop>
+				<!-- Use TLS to encrypt communication with SMTP server -->
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="alertMailMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from">
+			<value>triplelands@gmail.com</value>
+		</property>
+		<property name="to">
+			<value>if05041@gmail.com</value>
+		</property>
+		<property name="subject"
+			value="Alert - Exception occurred. Please investigate" />
+	</bean>
+</beans>

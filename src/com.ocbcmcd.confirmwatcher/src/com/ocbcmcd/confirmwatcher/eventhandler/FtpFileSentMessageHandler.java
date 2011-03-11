@@ -9,13 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageHandlingException;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.stereotype.Component;
 
-import com.ocbcmcd.confirmwatcher.checker.ChkConfirmationChecker;
-import com.ocbcmcd.confirmwatcher.checker.ConfirmationStatus;
-import com.ocbcmcd.message.OcbcFileProcessedSucessfully;
+import com.ocbcmcd.confirmwatcher.checker.FtpConfirmationWatcher;
 import com.ocbcmcd.message.OcbcFileSent;
 
 @Component
@@ -23,10 +20,7 @@ public class FtpFileSentMessageHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
-	private ChkConfirmationChecker confirmationChecker;
-	
-	@Autowired
-	private JmsTemplate jmsTemplate;
+	private FtpConfirmationWatcher ftpConfirmationWatcher;
 	
 	@ServiceActivator
 	public void handleMessage(Message<javax.jms.Message> message) {
@@ -36,17 +30,10 @@ public class FtpFileSentMessageHandler {
 			OcbcFileSent event = (OcbcFileSent) objectMessage.getObject();
 			log.info("Received File Name " + event.getFileName());
 			
-//			System.out.println("check file exist");
-//			System.out.println("start timer");
-			log.info("check file exist");
+			log.info("Start file watcher");
 			
-			ConfirmationStatus status = confirmationChecker.getStatus(event.getFileName());
+			ftpConfirmationWatcher.watchForFile(event.getFileName());
 			
-			if (status == ConfirmationStatus.Success) {
-				jmsTemplate.convertAndSend(new OcbcFileProcessedSucessfully(event.getFileName()));
-			}
-			
-			log.info("Status : " + status);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {
