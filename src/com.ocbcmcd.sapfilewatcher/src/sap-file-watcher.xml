@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:si="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:si="http://www.springframework.org/schema/integration"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:file="http://www.springframework.org/schema/integration/file"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -16,10 +15,10 @@
 	<context:annotation-config />
 	<context:property-placeholder location="application.properties" />
 	<context:component-scan base-package="com.ocbcmcd" />
- 
+
 	<bean id="erpFileListenerProcessor" class="com.ocbcmcd.sapfilewatcher.listener.ERPFileListener" />
-	
-	 
+
+
 	<si:channel id="erpFileChannel" />
 
 	<file:inbound-channel-adapter directory="${incoming.file.path}"
@@ -36,6 +35,10 @@
 
 	<bean id="fileEncryptedDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg value="${jms.encrypted.topic}" />
+	</bean>
+
+	<bean id="duplicateFileDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.duplicated.topic}" />
 	</bean>
 
 	<bean id="kursJmsTemplate" class="org.springframework.jms.core.JmsTemplate">

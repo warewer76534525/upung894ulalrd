@@ -87,10 +87,17 @@
 			value="Alert - Exception occurred. Please investigate" />
 	</bean>
 
-	<si:channel id="ftpChannel" />
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
 
-	<!-- <si:service-activator input-channel="ftpChannel" ref="endOfDayFileConfirmationListener" 
-		/> -->
+	<si:channel id="ftpChannel" />
 
 	<bean id="ftpSessionFactory"
 		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
@@ -103,8 +110,8 @@
 		channel="ftpChannel" session-factory="ftpSessionFactory" charset="UTF-8"
 		auto-create-local-directory="true" delete-remote-files="true"
 		filename-pattern="*.txt" remote-directory="/" local-directory="${ftp.temp.dir}">
-		<!-- <si:poller fixed-rate="1000" /> -->
-		<si:poller cron="0 10 22 * * ?" />
+		<si:poller fixed-rate="1000" />
+		<!--  <si:poller cron="0 10 22 * * ?" />  -->
 	</ftp:inbound-channel-adapter>
 
 	<si:channel id="outboundMail" />

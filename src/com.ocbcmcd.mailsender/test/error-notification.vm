@@ -1,0 +1,3 @@
+Hi ${userName}, welcome to the Chipping Sodbury On-the-Hill message boards!
+
+Your email address is <a href="mailto:${emailAddress}">${emailAddress}

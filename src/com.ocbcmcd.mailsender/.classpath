@@ -29,5 +29,9 @@
 	<classpathentry kind="lib" path="/external-lib/spring-integration-ftp-2.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-integration-mail-2.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/external-lib/velocity-1.7.jar"/>
+	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/external-lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/external-lib/commons-lang.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
