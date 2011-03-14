@@ -1,21 +1,16 @@
 <?xml version="1.0"?>
 
 <project>
-	<property name="external.lib.dir" value="../../external-lib" />
-	<property name="internal.lib.dir" value="../../internal-lib" />
+	<property name="external.lib.dir" location="../../external-lib" />
+	<property name="internal.lib.dir" location="../../internal-lib" />
 	<property name="dist.dir" location="." />
-	<property name="build.dir" value="bin" />
-	<property name="lib.dir" value="../com.ocbcmcd.message" />
-	<property name="src.dir" value="src" />
-	<property name="tools.dir" value="../tools" />
-	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
+	<property name="build.dir" location="bin" />
+	<property name="lib.dir" location="../com.ocbcmcd.message" />
+	<property name="src.dir" location="src" />
+	<property name="tools.dir" location="../../tools" />
+	<property name="winrun4j.dir" location="${tools.dir}/winrun4j" />
 	
 	<path id="master-classpath">
-		<!--
-		<fileset dir="${lib.dir}">
-			<include name="*.jar" />
-		</fileset>
-		-->
 		<fileset dir="${external.lib.dir}">
 			<include name="*.jar" />
 		</fileset>
@@ -62,9 +57,11 @@
 
 	<target name="copy-service-config" depends="init-service">
 		<copy todir="${service.dir}">
+			<!--
 			<fileset dir="${src.dir}">
 				<include name="*.ini" />
 			</fileset>
+			-->
 			<fileset dir="${src.dir}">
 				<include name="*.xml" />
 				<include name="*.properties" />
@@ -85,11 +82,6 @@
 
 	<target name="copy-service-libs" depends="copy-service-tools">
 		<copy todir="${service.lib.dir}">
-			<!--
-			<fileset dir="${lib.dir}">
-				<include name="*.jar" />
-			</fileset>
-			-->
 			<fileset dir="${external.lib.dir}">
 				<include name="*.jar" />
 			</fileset>
@@ -101,11 +93,6 @@
 
 	<target name="package" depends="compile, copy-service-libs" description="Package service project">
 		<jar destfile="${service.dir}/${service.name}.jar" basedir="${build.dir}">
-			<!--
-			<fileset dir="${build.dir}">
-				<include name="**/*.class" />
-			</fileset>
-			-->
 			<manifest>
 				<attribute name="Main-Class" value="${main.class}"/>
 				<attribute name="Class-Path" value=". ${manifest.classpath}"/>

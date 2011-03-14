@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project name="master" default="build.library" basedir=".">
+  <property name="db.dir" location="database"/>
+  <property file="${db.dir}/sql.properties" />
+  <property name="installer.dir" location="..\installer"/>
+  <property name="dist.dir" location="${installer.dir}\bin"/>
+  <property name="lib.dir" location="ResourceProject"/>
+  
+  <target name="build.message">
+	<ant dir="com.ocbcmcd.message" target="package" inheritAll="false"/>
+  </target>
+  
+  <target name="build.sapfilewatcher" depends="build.message">
+	<ant dir="com.ocbcmcd.sapfilewatcher" target="package" inheritAll="true"/>
+  </target>
+
+  <target name="build.ftpfilesender" depends="build.message">
+	<ant dir="com.ocbcmcd.ftpfilesender" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.confirmwatcher" depends="build.message">
+	<ant dir="com.ocbcmcd.confirmwatcher" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.mailsender" depends="build.message">
+	<ant dir="com.ocbcmcd.mailsender" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.housekeeping" depends="build.message">
+	<ant dir="com.ocbcmcd.housekeeping" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="build.monitoring" depends="build.message">
+	<ant dir="com.ocbcmcd.monitoring" target="package" inheritAll="true"/>
+  </target>
+  
+  <target name="clean.dist">
+	<delete dir="${dist.dir}"/>
+  </target>
+  
+  <target name="init.dist" depends="clean.dist">
+	<mkdir dir="${dist.dir}"/>
+  </target>
+  
+  <target name="installer" depends="init.dist, build.sapfilewatcher, build.ftpfilesender, 
+	build.confirmwatcher, build.mailsender, build.housekeeping, build.monitoring"/>
+  
+</project>
