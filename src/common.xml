@@ -57,9 +57,11 @@
 
 	<target name="copy-service-config" depends="init-service">
 		<copy todir="${service.dir}">
+			<!--
 			<fileset dir="${src.dir}">
 				<include name="*.ini" />
 			</fileset>
+			-->
 			<fileset dir="${src.dir}">
 				<include name="*.xml" />
 				<include name="*.properties" />
@@ -68,12 +70,14 @@
 	</target>
 
 	<target name="copy-service-tools" depends="copy-service-config">
+		<!--
 		<copy todir="${service.dir}">
 			<fileset dir="${winrun4j.dir}">
 				<include name="*.exe" />
 				<include name="*.jar" />
 			</fileset>
 		</copy>
+		-->
 	</target>
 
 	<target name="copy-service-libs" depends="copy-service-tools">
