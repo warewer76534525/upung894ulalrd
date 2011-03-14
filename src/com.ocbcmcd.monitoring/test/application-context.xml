@@ -1,6 +1,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans	
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -15,7 +17,7 @@
 	<context:component-scan base-package="com.ocbcmcd.monitoring" />
 	<context:property-placeholder location="application.properties" />
 	
-	<!-- Database Information -->
+	<!-- JDBC Configuration -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 
@@ -31,6 +33,42 @@
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		autowire="byType" />
+		
+	<!-- Hibernate Configuration -->
+	<tx:annotation-driven transaction-manager="hibernateTxManager"/>
+
+	<!-- session factory untuk setiap dao -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="annotatedClasses">
+			<list>
+				<value>com.ocbcmcd.monitoring.domain.User</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.generate_statistics">
+					${hibernate.show_statistics}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${hibernate.hbm2ddl_auto}
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- transaction manager -->
+	<bean id="hibernateTxManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+	
 </beans>
 
 
