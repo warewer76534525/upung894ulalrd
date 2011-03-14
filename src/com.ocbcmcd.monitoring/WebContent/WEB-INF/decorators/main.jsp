@@ -23,15 +23,12 @@
 		
 		<div id="header-links">
 			<p>
-				<a href="index.html">Home</a> | 
-				<a href="index.html">Contact</a> | 
-				<a href="index.html">Site Map</a>
 				<security:authorize ifAllGranted="ROLE_PRS_LOG">
 					<security:authentication property="name" /> 
 					| <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 				</security:authorize>
 				<security:authorize ifAllGranted="ROLE_ANONYMOUS"> 
-					| <a href="<c:url value="/login.jsp" />">Login</a>
+					<a href="<c:url value="/login.jsp" />">Login</a>
 				</security:authorize>	
 			</p>		
 		</div>
@@ -39,10 +36,7 @@
 		<!-- Menu Tabs -->
 		<ul>
 			<li><a href="index.html" id="current">Home</a></li>
-			<li><a href="index.html">News</a></li>
-			<li><a href="index.html">Downloads</a></li>
-			<li><a href="index.html">Support</a></li>
-			<li><a href="index.html">About</a></li>			
+			<li><a href="index.html">Log Monitor</a></li>
 		</ul>					
 	
 	</div></div>
@@ -51,9 +45,7 @@
 	<div id="content-wrap"><div id="content">	 
 	
 		<div id="main">		
-		
 			<decorator:body />
-										
 		</div>		
 	
 		
@@ -71,9 +63,7 @@
 				<ul class="sidemenu">
 					<li><a href="<%=request.getContextPath()%>">Home</a></li>
 					<li><a href="<%=request.getContextPath()%>/log">Logs</a></li>
-					<li><a href="#SampleTags">Sample Tags</a></li>
-					<li><a href="http://www.styleshout.com/">More Templates</a></li>
-					<li><a href="http://www.dreamtemplate.com" title="Web Templates">Web Templates</a></li>
+					<li><a href="#SampleTags">User</a></li>
 				</ul>		
 		</div>			
 	
@@ -84,45 +74,20 @@
 	<div id="footer-wrap"><div id="footer-content">
 	
 		<div class="col float-left space-sep">
-			<h2>Site Partners</h2>
-			<ul class="columns">
-                <li class="top"><a href="http://www.dreamtemplate.com" title="Website Templates">DreamTemplate</a></li>
-                <li><a href="http://www.themelayouts.com" title="WordPress Themes">ThemeLayouts</a></li>
-                <li><a href="http://www.imhosted.com" title="Website Hosting">ImHosted.com</a></li>
-                <li><a href="http://www.dreamstock.com" title="Stock Photos">DreamStock</a></li>
-                <li><a href="http://www.evrsoft.com" title="Website Builder">Evrsoft</a></li>
-                <li><a href="http://www.webhostingwp.com" title="Web Hosting">Web Hosting</a></li>
-			</ul>			
-		</div>
-		
-		<div class="col float-left">
-			<h2>Links</h2>
-			<ul class="columns">				
-				<li class="top"><a href="index.html">Link One</a></li>
-				<li><a href="index.html">Link Two</a></li>
-				<li><a href="index.html">Link Three</a></li>
-				<li><a href="index.html">Link Four</a></li>
-				<li><a href="index.html">Link Five</a></li>
-                <li><a href="index.html">Link Six</a></li>
-			</ul>
-		</div>		
-	
-		<div class="col2 float-right">
-            <h2>Site Links</h2>
-			<ul class="columns">
-				<li class="top"><a href="index.html">Home</a></li>
-                <li><a href="index.html">About</a></li>
-				<li><a href="index.html">Sitemap</a></li>
-				<li><a href="index.html">RSS Feed</a></li>								
-			</ul>
-
-            <p>
-			&copy; copyright 2010 <strong>Your Company Name</strong><br />
+			<p>
+			&copy; copyright 2010 <strong>OCBC NISP</strong><br />
 			<a href="http://www.bluewebtemplates.com/" title="Website Templates">website templates</a> by <a href="http://www.styleshout.com/">styleshout</a> <br />
 
 			Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
 		   	      <a href="http://validator.w3.org/check/referer">XHTML</a>
 			</p>
+		</div>
+		
+		<div class="col float-left">
+		</div>		
+	
+		<div class="col2 float-right">
+            
 		</div>
 		
 		<br class="clear" />
