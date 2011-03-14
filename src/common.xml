@@ -7,7 +7,7 @@
 	<property name="build.dir" value="bin" />
 	<property name="lib.dir" value="../com.ocbcmcd.message" />
 	<property name="src.dir" value="src" />
-	<property name="tools.dir" value="../tools" />
+	<property name="tools.dir" value="../../tools" />
 	<property name="winrun4j.dir" value="${tools.dir}/winrun4j" />
 	
 	<path id="master-classpath">
@@ -73,14 +73,12 @@
 	</target>
 
 	<target name="copy-service-tools" depends="copy-service-config">
-		<!--
 		<copy todir="${service.dir}">
 			<fileset dir="${winrun4j.dir}">
 				<include name="*.exe" />
 				<include name="*.jar" />
 			</fileset>
 		</copy>
-		-->
 	</target>
 
 	<target name="copy-service-libs" depends="copy-service-tools">

@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="/external-lib/commons-io-2.0.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/gson-1.4.jar"/>
+	<classpathentry kind="lib" path="/external-lib/WinRun4J.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
