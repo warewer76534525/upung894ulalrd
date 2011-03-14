@@ -91,5 +91,5 @@
 	</bean>
 	
 	<ftp:outbound-channel-adapter
-		channel="outChannel" session-factory="ftpClientFactory" remote-directory="\"/>
+		channel="outChannel" session-factory="ftpClientFactory" remote-directory="${ftp.remote.dir}"/>
 </beans>

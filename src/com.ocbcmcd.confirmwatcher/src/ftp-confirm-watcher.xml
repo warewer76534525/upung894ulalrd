@@ -68,17 +68,4 @@
 		<property name="username" value="${ftp.username}" />
 		<property name="password" value="${ftp.password}" />
 	</bean>
-	
-	<!-- 
-	<bean id="encryptedFileMessageHandler"
-		class="com.ocbcmcd.ftpfilesender.eventhandler.EncryptedFileMessageHandler" />
-
-	<si:service-activator input-channel="encryptedFileChannel"
-		ref="encryptedFileMessageHandler" />
-
-	<si:channel id="outChannel" />
-	
-	<ftp:outbound-channel-adapter
-		channel="outChannel" session-factory="ftpClientFactory" remote-directory="\"/>
-	 -->
 </beans>

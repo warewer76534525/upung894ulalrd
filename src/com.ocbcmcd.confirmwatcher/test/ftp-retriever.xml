@@ -17,11 +17,34 @@
 	
 	<context:annotation-config />
 	<context:component-scan base-package="com.ocbcmcd.confirmwatcher.checker" />
+	<context:property-placeholder location="application.properties" />
 	
 	<bean id="ftpClientFactory"
 		class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
 		<property name="host" value="localhost" />
 		<property name="username" value="welly" />
 		<property name="password" value="1234" />
+	</bean>
+	
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="${jms.brokerURL}" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+	</bean>
+	
+	<bean id="notProcessYetDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.failedprocess.topic}" />
+	</bean>
+	
+	<bean id="processFailedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.failedprocess.topic}" />
 	</bean>
 </beans>
