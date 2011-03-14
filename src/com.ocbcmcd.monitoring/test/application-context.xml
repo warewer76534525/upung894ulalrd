@@ -44,6 +44,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.ocbcmcd.monitoring.domain.User</value>
+				<value>com.ocbcmcd.monitoring.domain.Role</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -57,13 +58,13 @@
 				<prop key="hibernate.generate_statistics">
 					${hibernate.show_statistics}
 				</prop>
-				<prop key="hibernate.hbm2ddl.auto">
-					${hibernate.hbm2ddl_auto}
-				</prop>
 			</props>
 		</property>
 	</bean>
-
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" >
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<!-- transaction manager -->
 	<bean id="hibernateTxManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"

@@ -78,5 +78,9 @@
 	<classpathentry kind="lib" path="/external-lib/hibernate-commons-annotations.jar"/>
 	<classpathentry kind="lib" path="/external-lib/hibernate-entitymanager.jar"/>
 	<classpathentry kind="lib" path="/external-lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/external-lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/external-lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/external-lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="/external-lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

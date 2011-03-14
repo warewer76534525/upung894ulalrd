@@ -1,5 +1,7 @@
 package com.ocbcmcd.monitoring;
 
+import java.util.List;
+
 import junit.framework.Assert;
 
 import org.apache.log4j.BasicConfigurator;
@@ -13,7 +15,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ocbcmcd.monitoring.dao.IUserDao;
+import com.ocbcmcd.monitoring.common.MD5;
+import com.ocbcmcd.monitoring.domain.RegistrationCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
@@ -26,7 +29,7 @@ public class When_user_added {
 	@Autowired 
 	HibernateTemplate hibernateTemplate;
 	
-	User user = null;
+	RegistrationCommand user = null;
 	
 	@Before
 	public void setUp() {
@@ -34,7 +37,7 @@ public class When_user_added {
 		Logger.getLogger("org.springframework").setLevel(Level.WARN);
 		BasicConfigurator.configure();
 		
-		user = new User();
+		user = new RegistrationCommand();
 		user.setUserName("tony");
 		user.setPassword("password");
 	}
@@ -42,12 +45,24 @@ public class When_user_added {
 	@Test
 	public void should_able_to_get_user_detail() {
 		registrationService.register(user);
-		User tempUser = hibernateTemplate.get(User.class, user.getId());
+		@SuppressWarnings("unchecked")
+		List<User> tempUsers = hibernateTemplate.find("FROM User u WHERE u.userName=?", user.getUserName());
+		User tempUser = tempUsers.get(0);
 		Assert.assertEquals(user.getUserName(), tempUser.getUserName());
-		Assert.assertEquals(user.getPassword(), tempUser.getPassword());
-		Assert.assertEquals(user.getEnabled(), tempUser.getEnabled());
+		try {
+			Assert.assertEquals(MD5.hash(user.getPassword()), tempUser.getPassword());
+		} catch (Exception e) {
+			
+		}
 	}
-
+	
+	
+	@Test
+	public void should_have_default_role_as_admin() {
+		
+	}
+	
+	@Test
 	public void should_be_exists_in_user_list() {
 		
 	}
@@ -56,8 +71,6 @@ public class When_user_added {
 		
 	}
 	
-	public void should_have_default_role_as_admin() {
-		
-	}
+	
 	
 }
