@@ -52,14 +52,21 @@ public class When_user_added {
 		try {
 			Assert.assertEquals(MD5.hash(user.getPassword()), tempUser.getPassword());
 		} catch (Exception e) {
-			
 		}
 	}
 	
 	
 	@Test
 	public void should_have_default_role_as_admin() {
-		
+		registrationService.register(user);
+		@SuppressWarnings("unchecked")
+		List<User> tempUsers = hibernateTemplate.find("FROM User u WHERE u.userName=?", user.getUserName());
+		User tempUser = tempUsers.get(0);
+		Assert.assertEquals(user.getUserName(), tempUser.getUserName());
+		try {
+			Assert.assertEquals(MD5.hash(user.getPassword()), tempUser.getPassword());
+		} catch (Exception e) {
+		}
 	}
 	
 	@Test

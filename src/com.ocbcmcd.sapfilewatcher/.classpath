@@ -5,8 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/external-lib/commons-codec-1.4.jar"/>
-	<classpathentry kind="lib" path="/external-lib/spring-integration-core-2.0.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/external-lib/spring-integration-file-2.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.core-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.beans-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.context-3.0.5.RELEASE.jar"/>
@@ -29,5 +27,7 @@
 	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/gson-1.4.jar"/>
 	<classpathentry kind="lib" path="/external-lib/WinRun4J.jar"/>
+	<classpathentry kind="lib" path="/external-lib/spring-integration-core-2.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/external-lib/spring-integration-file-2.0.3.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
