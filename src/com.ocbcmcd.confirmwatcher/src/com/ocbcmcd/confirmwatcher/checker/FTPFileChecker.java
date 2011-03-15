@@ -1,7 +1,10 @@
 package com.ocbcmcd.confirmwatcher.checker;
 
+import java.io.File;
+
 import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.file.remote.session.Session;
 import org.springframework.integration.file.remote.session.SessionFactory;
 import org.springframework.stereotype.Component;
@@ -13,11 +16,14 @@ public class FTPFileChecker {
 	
 	private Session session;
 	
+	@Value("${checked.dir}")
+	private String checkDirectory;
+	
 	public boolean fileExist(String fileName) throws Exception {
 		
 		Session session = getSession();
 		
-		for (FTPFile file : session.<FTPFile> list("/")) {
+		for (FTPFile file : session.<FTPFile>list(checkDirectory)) {
 			if (file.isFile() && file.getName().equals(fileName)) return true;
 		}
 		
@@ -34,8 +40,7 @@ public class FTPFileChecker {
 
 	public void deleteFile(String fileName) throws Exception {
 		Session session = getSession();
-		
-		session.remove(fileName);
+		session.remove(checkDirectory + File.separator + fileName);
 	}
 
 	public void close() {

@@ -17,7 +17,7 @@ public class When_get_all_file_in_directory {
 		DefaultFtpSessionFactory sessionFactory = context.getBean(DefaultFtpSessionFactory.class);
 		Session session = sessionFactory.getSession();
 		
-		for (FTPFile file : session.<FTPFile>list("/")) {
+		for (FTPFile file : session.<FTPFile>list("/fromnisp/CHK")) {
 			System.out.println(file.isFile());
 			System.out.println(file.getName());
 		}
@@ -47,6 +47,18 @@ public class When_get_all_file_in_directory {
 		
 		Assert.assertFalse(fileChecker.fileExist("movie-hunt.txt.chk"));
 	}
+	
+	@Test
+	public void Should_delete_file_in_server_txt() throws Exception {
+		ApplicationContext context = new ClassPathXmlApplicationContext("ftp-retriever.xml");
+		FTPFileChecker fileChecker = context.getBean(FTPFileChecker.class);
+		Assert.assertTrue(fileChecker.fileExist("movie-hunt.txt"));
+		
+		fileChecker.deleteFile("movie-hunt.txt");
+		
+		Assert.assertFalse(fileChecker.fileExist("movie-hunt.txt"));
+	}
+	
 	
 	@Test
 	public void Should_check_session_different() {
