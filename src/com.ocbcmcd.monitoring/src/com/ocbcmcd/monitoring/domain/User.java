@@ -81,11 +81,17 @@ public class User {
 	}
 
 	public void enable() {
-		enabled = User.ENABLED;
+		if (!isEnable())
+			enabled = User.ENABLED;
+	}
+	
+	public boolean isEnable() {
+		return enabled == User.ENABLED;
 	}
 
 	public void disable() {
-		enabled = User.DISABLED;
+		if (isEnable())
+			enabled = User.DISABLED;
 	}
 
 	public Date getCreatedDate() {

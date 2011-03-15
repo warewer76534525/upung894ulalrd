@@ -61,9 +61,9 @@
 			
 				<h1>Sidebar Menu</h1>
 				<ul class="sidemenu">
-					<li><a href="<%=request.getContextPath()%>">Home</a></li>
-					<li><a href="<%=request.getContextPath()%>/log">Logs</a></li>
-					<li><a href="#SampleTags">User</a></li>
+					<li><a href="<c:url value="/" />">Home</a></li>
+					<li><a href="<c:url value="/log" />">Logs</a></li>
+					<li><a href="<c:url value="/user" />">User</a></li>
 				</ul>		
 		</div>			
 	

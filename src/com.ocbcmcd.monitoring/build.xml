@@ -40,7 +40,7 @@
 	</target>
 
 
-	<target name="package" depends="compile" description="Package service project">
+	<target name="setup" depends="compile" description="Package service project">
 		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
@@ -60,6 +60,9 @@
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
+	</target>
+	
+	<target name="package" depends="setup" description="Deploy application">
 		<war destfile="${dist.dir}/${name}.war" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
 				<include name="**/**.**" />
@@ -68,14 +71,11 @@
 				<include name="**/*.properties" />
 			</fileset>
 		</war>
-	</target>
+	</target>	
 
-	<target name="deploy" depends="package" description="Deploy application">
+	<target name="deploy" depends="setup" description="Deploy application">
 		<copy todir="${deploy.path}/${name}" preservelastmodified="true">
 			<fileset dir="${web.dir}">
-				<include name="**/*.*" />
-			</fileset>
-			<fileset dir="${src.dir}">
 				<include name="**/*.*" />
 			</fileset>
 		</copy>

@@ -1,11 +1,9 @@
 package com.ocbcmcd.monitoring.dao;
 
+import java.io.Serializable;
+
 import com.ocbcmcd.monitoring.domain.User;
 
-public interface IUserDao {
-
-	User findById(int id);
-
-	void save(User user);
-
+public interface IUserDao extends IGenericDao<User, Serializable> {
+	User findByUserName(String userName);
 }

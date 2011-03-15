@@ -1,6 +1,8 @@
 package com.ocbcmcd.monitoring;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import junit.framework.Assert;
 
@@ -14,10 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ocbcmcd.monitoring.common.MD5;
+import com.ocbcmcd.monitoring.dao.IUserDao;
 import com.ocbcmcd.monitoring.domain.RegistrationCommand;
+import com.ocbcmcd.monitoring.domain.Role;
 import com.ocbcmcd.monitoring.domain.User;
+import com.ocbcmcd.monitoring.query.IUserQuery;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,8 +32,14 @@ public class When_user_added {
 	@Autowired
 	IRegistrationService registrationService;
 	
+	@Autowired
+	IUserQuery userQuery;
+	
 	@Autowired 
 	HibernateTemplate hibernateTemplate;
+	
+	@Autowired
+	IUserDao userDao;
 	
 	RegistrationCommand user = null;
 	
@@ -37,17 +49,17 @@ public class When_user_added {
 		Logger.getLogger("org.springframework").setLevel(Level.WARN);
 		BasicConfigurator.configure();
 		
+		String password = "password";
 		user = new RegistrationCommand();
 		user.setUserName("tony");
-		user.setPassword("password");
+		user.setPassword(password);
+		user.setConfirmPassword(password);
 	}
 	
 	@Test
 	public void should_able_to_get_user_detail() {
 		registrationService.register(user);
-		@SuppressWarnings("unchecked")
-		List<User> tempUsers = hibernateTemplate.find("FROM User u WHERE u.userName=?", user.getUserName());
-		User tempUser = tempUsers.get(0);
+		User tempUser = userDao.findByUserName(user.getUserName());
 		Assert.assertEquals(user.getUserName(), tempUser.getUserName());
 		try {
 			Assert.assertEquals(MD5.hash(user.getPassword()), tempUser.getPassword());
@@ -57,25 +69,37 @@ public class When_user_added {
 	
 	
 	@Test
+	@Transactional
 	public void should_have_default_role_as_admin() {
+		boolean roleFound = false;
 		registrationService.register(user);
-		@SuppressWarnings("unchecked")
-		List<User> tempUsers = hibernateTemplate.find("FROM User u WHERE u.userName=?", user.getUserName());
-		User tempUser = tempUsers.get(0);
-		Assert.assertEquals(user.getUserName(), tempUser.getUserName());
-		try {
-			Assert.assertEquals(MD5.hash(user.getPassword()), tempUser.getPassword());
-		} catch (Exception e) {
+		
+		User tempUser = userDao.findByUserName(user.getUserName());
+		Set<Role> set = tempUser.getUserRoles();
+		
+		Iterator<Role> itr = set.iterator();
+		while (itr.hasNext()) {
+			Role role = (Role) itr.next();
+			if (role.getRoleName().equals("ROLE_ADMIN"));
+				roleFound = true;
 		}
+		
+		Assert.assertTrue(roleFound);
+		
 	}
 	
 	@Test
 	public void should_be_exists_in_user_list() {
+		boolean userFound = false;
+		registrationService.register(user);
 		
-	}
-	
-	public void should_able_to_change_password() {
+		List<User> users = userQuery.getUsers();
+		for (User user : users) {
+			if (user.getUserName().equals(user.getUserName())) 
+				userFound = true;
+		}
 		
+		Assert.assertTrue(userFound);
 	}
 	
 	
