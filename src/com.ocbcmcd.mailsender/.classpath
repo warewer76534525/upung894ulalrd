@@ -33,5 +33,7 @@
 	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="/external-lib/jasypt-1.7.jar"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
