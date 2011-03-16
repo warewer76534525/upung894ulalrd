@@ -43,6 +43,17 @@
 		<property name="defaultDestination" ref="processingDestination" />
 		<property name="messageConverter" ref="serializableMessageConverter" />
 	</bean>
+	
+	<bean id="sendingFailedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sentfailed.topic}" />
+	</bean>
+	
+	<bean id="sendingFailedTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="receiveTimeout" value="10000" />
+		<property name="defaultDestination" ref="sendingFailedDestination" />
+		<property name="messageConverter" ref="serializableMessageConverter" />
+	</bean>
 </beans>
 
 
