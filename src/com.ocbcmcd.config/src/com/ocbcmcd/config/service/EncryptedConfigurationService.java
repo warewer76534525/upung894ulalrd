@@ -1,25 +1,39 @@
 package com.ocbcmcd.config.service;
 
+import java.util.List;
+
 import org.jasypt.util.text.BasicTextEncryptor;
+import org.springframework.util.StringUtils;
 
 public class EncryptedConfigurationService {
 
 	private BasicTextEncryptor textEncryptor;
 	private PersistenceProperties persistenceProperties;
+	private List<String> encryptedKeyLists;
 	
-	public EncryptedConfigurationService(String location) {
+	public EncryptedConfigurationService(String location, List<String> encryptedKeyLists) {
 		textEncryptor = new BasicTextEncryptor();
 		textEncryptor.setPassword("1234");
 		
 		persistenceProperties = new PersistenceProperties(location);
+		
+		this.encryptedKeyLists = encryptedKeyLists;
 	}
 	
-	public void encryptPropertyValue(String key) throws Exception {		
+	public void encryptPropertyValue(String key) throws Exception {
+		if (!isPropertyExists(key)) return;
+		
 		if (isAlreadyEncrypted(key)) return;
 		
 		String value = persistenceProperties.getProperty(key);
 		
 		persistenceProperties.setProperty(key, encryptConfigValue(value));
+	}
+
+	private boolean isPropertyExists(String key) {
+		String value = persistenceProperties.getPlainProperty(key);
+		
+		return StringUtils.hasText(value);
 	}
 
 	private boolean isAlreadyEncrypted(String key) {
@@ -39,5 +53,25 @@ public class EncryptedConfigurationService {
 
 	public void setAndEncryptProperty(String key, String value) {
 		persistenceProperties.setProperty(key, encryptConfigValue(value));
+	}
+
+	public void encryptPropertyValues(String... keys) {
+		for (String key : keys) {
+			try {
+				encryptPropertyValue(key);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void encryptSecretPropertyValues() {
+		for (String key : encryptedKeyLists) {
+			try {
+				encryptPropertyValue(key);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
