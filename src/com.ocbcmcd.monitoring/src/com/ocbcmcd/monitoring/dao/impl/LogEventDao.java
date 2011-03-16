@@ -25,7 +25,7 @@ public class LogEventDao implements ILogEventDao {
         this.insertLogEventActor =
                 new SimpleJdbcInsert(dataSource)
 			        .withTableName("log_event")
-					.usingColumns("file_name", "type", "date")
+					.usingColumns("file_name", "type", "date", "description")
 					.usingGeneratedKeyColumns("id");
 
 	}
@@ -36,7 +36,7 @@ public class LogEventDao implements ILogEventDao {
 		parameters.put("file_name", logEvent.getFileName());
 		parameters.put("type", logEvent.getType());
 		parameters.put("date", logEvent.getTime());
-		
+		parameters.put("description", logEvent.getDescription());
 		insertLogEventActor.executeAndReturnKey(parameters);
 	}
 

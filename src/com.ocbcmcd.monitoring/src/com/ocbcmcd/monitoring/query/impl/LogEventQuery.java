@@ -40,7 +40,7 @@ public class LogEventQuery extends SimpleJdbcDaoSupport implements
 			Timestamp timestamp = rs.getTimestamp("date");
 			long milliseconds = timestamp.getTime() + (timestamp.getNanos() / 1000000);
 			LogEvent logEvent = new LogEvent(rs.getString("file_name"),
-					rs.getString("type"), new java.util.Date(milliseconds));
+					rs.getString("type"), new java.util.Date(milliseconds), rs.getString("description"));
 			
 			return logEvent;
 		}
