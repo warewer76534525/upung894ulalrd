@@ -76,7 +76,7 @@ public class UserController {
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
-			return new ModelAndView("redirect:/user/");
+			return new ModelAndView("redirect:/user/?message=0");
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class UserController {
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
-			return new ModelAndView("redirect:/user/");
+			return new ModelAndView("redirect:/user/?message=0");
 		}
 	}
 

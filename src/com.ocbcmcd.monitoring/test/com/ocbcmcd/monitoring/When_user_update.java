@@ -54,7 +54,7 @@ public class When_user_update {
 	public void should_change_old_password_to_new_password() throws UserNotFoundException {
 		registrationService.update(command);
 		User tempUser = hibernateTemplate.get(User.class, command.getId());
-		Assert.assertEquals(command.getPassword(), tempUser.getPassword());
+		Assert.assertEquals(command.getHashedPassword(), tempUser.getPassword());
 	}
 
 	
