@@ -16,7 +16,13 @@
 	http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
 
 	<context:annotation-config />
-	<context:property-placeholder location="application.properties" />
+	
+	<!-- <context:property-placeholder location="application.properties" />  -->
+	
+	<bean class="com.ocbcmcd.config.spring.EncryptedPropertyPlaceholderConfigurer">
+		<property name="locations" value="application.properties"/>
+	</bean>
+	
 	<context:component-scan base-package="com.ocbcmcd" />
 
 	<bean id="connectionFactory"

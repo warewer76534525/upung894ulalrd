@@ -28,5 +28,7 @@
 	<classpathentry kind="lib" path="/external-lib/spring-integration-ftp-2.0.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-integration-jms-2.0.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-integration-mail-2.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
+	<classpathentry kind="lib" path="/external-lib/jasypt-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
