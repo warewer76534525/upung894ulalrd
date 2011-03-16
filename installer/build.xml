@@ -18,7 +18,7 @@
 		</fileset>
   </path>
   
-  <target name="install.fixrate-service">
+  <target name="install.confirmwatcher-service">
 		<exec dir="${fixrate-service.dir}" executable="${fixrate-service.dir}/service.exe">
 			<arg line="--WinRun4J:RegisterService" />
 		</exec>
