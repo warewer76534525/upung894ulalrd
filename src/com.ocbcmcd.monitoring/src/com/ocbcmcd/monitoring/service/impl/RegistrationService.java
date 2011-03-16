@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ocbcmcd.monitoring.domain.RegistrationCommand;
+import com.ocbcmcd.monitoring.domain.UserUpdateCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @Service
 @Scope("prototype")
-@Transactional
 public class RegistrationService implements IRegistrationService {
 	
 	@Autowired
@@ -22,17 +22,20 @@ public class RegistrationService implements IRegistrationService {
 	@Autowired
 	UserFactory userFactory;
 	
+	@Transactional
 	@Override
 	public void register(RegistrationCommand command) {
 		User user = userFactory.createUser(command);
 		hibernateTemplate.save(user);
 	}
 
+	@Transactional(readOnly=true)
 	@Override
 	public User getUser(int id) {
 		return hibernateTemplate.get(User.class, id);
 	}
 
+	@Transactional
 	@Override
 	public void disable(int userId) throws UserNotFoundException {
 		User user = getUser(userId);
@@ -44,15 +47,27 @@ public class RegistrationService implements IRegistrationService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public void enable(int userId) throws UserNotFoundException {
 		User user = getUser(userId);
 		if (user == null) {
 			throw new UserNotFoundException();
-		} else {
-			user.enable();
-			hibernateTemplate.update(user);
 		}
+		user.enable();
+		hibernateTemplate.update(user);
+	}
+	
+	@Transactional
+	@Override
+	public void update(UserUpdateCommand command) throws UserNotFoundException {
+		User user = getUser(command.getId());
+		if (user == null) {
+			throw new UserNotFoundException();
+		} 
+		
+		user.setPassword(command.getPassword());
+		hibernateTemplate.update(user);
 	}
 
 }

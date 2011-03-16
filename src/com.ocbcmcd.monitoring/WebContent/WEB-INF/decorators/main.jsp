@@ -18,7 +18,7 @@
 	<!-- header starts here -->
 	<div id="header-wrap"><div id="header-content">	
 				
-		<h1 id="logo"><a href="index.html" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
+		<h1 id="logo"><a href="<c:url value="/"></c:url>" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
 		<h2 id="slogan">Put your site slogan here...</h2>		
 		
 		<div id="header-links">

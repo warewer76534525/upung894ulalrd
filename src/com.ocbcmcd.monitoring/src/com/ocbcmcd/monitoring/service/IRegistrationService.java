@@ -1,6 +1,7 @@
 package com.ocbcmcd.monitoring.service;
 
 import com.ocbcmcd.monitoring.domain.RegistrationCommand;
+import com.ocbcmcd.monitoring.domain.UserUpdateCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 
@@ -10,4 +11,5 @@ public interface IRegistrationService {
 	User getUser(int id);
 	void disable(int userId) throws UserNotFoundException;
 	void enable(int userId) throws UserNotFoundException;
+	void update(UserUpdateCommand user) throws UserNotFoundException;
 }

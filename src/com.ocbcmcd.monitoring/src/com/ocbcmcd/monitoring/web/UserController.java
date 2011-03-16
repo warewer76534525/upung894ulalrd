@@ -57,51 +57,13 @@ public class UserController {
 		return new ModelMap("pagedListHolder", pagedListHolder);
 	}
 	
-	@RequestMapping("/user/message/{id}")
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ModelAndView message(@PathVariable("id") int id, @RequestParam(required = false) String p) {
-		int page = 0;
-		List searchResults = userQuery.getUsers();
-		PagedListHolder pagedListHolder = new PagedListHolder(searchResults);
-		
-		try {
-			page = Integer.parseInt(p);
-		} catch (NumberFormatException e) {
-
-		}
-		
-		pagedListHolder.setPage(page);
-		int pageSize = Integer.parseInt(_pageSize);
-		pagedListHolder.setPageSize(pageSize);
-		
-		ModelAndView model = new ModelAndView("user");
-		generateMessageNotification(id, model);
-		
-		model.addObject("pagedListHolder", pagedListHolder);
-		
-		return model;
-	}
-	
 	@RequestMapping("/user/{id}")
 	public ModelAndView detail(@PathVariable("id") int id, Model model) {
 		User user = registrationService.getUser(id);
 		if (user != null) {
 			return new ModelAndView("user_detail", "user", user);
 		} else {
-			return new ModelAndView("redirect:/user/message/0");
-		}
-	}
-	
-	@RequestMapping("/user/{id}/message/{messageId}")
-	public ModelAndView detailMessage(@PathVariable("id") int id, @PathVariable("messageId") int messageId) {
-		User user = registrationService.getUser(id);
-		if (user != null) {
-			ModelAndView model = new ModelAndView("user_detail");
-			generateMessageNotification(messageId, model);
-			model.addObject("user", user);
-			return model;
-		} else {
-			return new ModelAndView("redirect:/user/message/0");
+			return new ModelAndView("redirect:/user/?message=0");
 		}
 	}
 	
@@ -110,7 +72,7 @@ public class UserController {
 		String url;
 		try {
 			registrationService.disable(id);
-			url = "redirect:/user/" + id + "/message/" + DISABLE_MESSAGE_ID;
+			url = "redirect:/user/" + id + "?message=" + DISABLE_MESSAGE_ID;
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
@@ -123,33 +85,12 @@ public class UserController {
 		String url;
 		try {
 			registrationService.enable(id);
-			url = "redirect:/user/" + id + "/message/" + ENABLE_MESSAGE_ID;
+			url = "redirect:/user/" + id + "/?message=" + ENABLE_MESSAGE_ID;
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
 			return new ModelAndView("redirect:/user/");
 		}
 	}
-	
-	private void generateMessageNotification(int id, ModelAndView model) {
-		switch (id) {
-		case 0:
-			model.addObject("message", "message.user.notfound");
-			break;
-		case 1:
-			model.addObject("message", "message.user.created");
-			break;
-		case 3:
-			model.addObject("message", "message.user.updated");
-			break;
-		case ENABLE_MESSAGE_ID:
-			model.addObject("message", "message.user.enabled");
-			break;
-		case DISABLE_MESSAGE_ID:
-			model.addObject("message", "message.user.disabled");
-			break;
-		default:
-			break;
-		}
-	}
+
 }

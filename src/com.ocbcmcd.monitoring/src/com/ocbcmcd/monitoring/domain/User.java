@@ -109,5 +109,9 @@ public class User {
 	public void addRole(Role role) {
 		userRoles.add(role);
 	}
+
+	public boolean passwordEquals(String _password) {
+		return password.equals(_password);
+	}
 	
 }
