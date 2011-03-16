@@ -6,8 +6,12 @@
   <property name="dist.dir" location="${installer.dir}\bin"/>
   <property name="lib.dir" location="ResourceProject"/>
   
-  <target name="build.message">
+  <target name="build.message" depends="build.config">
 	<ant dir="com.ocbcmcd.message" target="package" inheritAll="false"/>
+  </target>
+  
+  <target name="build.config">
+	<ant dir="com.ocbcmcd.config" target="package" inheritAll="false"/>
   </target>
   
   <target name="build.sapfilewatcher" depends="build.message">

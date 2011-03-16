@@ -26,4 +26,25 @@ public class When_use_service_to_edit_config {
 		service.setAndEncryptProperty("mail.password", "joesatriani");
 		Assert.assertEquals("joesatriani", service.getProperty("mail.password"));
 	}
+	
+	@Test
+	public void should_encrypt_all_secret_keys() {
+		service.encryptPropertyValues("mail.port", 
+				"mail.host", 
+				"mail.host2", 
+				"jdbc.url", 
+				"jdbc.username", 
+				"jdbc.password"
+				);
+		Assert.assertEquals("25", service.getProperty("mail.port"));
+		Assert.assertEquals("smtp.gmail.com", service.getProperty("mail.host"));
+	}
+	
+	@Test
+	public void should_encrypt_all_secret_keys_from_properties() {
+		service.encryptSecretPropertyValues();
+		
+		Assert.assertEquals("25", service.getProperty("mail.port"));
+		Assert.assertEquals("smtp.gmail.com", service.getProperty("mail.host"));
+	}
 }
