@@ -3,6 +3,7 @@ package com.ocbcmcd.monitoring.domain;
 public class RegistrationCommand {
 	private String userName;
 	private String password;
+	private String confirmPassword;
 
 	public String getUserName() {
 		return userName;
@@ -18,6 +19,18 @@ public class RegistrationCommand {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
+	public boolean isEqualsToConfirmPassword() {
+		return password.equals(confirmPassword);
 	}
 
 }

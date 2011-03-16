@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ocbcmcd.monitoring.domain.RegistrationCommand;
 import com.ocbcmcd.monitoring.domain.User;
+import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @Service
@@ -25,6 +26,33 @@ public class RegistrationService implements IRegistrationService {
 	public void register(RegistrationCommand command) {
 		User user = userFactory.createUser(command);
 		hibernateTemplate.save(user);
+	}
+
+	@Override
+	public User getUser(int id) {
+		return hibernateTemplate.get(User.class, id);
+	}
+
+	@Override
+	public void disable(int userId) throws UserNotFoundException {
+		User user = getUser(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		} else {
+			user.disable();
+			hibernateTemplate.update(user);
+		}
+	}
+
+	@Override
+	public void enable(int userId) throws UserNotFoundException {
+		User user = getUser(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		} else {
+			user.enable();
+			hibernateTemplate.update(user);
+		}
 	}
 
 }
