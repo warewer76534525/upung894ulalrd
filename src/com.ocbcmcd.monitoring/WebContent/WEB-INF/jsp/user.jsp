@@ -13,13 +13,16 @@
 <a name="TemplateInfo"></a>
 <h1>Users</h1>
 
-<c:if test="${message!=null}">
-	<spring:message code="${message}" />
-</c:if>
+	<c:if test="${param.message == 0}">
+		<h4><spring:message code="message.user.notfound" ></spring:message></h4>
+	</c:if>
+	<c:if test="${param.message == 1}">
+		<h4><spring:message code="message.user.created" ></spring:message></h4>
+	</c:if>
 
 <jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder" />
 
-<c:url value="/log" var="pagedLink">
+<c:url value="/user" var="pagedLink">
 	<c:param name="p" value="~" />
 </c:url>
 

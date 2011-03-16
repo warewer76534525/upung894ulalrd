@@ -11,9 +11,13 @@
 <body>
 <a name="TemplateInfo"></a>
 <h1>Users Detail</h1>
-	<c:if test="${message!=null}">
-		<h4><spring:message code="${message}" /></h4>
+	<c:if test="${param.message == 4}">
+		<h4><spring:message code="message.user.enabled" ></spring:message></h4>
 	</c:if>
+	<c:if test="${param.message == 5}">
+		<h4><spring:message code="message.user.disabled" ></spring:message></h4>
+	</c:if>
+	
 	<table>
 		<tr>
 			<td>User Name</td>

@@ -19,6 +19,8 @@ import com.ocbcmcd.monitoring.validator.RegistrationValidator;
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
+	private static final int REGISTER_MESSAGE_ID = 1;
+	
 	@Autowired
 	private RegistrationValidator validator;
 	
@@ -39,7 +41,7 @@ public class RegisterController {
 			return "register";
 		else {
 			registrationService.register(command);
-			return "redirect:user";
+			return "redirect:user/?message=" + REGISTER_MESSAGE_ID;
 		}
 	}
 }

@@ -33,7 +33,7 @@ public class RegistrationValidator  implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "password.required");
 		
-		if (!StringUtils.isEmpty(command.getConfirmPassword()) && !command.isEqualsToConfirmPassword()) {
+		if (!StringUtils.isEmpty(command.getPassword()) && !StringUtils.isEmpty(command.getConfirmPassword()) && !command.isEqualsToConfirmPassword()) {
 			errors.rejectValue("password", "password.match");
 		}
 		
