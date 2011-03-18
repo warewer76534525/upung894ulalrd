@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.ocbcmcd.housekeeping.service.IHouseKeepingService;
 import com.ocbcmcd.message.EncryptedFileSending;
+import com.ocbcmcd.message.OcbcFileProcessFailed;
 import com.ocbcmcd.message.OcbcFileProcessedSucessfully;
+import com.ocbcmcd.message.OcbcFileSendingFailed;
+import com.ocbcmcd.message.SapFileDuplicated;
 
 @Service
 public class HouseKeepingService implements IHouseKeepingService {
@@ -32,6 +35,9 @@ public class HouseKeepingService implements IHouseKeepingService {
 
 	@Value("${outgoing.dir}")
 	private String outgoingDirectory;
+	
+	@Value("${failed.dir}")
+	private String failedDirectory;
 
 	@Override
 	public void moveSuccessFile(OcbcFileProcessedSucessfully event) {
@@ -40,6 +46,9 @@ public class HouseKeepingService implements IHouseKeepingService {
 		File encrypted = getEncryptedFile(event.getFileName());
 		
 		try {
+			if (outgoing.exists()) {
+				outgoing.delete();
+			}
 			FileUtils.moveFile(processing, outgoing);
 			encrypted.delete();
 		} catch (IOException e) {
@@ -52,8 +61,57 @@ public class HouseKeepingService implements IHouseKeepingService {
 		File incoming = getIncomingFile(event.getFileName());
 		File processing = getProcessingFile(event.getFileName());
 		
+		moveFile(incoming, processing);
+	}
+	
+	@Override
+	public void moveOnDuplicatedFile(SapFileDuplicated event) {
+		File incoming = getIncomingFile(event.getFileName());
+		File failed = getFailedFile(event.getFileName());
+		
+		moveFile(incoming, failed);
+	}
+	
+	@Override
+	public void moveOnSendingFailed(OcbcFileSendingFailed event) {
+		File processing = getProcessingFile(event.getFileName());
+		File failed = getFailedFile(event.getFileName());
+		File encrypted = getEncryptedFile(event.getFileName());
+		
 		try {
-			FileUtils.moveFile(incoming, processing);
+			if (failed.exists()) {
+				failed.delete();
+			}
+			FileUtils.moveFile(processing, failed);
+			encrypted.delete();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Override
+	public void moveOnProcessedFailed(OcbcFileProcessFailed event) {
+		File processing = getProcessingFile(event.getFileName());
+		File failed = getFailedFile(event.getFileName());
+		File encrypted = getEncryptedFile(event.getFileName());
+		
+		try {
+			if (failed.exists()) {
+				failed.delete();
+			}
+			FileUtils.moveFile(processing, failed);
+			encrypted.delete();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void moveFile(File source, File destination) {
+		try {
+			if (destination.exists()) {
+				destination.delete();
+			}
+			FileUtils.moveFile(source, destination);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -74,4 +132,12 @@ public class HouseKeepingService implements IHouseKeepingService {
 	private File getEncryptedFile(String fileName) {
 		return new File(encryptedDirectory, fileName + encryptedExt);
 	}
+
+	private File getFailedFile(String fileName) {
+		return new File(failedDirectory, fileName);
+	}
+
+	
+
+	
 }

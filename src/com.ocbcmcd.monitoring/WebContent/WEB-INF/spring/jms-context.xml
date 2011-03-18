@@ -44,9 +44,50 @@
 		<property name="messageListener" ref="logFileSentHandler" />
 		<property name="sessionTransacted" value="true" />
 		<property name="subscriptionDurable" value="true" />
-		<property name="clientId" value="monitoringSentClient"></property>
+		<property name="clientId" value="logFileSentHandler"></property>
 	</bean>
 	
+	<bean id="duplicatedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.duplicated.topic}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="duplicatedDestination" />
+		<property name="messageListener" ref="logDuplicatedFileHandler" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="LogDuplicatedFileHandler"></property>
+	</bean>
+	
+	<bean id="sendingFailedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.sentfailed.topic}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="sendingFailedDestination" />
+		<property name="messageListener" ref="logSendingFailedHandler" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="logSendingFailedHandler"></property>
+	</bean>
+	
+	<bean id="processedFailedDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="${jms.failedprocess.topic}" />
+	</bean>
+	
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="processedFailedDestination" />
+		<property name="messageListener" ref="logProcessedFailedHandler" />
+		<property name="sessionTransacted" value="true" />
+		<property name="subscriptionDurable" value="true" />
+		<property name="clientId" value="logProcessedFailedHandler"></property>
+	</bean>
 </beans>
 
 

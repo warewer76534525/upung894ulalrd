@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.domain.UserUpdateCommand;
+import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 import com.ocbcmcd.monitoring.validator.UserUpdateValidator;
 
@@ -48,12 +49,16 @@ public class UserUpdateController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView submitForm(@PathVariable("id") int id, @ModelAttribute("command") UserUpdateCommand command, BindingResult result, SessionStatus status) {
-		log.info("id: " + command.getId());
 		validator.validate(command, result);
 		if (result.hasErrors())
 			return new ModelAndView("user_edit");
 		else {
-			return new ModelAndView("redirect:/user/edit/" + id + "?message=1");
+			try {
+				registrationService.update(command);
+				return new ModelAndView("redirect:/user/edit/" + id + "?message=1");
+			} catch (UserNotFoundException e) {
+				return new ModelAndView("redirect:/user/?message=0");
+			}
 		}
 	}
 }

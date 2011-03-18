@@ -12,15 +12,16 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ocbcmcd.message.OcbcFileSent;
+import com.ocbcmcd.message.OcbcFileSendingFailed;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:jms-context.xml")
-public class FileSentPublisherTest {
-
+public class FileSendingFailedPublisherTest {
+	private static final String FILE_NAME = "processedFailed.txt";
+	
 	@Autowired
-	@Qualifier("fileSentTemplate")
-	JmsTemplate fileSentTemplate;
+	@Qualifier("sendingFailedJmsTemplate")
+	JmsTemplate sendingFailedJmsTemplate;
 
 	@Before
 	public void setUp() {
@@ -30,9 +31,9 @@ public class FileSentPublisherTest {
 	}
 
 	@Test
-	public void shoud_publish_messsage_to_success_topic() {
+	public void shoud_publish_messsage_to_sending_failed_topic() {
 		System.out.println("sent OcbcFileSent");
-		fileSentTemplate.convertAndSend(new OcbcFileSent("data.txt"));
+		sendingFailedJmsTemplate.convertAndSend(new OcbcFileSendingFailed(FILE_NAME, "FTP ERROR", "FTP ERROR"));
 	}
 	
 }

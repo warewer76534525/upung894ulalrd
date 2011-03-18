@@ -66,7 +66,7 @@ public class RegistrationService implements IRegistrationService {
 			throw new UserNotFoundException();
 		} 
 		
-		user.setPassword(command.getPassword());
+		user.setPassword(command.getHashedPassword());
 		hibernateTemplate.update(user);
 	}
 
