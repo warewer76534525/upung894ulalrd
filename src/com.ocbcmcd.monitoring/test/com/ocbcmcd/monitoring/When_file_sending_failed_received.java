@@ -1,5 +1,8 @@
 package com.ocbcmcd.monitoring;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -30,8 +33,7 @@ public class When_file_sending_failed_received {
 	
 	@Autowired
 	ILogEventQuery logQuery;
-	
-	
+
 	
 	@Before
 	public void setUp() {
@@ -62,5 +64,16 @@ public class When_file_sending_failed_received {
 	public void should_able_display_in_recent_log() {
 		List<LogEvent> logs = logQuery.getLogs();
 		Assert.assertNotSame(0, logs.size());
+	}
+	
+	@Test
+	public void should_able_to_display_log_with_criteria() throws ParseException {
+		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date startDate = formater.parse("2011-03-07");
+		Date endDate = formater.parse("2011-03-30");
+		List<LogEvent> logs = logQuery.getLogs(startDate, endDate);
+		Assert.assertNotSame(0, logs.size());
+		System.out.println("row count: " +  logs.size());
 	}
 }

@@ -29,7 +29,7 @@ public class LogController {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(method = GET)
-	public ModelMap list(@RequestParam(required = false) String p, Model model) {
+	public ModelMap list(@RequestParam(required = false, value="p") String p, @RequestParam(required = false, value="startDate") String startDate, @RequestParam(required = false, value="endDate") String endDate, Model model) {
 		int page = 0;
 		List searchResults = logQuery.getLogs();
 		PagedListHolder pagedListHolder = new PagedListHolder(searchResults);

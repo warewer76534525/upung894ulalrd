@@ -1,0 +1,15 @@
+- cek diretory and application properties dir
+- cek ftp config
+- cek database config (host, user, pass, dbname)
+- email config
+- change log4j properties
+- cek gpg private key, has been import McDonald key gpg --key-list
+- apache directory
+
+
+DEV
+/home/adisembiring/temp/ocbc/incoming
+/home/adisembiring/temp/ocbc/encrypted
+/home/adisembiring/temp/ocbc/processing
+/home/adisembiring/temp/ocbc/outgoing
+/home/adisembiring/temp/ocbc/failed

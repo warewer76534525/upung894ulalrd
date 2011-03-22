@@ -2,7 +2,10 @@ package com.ocbcmcd.monitoring.query.impl;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -10,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +21,14 @@ import com.ocbcmcd.monitoring.domain.LogEvent;
 import com.ocbcmcd.monitoring.query.ILogEventQuery;
 
 @Service
-public class LogEventQuery extends SimpleJdbcDaoSupport implements
-		ILogEventQuery {
+public class LogEventQuery extends SimpleJdbcDaoSupport implements ILogEventQuery {
 	protected final Log log = LogFactory.getLog(getClass());
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired()
 	public LogEventQuery(DataSource dataSource) {
 		super.setDataSource(dataSource);
+	    this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
 	@Override
@@ -44,5 +49,15 @@ public class LogEventQuery extends SimpleJdbcDaoSupport implements
 			
 			return logEvent;
 		}
+	}
+	
+	@Override
+	public List<LogEvent> getLogs(Date startDate, Date endDate) {
+		String sql = "SELECT * FROM log_event le WHERE le.date BETWEEN :start_date AND :end_date ORDER BY le.date desc";
+		Map<String, Object> namedParameters = new HashMap<String, Object>();
+		namedParameters.put("start_date", startDate);
+		namedParameters.put("end_date", endDate);
+		
+		return namedParameterJdbcTemplate.query(sql, namedParameters, new LogEventMapper());
 	}
 }
