@@ -1,11 +1,11 @@
 DROP database IF EXISTS `ocbcmcd`;
 
 -- drop database user
-USE `test` ;
+USE `mysql` ;
 
-DROP PROCEDURE IF EXISTS `test`.`drop_user_if_exists` ;
+DROP PROCEDURE IF EXISTS `mysql`.`drop_user_if_exists` ;
 DELIMITER $$
-CREATE PROCEDURE `test`.`drop_user_if_exists`(IN p_username VARCHAR(255))
+CREATE PROCEDURE `mysql`.`drop_user_if_exists`(IN p_username VARCHAR(255))
 BEGIN
   DECLARE foo BIGINT DEFAULT 0 ;
   SELECT COUNT(*)
@@ -19,6 +19,6 @@ BEGIN
 END ;$$
 DELIMITER ;
 
-CALL `test`.`drop_user_if_exists`('ocbc') ;
+CALL `mysql`.`drop_user_if_exists`('ocbc') ;
 
-DROP PROCEDURE IF EXISTS `test`.`drop_users_if_exists` ;
+DROP PROCEDURE IF EXISTS `mysql`.`drop_users_if_exists` ;

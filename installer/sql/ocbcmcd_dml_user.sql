@@ -1,8 +1,8 @@
 USE `test` ;
 
-DROP PROCEDURE IF EXISTS `test`.`add_user_if_exists` ;
+DROP PROCEDURE IF EXISTS `mysql`.`add_user_if_exists` ;
 -- DELIMITER $$
-CREATE PROCEDURE `test`.`add_user_if_exists`(IN p_username VARCHAR(255))
+CREATE PROCEDURE `mysql`.`add_user_if_exists`(IN p_username VARCHAR(255))
 BEGIN
   DECLARE foo BIGINT DEFAULT 0 ;
   SELECT COUNT(*)
@@ -16,6 +16,6 @@ BEGIN
 END ;$$
 DELIMITER ;
 
-CALL `test`.`add_user_if_exists`('ocbc') ;
+CALL `mysql`.`add_user_if_exists`('ocbc') ;
 
-DROP PROCEDURE IF EXISTS `test`.`add_user_if_exists` ;
+DROP PROCEDURE IF EXISTS `mysql`.`add_user_if_exists` ;
