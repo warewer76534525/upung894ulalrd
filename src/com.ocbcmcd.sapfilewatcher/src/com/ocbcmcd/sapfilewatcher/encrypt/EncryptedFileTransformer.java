@@ -35,7 +35,7 @@ public class EncryptedFileTransformer {
 		writer.print(fileInformation.getContent());
 		
 		writer.close();
-		
+
 		File encryptedFile = encryptor.encrypt(publicKeyId, tempAppendedHeaderFile);
 		
 		tempAppendedHeaderFile.delete();

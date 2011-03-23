@@ -21,9 +21,9 @@
 
 	<si:channel id="erpFileChannel" />
 
-	<file:inbound-channel-adapter directory="${incoming.file.path}"
-		channel="erpFileChannel" filename-pattern="*.*">
-		<si:poller fixed-rate="1000" />
+	<file:inbound-channel-adapter prevent-duplicates="false" directory="${incoming.file.path}"
+		channel="erpFileChannel">
+		<si:poller fixed-rate="10000" />
 	</file:inbound-channel-adapter>
 
 	<si:service-activator input-channel="erpFileChannel"

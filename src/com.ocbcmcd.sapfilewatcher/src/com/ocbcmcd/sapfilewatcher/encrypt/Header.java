@@ -17,10 +17,15 @@ public class Header {
 	}
 
 	private String calculateCheckSum() {
+		FileInputStream fis = null;
 		try {
-			return DigestUtils.md5Hex(new FileInputStream(fileReader.getFile()));	
+			fis = new FileInputStream(fileReader.getFile());
+			String checksum = DigestUtils.md5Hex(fis);
+			return checksum;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
+		} finally {
+			try { fis.close(); } catch (Exception e) {}
 		}
 	}
 	

@@ -53,7 +53,7 @@ public class ERPFileListener {
 			
 			File encryptedFile = transformer.create(file);
 			
-			log.info("Created Encrypted File : " + encryptedFile.getAbsolutePath());
+			//log.info("Created Encrypted File : " + encryptedFile.getAbsolutePath());
 			
 			jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getName().replaceAll(encryptedExt,"")));	
 		} catch (FileAlreadySentException e) {

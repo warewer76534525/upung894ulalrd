@@ -24,7 +24,7 @@ public class OcbcFileProcessFailed implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OcbcFileProcessedSucessfully [fileName=" + fileName + ", time="
+		return "OcbcFileProcessFailed [fileName=" + fileName + ", time="
 				+ time + "]";
 	}
 	

@@ -1,8 +1,7 @@
 package com.ocbcmcd.sapfilewatcher.encrypt;
 
 import java.io.File;
-
-import org.apache.commons.io.FileUtils;
+import java.io.FileInputStream;
 
 public class FileCacheReader {
 	private File file;
@@ -23,7 +22,15 @@ public class FileCacheReader {
 	
 	public String readAllText() throws Exception  {
 		if (text == null) {
-			text = FileUtils.readFileToString(file);
+			//text = FileUtils.readFileToString(file);
+			FileInputStream reader = new FileInputStream(file);
+
+			byte[] content = new byte[reader.available()];
+
+			reader.read(content);
+			reader.close();
+			
+			text = new String(content);	
 		}
 		
 		return text;

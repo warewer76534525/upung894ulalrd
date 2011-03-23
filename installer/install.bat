@@ -17,3 +17,5 @@ start java -jar mailsender-service.jar
 cd ..\sapfilewatcher-service
 
 start java -jar sapfilewatcher-service.jar
+
+cd ..\..
