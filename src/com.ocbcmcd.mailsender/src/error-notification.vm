@@ -2,4 +2,10 @@ You've received this email because
 
 file : ${fileName} 
 
-can't be processed successfully by server
+can't be processed successfully by server because the following reason :
+
+${errorMessage}
+
+the stack trace for the exception is :
+
+${stackTrace}

@@ -23,12 +23,8 @@ import com.ocbcmcd.message.OcbcFileUnProcessYet;
 public class UnProcessedYetMessageHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
-//	@Autowired
-//	private JmsTemplate jmsTemplate;
-//	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
 	
 	@Value("${encrypted.ext}")
 	private String encryptedExt;
@@ -53,8 +49,6 @@ public class UnProcessedYetMessageHandler {
 			
 			Message<File> fileMessage =  MessageBuilder.withPayload(new File(encryptedDirectory, event.getFileName() + encryptedExt)).build();
 			
-//			jmsTemplate.convertAndSend(processingDestination, new EncryptedFileSending(event.getFileName()));
-			
 			log.info("Remove already exists ftp file : " + event.getFileName());
 			sessionFactory.getSession().remove(ftpRemoteDir + File.separator + event.getFileName() + encryptedExt);
 			
@@ -62,8 +56,6 @@ public class UnProcessedYetMessageHandler {
 			
 			ftpChannel.send(fileMessage);
 			log.info("Ftp file successfully : sent");
-			
-//			jmsTemplate.convertAndSend(new OcbcFileSent(event.getFileName()));
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {

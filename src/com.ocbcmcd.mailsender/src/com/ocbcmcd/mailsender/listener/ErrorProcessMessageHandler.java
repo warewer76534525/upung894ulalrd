@@ -27,7 +27,10 @@ public class ErrorProcessMessageHandler {
 			OcbcFileProcessFailed event = (OcbcFileProcessFailed) objectMessage.getObject();
 			log.info("Received event file error processed : " + event.getFileName());
 			
-			mailService.sendErrorMessage(event.getFileName());
+			mailService.sendErrorMessage(
+					event.getFileName(), 
+					"Server failed to process at the given time period", 
+					"After all failed retry the file would be placed in failed directory");
 			
 			log.info("Sending email : " + event.getFileName());
 		} catch (Exception e) {

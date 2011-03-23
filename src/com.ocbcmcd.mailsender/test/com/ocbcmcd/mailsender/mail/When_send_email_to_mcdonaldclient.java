@@ -15,6 +15,6 @@ public class When_send_email_to_mcdonaldclient {
 		Assert.assertNotNull(mailSender);
 		
 		MailService mailService = applicationContext.getBean(MailService.class);
-		mailService.sendErrorMessage("error file yg mengerikan");
+		mailService.sendErrorMessage("error file yg mengerikan", "", "");
 	}
 }
