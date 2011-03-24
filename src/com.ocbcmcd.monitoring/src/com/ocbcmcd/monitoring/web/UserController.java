@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.UserSearchCommand;
+import com.ocbcmcd.monitoring.common.UserSecurity;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.query.IUserQuery;
@@ -95,7 +96,11 @@ public class UserController {
 	public ModelAndView view(@PathVariable("userName") String userName, Model model) {
 		User user = registrationService.getUser(userName);
 		if (user != null) {
-			return new ModelAndView("redirect:/userEdit/"+ user.getId());
+			if (UserSecurity.isGrantedToAdminUserEdit()) {
+				return new ModelAndView("redirect:/adminUser/edit/"+ user.getId());
+			} else {
+				return new ModelAndView("redirect:/userEdit/"+ user.getId());
+			}
 		} else {
 			return new ModelAndView("404");
 		}
