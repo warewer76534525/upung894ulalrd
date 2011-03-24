@@ -27,7 +27,7 @@ public class ErrorFailedMessageHandler {
 			OcbcFileSendingFailed event = (OcbcFileSendingFailed) objectMessage.getObject();
 			log.info("Received event file error processed : " + event.getFileName());
 			
-			mailService.sendErrorMessage(event.getFileName());
+			mailService.sendErrorMessage(event.getFileName(), event.getErrorMessage(), event.getStackTrace());
 			
 			log.info("Sending email : " + event.getFileName());
 		} catch (Exception e) {

@@ -25,20 +25,24 @@ public class MailService {
     @Autowired
     private SimpleMailMessage alertMailMessage;
 	
-	public void sendErrorMessage(String fileName) {
+	private String getMessageContent(String fileName, String errorMessage, String stackTrace) {
+		Map model = new HashMap();
+        model.put("fileName", fileName);
+        model.put("errorMessage", errorMessage);
+        model.put("stackTrace", stackTrace);
+		return VelocityEngineUtils.mergeTemplateIntoString(
+		           velocityEngine, "error-notification.vm", model);
+	}
+
+	public void sendErrorMessage(String fileName, String errorMessage, String stackTrace) {
 		log.info("sendErrorMessage" + fileName);
 		
         SimpleMailMessage mailMessage = new SimpleMailMessage(alertMailMessage);
-        mailMessage.setText(getMessageContent(fileName));
+        String messageContent = getMessageContent(fileName, errorMessage, stackTrace);
+        System.out.println(messageContent);
+        mailMessage.setText(messageContent);
         mailSender.send(mailMessage);
         
-        log.info("email sent " + fileName);
+        log.info("email sent " + fileName);	
 	}
-
-	private String getMessageContent(String fileName) {
-		Map model = new HashMap();
-        model.put("fileName", fileName);
-		return VelocityEngineUtils.mergeTemplateIntoString(
-		           velocityEngine, "error-notification.vm", model);
-	}	
 }
