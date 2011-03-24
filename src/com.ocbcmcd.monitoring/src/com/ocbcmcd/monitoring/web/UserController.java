@@ -2,6 +2,7 @@ package com.ocbcmcd.monitoring.web;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ocbcmcd.monitoring.command.UserSearchCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.query.IUserQuery;
@@ -38,9 +41,16 @@ public class UserController {
 	
 	@RequestMapping("/userList")
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ModelAndView list(@RequestParam(required = false) String p, Model model) {
+	public ModelAndView list(@ModelAttribute("command") UserSearchCommand command, @RequestParam(required = false, value = "p") String p) {
+		ModelAndView model = new ModelAndView("user_list");
+		String requestString = "";
+
+		if (command == null) {
+			command = new UserSearchCommand();
+		}
+		
 		int page = 0;
-		List searchResults = userQuery.getUsers();
+		List searchResults = userQuery.getUsers(command);
 		PagedListHolder pagedListHolder = new PagedListHolder(searchResults);
 		
 		try {
@@ -52,10 +62,25 @@ public class UserController {
 		pagedListHolder.setPage(page);
 		int pageSize = Integer.parseInt(_pageSize);
 		pagedListHolder.setPageSize(pageSize);
+		
+		requestString = generateRequestString(command);
+		
+		model.addObject("pagedListHolder", pagedListHolder);
+		model.addObject("requestString", requestString);
+		model.addObject("command", command);
 
-		return new ModelAndView("user", "pagedListHolder", pagedListHolder);
+		return model;
 	}
 	
+	private String generateRequestString(UserSearchCommand command) {
+		String requestString = "";
+		if (!StringUtils.isEmpty(command.getUserName())) {
+			requestString = "userName=" + command.getUserName();
+		}
+		
+		return requestString;
+	}
+
 	@RequestMapping("/userDetail/{id}")
 	public ModelAndView detail(@PathVariable("id") int id, Model model) {
 		User user = registrationService.getUser(id);

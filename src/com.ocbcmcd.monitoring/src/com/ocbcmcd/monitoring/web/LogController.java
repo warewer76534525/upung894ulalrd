@@ -44,8 +44,6 @@ public class LogController {
 			command = new LogSearchCommand();
 		}
 
-		model.addAttribute("command", command);
-
 		int page = 0;
 		List<LogEvent> searchResults = logQuery.getLogs(command);
 		PagedListHolder pagedListHolder = new PagedListHolder(searchResults);
@@ -60,9 +58,10 @@ public class LogController {
 		int pageSize = Integer.parseInt(_pageSize);
 		pagedListHolder.setPageSize(pageSize);
 
-		model.addAttribute("pagedListHolder", pagedListHolder);
-		
 		requestString = generateRequestString(command);
+		
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		model.addAttribute("command", command);
 		model.addAttribute("requestString", requestString);
 		
 		return model;

@@ -23,7 +23,7 @@ import com.ocbcmcd.monitoring.query.ILogEventQuery;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-context.xml")
-public class When_user_search_log {
+public class When_search_log {
 
 	@Autowired
 	ILogEventQuery logQuery;

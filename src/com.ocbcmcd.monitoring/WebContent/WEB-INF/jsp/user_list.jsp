@@ -3,16 +3,17 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"  %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Users</title>
+<title>Usersx</title>
 </head>
 <body>
 <a name="TemplateInfo"></a>
-<h1>Users</h1>
+<h1>Usersx</h1>
 
 	<c:if test="${param.message == 0}">
 		<h4><spring:message code="message.user.notfound" ></spring:message></h4>
@@ -23,11 +24,18 @@
 
 <jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder" />
 
-<c:url value="/user" var="pagedLink">
+<c:url value="/userList/?${requestString}" var="pagedLink">
 	<c:param name="p" value="~" />
 </c:url>
 
 <tg:paging pagedListHolder="${pagedListHolder}" pagedLink="${pagedLink}" />
+<form:form method="get" modelAttribute="command">
+	<p class="">
+	user name
+	<form:input path="userName"/>
+	<input type="submit" value="Submit" />
+	</p>
+</form:form>
 
 <table>
 	<thead>
