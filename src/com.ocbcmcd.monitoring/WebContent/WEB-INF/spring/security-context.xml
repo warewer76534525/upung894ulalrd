@@ -13,7 +13,7 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 		<intercept-url pattern="/userView*" access="ROLE_PRS_USR_VIEW" />
 		<intercept-url pattern="/userEdit*" access="ROLE_PRS_UPDATE_USR" />
 		<intercept-url pattern="/adminUser*" access="ROLE_PRS_ADM_UPDATE_USER" />
-		<intercept-url pattern="/userCreate*" access="ROLE_PRS_CREATE_USER" />
+		<intercept-url pattern="/register*" access="ROLE_PRS_CREATE_USER" />
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<logout />
