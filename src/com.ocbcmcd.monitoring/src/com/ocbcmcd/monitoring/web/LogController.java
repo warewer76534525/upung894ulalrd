@@ -1,7 +1,5 @@
 package com.ocbcmcd.monitoring.web;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -12,17 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.LogSearchCommand;
 import com.ocbcmcd.monitoring.domain.LogEvent;
 import com.ocbcmcd.monitoring.query.ILogEventQuery;
 
 @Controller
-@RequestMapping("/log")
 public class LogController {
 	protected Log log = LogFactory.getLog(getClass());
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -34,7 +34,7 @@ public class LogController {
 	private String _pageSize;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@RequestMapping(method = GET)
+	@RequestMapping("/logList")
 	public ModelMap list(@ModelAttribute("command") LogSearchCommand command,
 			@RequestParam(required = false, value = "p") String p) {
 		ModelMap model = new ModelMap();
@@ -83,6 +83,16 @@ public class LogController {
 		}
 		
 		return requestString;
+	}
+	
+	@RequestMapping("/logDetail/{id}")
+	public ModelAndView detail(@PathVariable("id") int id, Model model) {
+		LogEvent log = logQuery.getLog(id);
+		if (log != null) {
+			return new ModelAndView("log_detail", "log", log);
+		} else {
+			return new ModelAndView("404");
+		}
 	}
 
 }

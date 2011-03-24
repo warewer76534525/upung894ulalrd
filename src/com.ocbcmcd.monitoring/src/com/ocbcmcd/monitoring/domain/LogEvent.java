@@ -12,6 +12,7 @@ public class LogEvent {
 	public static final String SENDING_FAILED = "SENDING_FAILED";
 	public static final String PROCESSED_FAILED = "PROCESSED_FAILED";
 	
+	private int id;
 	private String fileName;
 	private String type;
 	private Date time;	
@@ -23,6 +24,27 @@ public class LogEvent {
 		this.type = type;
 		this.time = time;
 		this.description = description;
+	}
+	
+	public LogEvent(int id, String fileName, String type, Date time, String description) {
+		super();
+		this.id = id;
+		this.fileName = fileName;
+		this.type = type;
+		this.time = time;
+		this.description = description;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getFileName() {

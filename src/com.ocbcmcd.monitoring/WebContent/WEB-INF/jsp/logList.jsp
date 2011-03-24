@@ -69,8 +69,8 @@ $(function() {
 	</thead>
 	<c:forEach items="${pagedListHolder.pageList}" var="log">
 		<tr>
-			<td><c:out value="${log.fileName}"></c:out></td>
-			<td><c:out value="${log.type}"></c:out></td>
+			<td><a href="<c:url value="/logDetail/${log.id}" />">${log.fileName}</a></td>
+			<td>${log.type}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${log.time}" /></td>
 		</tr>
 	</c:forEach>

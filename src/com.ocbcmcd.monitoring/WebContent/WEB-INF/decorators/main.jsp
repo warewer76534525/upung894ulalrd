@@ -67,7 +67,7 @@
 				<ul class="sidemenu">
 					<li><a href="<c:url value="/" />">Home</a></li>
 					<security:authorize ifAllGranted="ROLE_PRS_LOG">
-					<li><a href="<c:url value="/log" />">Logs</a></li>
+					<li><a href="<c:url value="/logList" />">Logs</a></li>
 					</security:authorize>
 					<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
 					<li><a href="<c:url value="/userList" />">User</a></li>

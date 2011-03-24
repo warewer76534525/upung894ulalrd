@@ -11,4 +11,5 @@ public interface ILogEventQuery {
 	List<LogEvent> getLogs(LogSearchCommand command);
 	List<LogEvent> getLogs(Date startDate, Date endDate);
 	List<LogEvent> getLogs();
+	LogEvent getLog(int id);
 }
