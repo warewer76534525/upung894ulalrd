@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +62,28 @@ public class LogController {
 
 		model.addAttribute("pagedListHolder", pagedListHolder);
 		
-		if (command.getStartDate() != null && command.getEndDate() != null) {
-			requestString = String.format("from=%s&to=%s", dateFormat.format(command.getStartDate()), dateFormat.format(command.getEndDate()));
-		}
+		requestString = generateRequestString(command);
 		model.addAttribute("requestString", requestString);
 		
 		return model;
+	}
+
+	private String generateRequestString(LogSearchCommand command) {
+		String requestString = "";
+		if (command.getStartDate() != null && command.getEndDate() != null) {
+			requestString = String.format("from=%s&to=%s", dateFormat.format(command.getStartDate()), dateFormat.format(command.getEndDate()));
+		}
+		
+		if (!StringUtils.isEmpty(command.getFile())) {
+			String file_str = "file=" + command.getFile();
+			if (StringUtils.isEmpty(requestString)) {
+				requestString = file_str;
+			} else {
+				requestString += "&" + file_str;
+			}
+		}
+		
+		return requestString;
 	}
 
 }
