@@ -13,7 +13,7 @@ import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
-@Service
+@Service 
 @Scope("prototype")
 public class RegistrationService implements IRegistrationService {
 	

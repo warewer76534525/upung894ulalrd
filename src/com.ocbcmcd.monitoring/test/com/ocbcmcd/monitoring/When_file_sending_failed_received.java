@@ -76,4 +76,5 @@ public class When_file_sending_failed_received {
 		Assert.assertNotSame(0, logs.size());
 		System.out.println("row count: " +  logs.size());
 	}
+	
 }

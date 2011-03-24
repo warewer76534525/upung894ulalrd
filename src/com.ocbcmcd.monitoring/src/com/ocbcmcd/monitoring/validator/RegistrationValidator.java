@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
 
 import com.ocbcmcd.monitoring.command.RegistrationCommand;
 import com.ocbcmcd.monitoring.dao.IUserDao;
-
+ 
 @Component
 @Scope("prototype")
 public class RegistrationValidator  implements Validator {

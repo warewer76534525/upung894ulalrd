@@ -5,8 +5,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.UserUpdateCommand;
+import com.ocbcmcd.monitoring.common.UserSecurity;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
@@ -32,7 +31,7 @@ public class UserUpdateController {
 	@Autowired
 	private UserUpdateValidator validator;
 	
-	@Autowired
+	@Autowired 
 	private IRegistrationService registrationService;
 	
 	@RequestMapping(method = GET)
@@ -43,12 +42,7 @@ public class UserUpdateController {
 			return new ModelAndView("404");
 		}
 		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = null;
-		if (principal instanceof UserDetails) {
-		  userDetails = (UserDetails) principal;
-		}
-		String userName = userDetails.getUsername();
+		String userName = UserSecurity.getAuthenticatedUser();
 		
 		if (!user.userNameEquals(userName)) {
 			return new ModelAndView("403");

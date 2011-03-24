@@ -18,4 +18,6 @@ DEV WIN
 C:/erpfile/
 C:/logs/
 
+FTP: 192.168.1.1
+
 

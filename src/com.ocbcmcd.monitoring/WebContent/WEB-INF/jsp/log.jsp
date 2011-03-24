@@ -1,4 +1,5 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 
@@ -6,18 +7,55 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Log</title>
+<title>Log Event</title>
+
+<link rel="stylesheet" href="<c:url value="/" />plugin/jqui/themes/base/jquery.ui.all.css">
+<script src="<c:url value="/" />plugin/jqui/jquery-1.5.1.js"></script>
+<script src="<c:url value="/" />plugin/jqui/ui/jquery.ui.core.js"></script>
+<script src="<c:url value="/" />plugin/jqui/ui/jquery.ui.widget.js"></script>
+<script src="<c:url value="/" />plugin/jqui/ui/jquery.ui.datepicker.js"></script>
+<script>
+$(function() {
+	var dates = $( "#from, #to" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 1,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+});
+</script>
+	
 </head>
 <body>
 <a name="TemplateInfo"></a>
-<h1>Log Monitoring</h1>
+<h1>Log Event</h1>
 
 
-<jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder" />
-
-<c:url value="/log" var="pagedLink">
+<c:url value="/log/?${requestString}" var="pagedLink">
 	<c:param name="p" value="~" />
 </c:url>
+
+<form:form method="get" modelAttribute="command">
+	<p class="">
+	file
+	<form:input path="file"/>
+	from 
+	<form:input path="from"/>
+	to 
+	<form:input path="to"/>
+	</p>
+	<p>
+	<input type="submit" value="Submit" />
+	</p>
+</form:form>
 
 <tg:paging pagedListHolder="${pagedListHolder}" pagedLink="${pagedLink}" />
 
@@ -39,5 +77,7 @@
 </table>
 
 <tg:paging pagedListHolder="${pagedListHolder}" pagedLink="${pagedLink}" />
+
+${coba}
 </body>
 </html>

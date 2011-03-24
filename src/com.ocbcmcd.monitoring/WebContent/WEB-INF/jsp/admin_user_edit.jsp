@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Update User</title>
 </head>
-<body>
+<body> 
 <a name="TemplateInfo"></a>
 <h1>Update User</h1>
 
