@@ -20,7 +20,7 @@ import com.ocbcmcd.monitoring.query.IUserQuery;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @Controller
-
+ 
 public class UserController {
 	protected Log log = LogFactory.getLog(getClass());
 	

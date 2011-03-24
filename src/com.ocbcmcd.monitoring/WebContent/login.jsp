@@ -6,7 +6,7 @@
 <head>
 <title>Login</title>
 </head>
-<body>
+<body> 
 <c:if test="${not empty param.error}">
 	<font color="red"> Invalid username or password ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message} </font>
 </c:if>

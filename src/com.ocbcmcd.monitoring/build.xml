@@ -95,14 +95,7 @@
 	</target>
 
 	<target name="deploy-realod" depends="deploy" description="Reload application in Tomcat">
-		<!--<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />-->
-		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
-			<jvmarg value="-Dcatalina.home=${appserver.home}" />
-			<arg line="stop" />
-		</java>
-		<java jar="${appserver.home}/bin/bootstrap.jar" fork="true">
-			<jvmarg value="-Dcatalina.home=${appserver.home}" />
-		</java>
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${name}" />
 	</target>
 
 	<target name="undeploy" description="Un-Deploy application">

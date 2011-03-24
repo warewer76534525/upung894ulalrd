@@ -42,6 +42,7 @@
 		<form:errors path="confirmPassword" cssClass="error" />
 	</p>
 	<p class=""><input type="submit" value="Submit" /></p>
+	
 </form:form>
 </body>
 </html>

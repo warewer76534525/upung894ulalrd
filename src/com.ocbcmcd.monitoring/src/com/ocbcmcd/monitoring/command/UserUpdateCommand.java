@@ -77,7 +77,7 @@ public class UserUpdateCommand {
 	}
 
 	public String getHashedPassword() {
-		try {
+		try { 
 			return MD5.hash(password);
 		} catch (Exception e) {
 		}

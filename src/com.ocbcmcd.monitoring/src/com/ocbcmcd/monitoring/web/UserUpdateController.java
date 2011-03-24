@@ -32,7 +32,7 @@ public class UserUpdateController {
 	@Autowired
 	private UserUpdateValidator validator;
 	
-	@Autowired
+	@Autowired 
 	private IRegistrationService registrationService;
 	
 	@RequestMapping(method = GET)

@@ -21,7 +21,7 @@ import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 import com.ocbcmcd.monitoring.validator.AdminUserUpdateValidator;
 
-@Controller
+@Controller 
 @RequestMapping("/adminUser/edit/{id}")
 public class AdminUserUpdateController {
 	

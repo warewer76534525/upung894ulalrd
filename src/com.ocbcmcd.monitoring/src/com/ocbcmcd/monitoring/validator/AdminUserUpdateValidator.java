@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 
 import com.ocbcmcd.monitoring.command.AdminUpdateUserCommand;
 
-@Component
+@Component 
 @Scope("prototype")
 public class AdminUserUpdateValidator  implements Validator {
 	protected Log log = LogFactory.getLog(getClass());

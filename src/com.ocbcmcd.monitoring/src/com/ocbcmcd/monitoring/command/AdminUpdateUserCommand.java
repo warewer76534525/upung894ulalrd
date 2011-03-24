@@ -2,7 +2,7 @@ package com.ocbcmcd.monitoring.command;
 
 import com.ocbcmcd.monitoring.common.MD5;
 import com.ocbcmcd.monitoring.domain.User;
-
+ 
 
 public class AdminUpdateUserCommand {
 	private int id;

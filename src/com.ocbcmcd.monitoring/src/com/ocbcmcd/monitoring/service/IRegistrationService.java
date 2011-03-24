@@ -5,7 +5,7 @@ import com.ocbcmcd.monitoring.command.RegistrationCommand;
 import com.ocbcmcd.monitoring.command.UserUpdateCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
-
+ 
 public interface IRegistrationService {
 
 	void register(RegistrationCommand user);

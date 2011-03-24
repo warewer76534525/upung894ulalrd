@@ -8,7 +8,7 @@ import com.ocbcmcd.monitoring.common.MD5;
 import com.ocbcmcd.monitoring.dao.IRoleDao;
 import com.ocbcmcd.monitoring.domain.Role;
 import com.ocbcmcd.monitoring.domain.User;
-
+ 
 @Component
 public class UserFactory {
 	@Autowired

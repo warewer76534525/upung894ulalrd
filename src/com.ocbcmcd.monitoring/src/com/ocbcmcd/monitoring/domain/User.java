@@ -16,7 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity 
 @Table(name = "users")
 public class User {
 	private static final int ENABLED = 1;
