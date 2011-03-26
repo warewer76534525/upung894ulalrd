@@ -14,7 +14,8 @@ public class UserSecurity {
 	public static boolean isGranted(String permission) {
 		boolean granted = false;
 		
-		Collection<GrantedAuthority> authorites = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		Collection<? extends GrantedAuthority> authorites = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
 		for (GrantedAuthority grantedAuthority : authorites) {
 			if (grantedAuthority.getAuthority().equals(permission))
 				granted = true;
