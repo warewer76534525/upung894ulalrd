@@ -82,5 +82,7 @@
 	<classpathentry kind="lib" path="/external-lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="lib" path="/external-lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/external-lib/jasypt-1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.ocbcmcd.config.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,6 +1,7 @@
 package com.ocbcmcd.config.service;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
@@ -30,9 +31,7 @@ public class PersistenceProperties {
 
 	public void setProperty(String key, String newValue) {
 		Properties properties = new EncryptableProperties(textEncryptor);
-		
-		try {
-			
+		try {			
 			properties.load(new FileInputStream(fileLocation));
 			properties.setProperty(key, newValue);
 			properties.store(new FileOutputStream(fileLocation), "mail");
