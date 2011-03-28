@@ -64,6 +64,11 @@ public class When_search_log {
 		command.setTo("03/20/2011");
 		System.out.println(command);
 		List<LogEvent> logs = logQuery.getLogs(command);
+		
+		for (LogEvent logEvent : logs) {
+			LogEvent log = logQuery.getLog(logEvent.getId());
+			Assert.assertEquals(logEvent.getId(), log.getId());
+		}
 		Assert.assertNotSame(0, logs.size());
 		System.out.println("row count: " +  logs.size());
 	}

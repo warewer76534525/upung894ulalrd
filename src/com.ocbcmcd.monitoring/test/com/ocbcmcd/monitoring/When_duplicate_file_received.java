@@ -58,4 +58,19 @@ public class When_duplicate_file_received {
 		Assert.assertTrue(isFound);
 	}
 	
+	@Test
+	public void should_able_to_get_log_edtail() {
+		monitoringService.logDuplicatedFile(event);
+		List<LogEvent> logs = logQuery.getLogs();
+		boolean isFound = false;
+		
+		System.out.println("-- " + event.getTime());
+		for (LogEvent logEvent : logs) {
+			if (logEvent.getTime().toString().equals(event.getTime().toString()))
+				isFound = true;
+		}
+		
+		Assert.assertTrue(isFound);
+	}
+	
 }

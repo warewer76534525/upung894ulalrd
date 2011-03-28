@@ -30,9 +30,7 @@ public class PersistenceProperties {
 
 	public void setProperty(String key, String newValue) {
 		Properties properties = new EncryptableProperties(textEncryptor);
-		
-		try {
-			
+		try {			
 			properties.load(new FileInputStream(fileLocation));
 			properties.setProperty(key, newValue);
 			properties.store(new FileOutputStream(fileLocation), "mail");

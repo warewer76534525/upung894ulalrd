@@ -47,11 +47,21 @@ public class LogEventQuery extends SimpleJdbcDaoSupport implements ILogEventQuer
 				throws SQLException {
 			Timestamp timestamp = rs.getTimestamp("date");
 			long milliseconds = timestamp.getTime() + (timestamp.getNanos() / 1000000);
-			LogEvent logEvent = new LogEvent(rs.getString("file_name"),
+			LogEvent logEvent = new LogEvent(rs.getInt("id"), rs.getString("file_name"),
 					rs.getString("type"), new java.util.Date(milliseconds), rs.getString("description"));
 			
 			return logEvent;
 		}
+	}
+	
+
+	@Override
+	public LogEvent getLog(int id) {
+		String sql = " SELECT * FROM log_event le WHERE le.id=:id ";
+		Map<String, Object> namedParameters = new HashMap<String, Object>();
+		namedParameters.put("id", id);
+		
+		return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, new LogEventMapper());
 	}
 	
 	@Override
@@ -93,5 +103,6 @@ public class LogEventQuery extends SimpleJdbcDaoSupport implements ILogEventQuer
 		
 		return namedParameterJdbcTemplate.query(sql, namedParameters, new LogEventMapper());
 	}
+
 
 }

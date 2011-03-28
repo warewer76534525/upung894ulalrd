@@ -3,17 +3,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/security
-http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
-	<http auto-config='true'>
-		<intercept-url pattern="/log" access="ROLE_PRS_LOG" />
-		<intercept-url pattern="/userList*" access="ROLE_PRS_USER_LIST" />
-		<intercept-url pattern="/userDisable*" access="ROLE_PRS_DISABLE_USR" />
-		<intercept-url pattern="/userEnable*" access="ROLE_PRS_ENABLE_USR" />
-		<intercept-url pattern="/userView*" access="ROLE_PRS_USR_VIEW" />
-		<intercept-url pattern="/userEdit*" access="ROLE_PRS_UPDATE_USR" />
-		<intercept-url pattern="/adminUser*" access="ROLE_PRS_ADM_UPDATE_USER" />
-		<intercept-url pattern="/register*" access="ROLE_PRS_CREATE_USER" />
+	<http auto-config='true' request-matcher="regex">
+		<intercept-url pattern="/logList/*" access="ROLE_PRS_LOG" />
+		<intercept-url pattern="/logDetail/*" access="ROLE_PRS_LOG" />
+		<intercept-url pattern="/register/*" access="ROLE_PRS_CREATE_USER" />
+		<intercept-url pattern="/userList/*" access="ROLE_PRS_USER_LIST" />
+		<intercept-url pattern="/userDisable/*" access="ROLE_PRS_DISABLE_USR" />
+		<intercept-url pattern="/userEnable/*" access="ROLE_PRS_ENABLE_USR" />
+		<intercept-url pattern="/userView/*" access="ROLE_PRS_USR_VIEW" />
+		<intercept-url pattern="/userEdit/*" access="ROLE_PRS_UPDATE_USR" />
+		<intercept-url pattern="/userDetail/*" access="ROLE_PRS_DETAIL_USR" />
+		<intercept-url pattern="/adminUser/*" access="ROLE_PRS_ADM_UPDATE_USER" />
+		<intercept-url pattern="/config/*" access="ROLE_PRS_CONFIG" />
+		
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<logout />
