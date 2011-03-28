@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project name="com.ocbcmcd.config">
+	<property name="service.name" value="config-tools" />
+	<property name="main.class" value="com.ocbcmcd.config.main.Main" />
+	<import file="..\common.xml" />
+
+	<property name="service.dir" value="${dist.dir}/${service.name}" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
+</project>

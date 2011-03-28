@@ -5,7 +5,7 @@
 	<property name="lib.dir" value="../../internal-lib" />
 	<property name="ext.lib.dir" value="../../external-lib" />
 	<property name="src.dir" value="src" />
-	
+
 	<path id="master-classpath">
 		<fileset dir="${ext.lib.dir}">
 			<include name="*.jar" />

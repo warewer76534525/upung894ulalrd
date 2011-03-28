@@ -1,0 +1,50 @@
+#FTP
+ftp.host=localhost
+ftp.username=welly
+ftp.password=1234
+
+checked.dir=/fromnisp/CHK
+
+#watcher
+watcher.maxretry=5
+watcher.interval=5000
+
+#OCBC FILE PROPS
+encrypted.ext = .gpg
+incoming.dir = C:/erpfile/incoming
+encrypted.dir = C:/erpfile/encrypted
+processing.dir = C:/erpfile/processing
+outgoing.dir = C:/erpfile/outgoing
+daily.report.dir=C:/erpfile/dailyreport
+failed.dir = C:/erpfile/failed
+ftp.temp.dir=C:/erpfile/ftp-temp
+ftp.remote.dir=fromnisp/REPORT
+ftp.remote.dir=tonisp/McD
+encrypted.file.path=C:/erpfile/encrypted
+incoming.file.path=C:/erpfile/incoming
+public.key.id=McDonald
+
+#CRON JOB
+endOfMonth.cron= 0 55 23 L * ?
+endOfMonth.start= 1
+endofday.cron=0 10 22 * * ?
+
+mail.host=smtp.gmail.com
+mail.port=587
+mail.username=triplelands@gmail.com
+mail.password=tripl3lands
+mail.transport.protocol=smtp
+mail.smtp.auth=true
+mail.smtp.starttls.enable=true
+mail.from=triplelands@gmail.com
+mail.to=exception.smsdong@gmail.com
+
+jdbc.url=jdbc:mysql://localhost/ocbcmcd
+jdbc.username=ocbc
+jdbc.password=ocbc
+
+#CONFIG
+confirmwatcher.config = D:/project/triplelands/ocbcfilesending/src/com.ocbcmcd.confirmwatcher/test/secret.xxx
+ftpfilesender.config = D:/project/triplelands/ocbcfilesending/src/com.ocbcmcd.ftpfilesender/test/secret.xxx
+mailsender.config = D:/project/triplelands/ocbcfilesending/src/com.ocbcmcd.mailsender/test/secret.xxx
+monitoring.config = D:/project/triplelands/ocbcfilesending/src/com.ocbcmcd.monitoring/test/secret.xxx
