@@ -39,8 +39,7 @@
 		
 		<!-- Menu Tabs -->
 		<ul>
-			<li><a href="index.html" id="current">Home</a></li>
-			<li><a href="index.html">Log Monitor</a></li>
+			<li><a href="<c:url value="/" />" id="current">Home</a></li>
 		</ul>					
 	
 	</div></div>
@@ -65,13 +64,17 @@
 			
 				<h1>Sidebar Menu</h1>
 				<ul class="sidemenu">
-					<li><a href="<c:url value="/" />">Home</a></li>
+					<li><a href="<c:url value="/" />" title="">Home</a></li>
 					<security:authorize ifAllGranted="ROLE_PRS_LOG">
 					<li><a href="<c:url value="/logList" />">Logs</a></li>
 					</security:authorize>
 					<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
 					<li><a href="<c:url value="/userList" />">User</a></li>
 					</security:authorize>
+					<security:authorize ifAllGranted="ROLE_PRS_CONFIG">
+					<li><a href="<c:url value="/config" />">Config</a></li>
+					</security:authorize>
+					
 				</ul>		
 		</div>			
 	

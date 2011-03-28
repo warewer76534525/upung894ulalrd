@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="/external-lib/org.springframework.beans-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

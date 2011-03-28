@@ -11,7 +11,7 @@
 
 	<bean
 		class="com.ocbcmcd.config.spring.EncryptedPropertyPlaceholderConfigurer">
-		<property name="locations" value="secret.properties" />
+		<property name="locations" value="classpath*:secret.properties" />
 	</bean>
 
 	<bean class="com.ocbcmcd.config.service.EncryptedConfigurationService">
@@ -32,5 +32,9 @@
 				<value>jdbc.password</value>
 			</list>
 		</constructor-arg>
+	</bean>
+	
+	<bean class="com.ocbcmcd.config.test.DataTest">
+		<constructor-arg name="smptpHost" value="${mail.host}" ></constructor-arg>
 	</bean>
 </beans>
