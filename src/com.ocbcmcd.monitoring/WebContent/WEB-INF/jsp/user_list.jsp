@@ -9,11 +9,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Usersx</title>
+<title>Users</title>
 </head>
 <body>
 <a name="TemplateInfo"></a>
-<h1>Usersx</h1>
+<h1>Users</h1>
 
 	<c:if test="${param.message == 0}">
 		<h4><spring:message code="message.user.notfound" ></spring:message></h4>

@@ -19,13 +19,14 @@
 	<div id="header-wrap"><div id="header-content">	
 				
 		<h1 id="logo"><a href="<c:url value="/"></c:url>" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
-		<h2 id="slogan">Put your site slogan here...</h2>		
+		<h2 id="slogan">BANK OCBC NISP - Your Partner For Life</h2>		
 		
 		<div id="header-links">
 			<p>
 				<security:authorize ifAnyGranted="ROLE_PRS_ADM_UPDATE_USER,ROLE_PRS_UPDATE_USR">
 					<security:authentication var="userName" property="name" />
 					<c:url var="url" value="/userView/" />
+					Welcome, 
 					<a href="${url}${userName}">
 						<security:authentication property="name" />
 					</a>
@@ -39,8 +40,7 @@
 		
 		<!-- Menu Tabs -->
 		<ul>
-			<li><a href="index.html" id="current">Home</a></li>
-			<li><a href="index.html">Log Monitor</a></li>
+			<li><a href="<c:url value="/" />" id="current">Home</a></li>
 		</ul>					
 	
 	</div></div>
@@ -65,13 +65,17 @@
 			
 				<h1>Sidebar Menu</h1>
 				<ul class="sidemenu">
-					<li><a href="<c:url value="/" />">Home</a></li>
+					<li><a href="<c:url value="/" />" title="">Home</a></li>
 					<security:authorize ifAllGranted="ROLE_PRS_LOG">
 					<li><a href="<c:url value="/logList" />">Logs</a></li>
 					</security:authorize>
 					<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
 					<li><a href="<c:url value="/userList" />">User</a></li>
 					</security:authorize>
+					<security:authorize ifAllGranted="ROLE_PRS_CONFIG">
+					<li><a href="<c:url value="/config" />">Config</a></li>
+					</security:authorize>
+					
 				</ul>		
 		</div>			
 	
@@ -84,10 +88,7 @@
 		<div class="col float-left space-sep">
 			<p>
 			&copy; copyright 2010 <strong>OCBC NISP</strong><br />
-			<a href="http://www.bluewebtemplates.com/" title="Website Templates">website templates</a> by <a href="http://www.styleshout.com/">styleshout</a> <br />
-
-			Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
-		   	      <a href="http://validator.w3.org/check/referer">XHTML</a>
+			<a href="http://www.ocbcnisp.com/" title="BANK OCBC NISP - Your Partner For Life">BANK OCBC NISP - Your Partner For Life</a> <br />
 			</p>
 		</div>
 		

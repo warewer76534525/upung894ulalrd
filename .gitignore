@@ -6,3 +6,5 @@ classes/
 dist/
 *-service/
 bin/
+/docs/manual/UserManualSkeleton.docx
+/docs/manual/File Sending Application Manual Document v1.0.0 - web and house keeping.doc
