@@ -16,11 +16,8 @@
 	<classpathentry kind="lib" path="/external-lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.asm-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="/external-lib/org.springframework.instrument.tomcat.jar"/>
-=======
 	<classpathentry kind="lib" path="/external-lib/org.springframework.instrument-3.0.5.RELEASE.jar"/>
->>>>>>> 459b38aa7e3408d42b950b792acc93ed5deeba6f
 	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
