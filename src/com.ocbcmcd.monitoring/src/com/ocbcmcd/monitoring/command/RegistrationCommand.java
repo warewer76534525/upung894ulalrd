@@ -1,10 +1,13 @@
 package com.ocbcmcd.monitoring.command;
 
 public class RegistrationCommand {
+	
+	
 	private String userName;
 	private String password;
 	private String confirmPassword;
-
+	private String userType;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -33,4 +36,19 @@ public class RegistrationCommand {
 		return password.equals(confirmPassword);
 	}
 
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
+	public boolean isAdminType() {
+		return UserType.ADMIN_TYPE.equals(userType);
+	}
+	
+	public boolean isRegularUserType() {
+		return UserType.REGULAR_TYPE.equals(userType);
+	}
 }

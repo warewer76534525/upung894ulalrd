@@ -9,6 +9,7 @@ import junit.framework.Assert;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,7 @@ import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-context.xml")
-public class When_user_added {
+public class When_user_added_admin_user {
 	@Autowired
 	IRegistrationService registrationService;
 	
@@ -54,7 +55,15 @@ public class When_user_added {
 		user.setUserName("tony");
 		user.setPassword(password);
 		user.setConfirmPassword(password);
+		user.setUserType("ROLE_ADMIN");
 	}
+	
+	@After
+	public void after() { 
+		System.out.println("After class");
+		userDao.delete(userDao.findByUserName(user.getUserName()));
+	}
+	
 	
 	@Test
 	public void should_able_to_get_user_detail() {

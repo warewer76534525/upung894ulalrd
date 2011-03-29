@@ -16,6 +16,7 @@ public class UserFactory {
 	
 	public User createUser(RegistrationCommand command) {
 		User user = new User();
+		Role role = null;
 		
 		user.setUserName(command.getUserName());
 		try {
@@ -23,7 +24,12 @@ public class UserFactory {
 		} catch (Exception e) {
 		}
 		
-		Role role = roleDao.getAdminRole();
+		if (command.isAdminType()) {
+			role = roleDao.getAdminRole();
+		} else {
+			role = roleDao.getRegularUserRole();
+		}
+		
 		user.addRole(role);
 		
 		return user;

@@ -25,5 +25,12 @@ public class RoleDao implements IRoleDao {
 		List<Role> roles = hibernateTemplate.find("FROM Role r WHERE r.roleName=?", ROLE_ADMIN);
 		return roles.get(0);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Role getRegularUserRole() {
+		List<Role> roles = hibernateTemplate.find("FROM Role r WHERE r.roleName=?", ROLE_ADMIN);
+		return roles.get(0);
+	}
 
 }
