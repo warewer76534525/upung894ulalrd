@@ -17,7 +17,7 @@
 	<h4><spring:message code="message.user.updated" ></spring:message></h4>
 </c:if>
  
-<c:url var="url" value="/adminUser/edit/${command.id}" />
+<c:url var="url" value="/adminUserEdit/${command.id}" />
 <form:form method="post" modelAttribute="command" action="${url}">
 	<form:hidden path="id"/>
 	<form:hidden path="userName"/>
@@ -35,6 +35,12 @@
 		<label>Your Confirm Password</label>
 		<form:password path="confirmPassword" />
 		<form:errors path="confirmPassword" cssClass="error" />
+	</p>
+	<p class="">
+		<label>User Type</label>
+		<form:select path="userType" items="${userTypes}"
+			itemValue="name" itemLabel="description" />
+		<form:errors path="userType" cssClass="error" />
 	</p>
 	<p class=""><input type="submit" value="Submit" /></p>
 </form:form>

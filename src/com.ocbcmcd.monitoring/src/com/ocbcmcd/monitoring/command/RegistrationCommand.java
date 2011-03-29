@@ -1,8 +1,6 @@
 package com.ocbcmcd.monitoring.command;
 
 public class RegistrationCommand {
-	
-	
 	private String userName;
 	private String password;
 	private String confirmPassword;

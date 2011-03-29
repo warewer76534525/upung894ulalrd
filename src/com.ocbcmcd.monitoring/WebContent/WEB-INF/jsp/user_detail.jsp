@@ -34,7 +34,7 @@
 		</tr>
 	</table>
 	<security:authorize ifAllGranted="ROLE_PRS_ADM_UPDATE_USER,ROLE_PRS_DISABLE_USR,ROLE_PRS_ENABLE_USR">
-		<a href="<c:url value="/adminUser/edit/${user.id}" />">edit</a> |
+		<a href="<c:url value="/adminUserEdit/${user.id}" />">edit</a> |
 		<c:if test="${user.enabled == 1}">
 		<a href="<c:url value="/userDisable/${user.id}" />">disable</a>
 		</c:if>

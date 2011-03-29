@@ -1,5 +1,7 @@
 package com.ocbcmcd.monitoring.service.impl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ocbcmcd.monitoring.command.AdminUpdateUserCommand;
 import com.ocbcmcd.monitoring.command.RegistrationCommand;
 import com.ocbcmcd.monitoring.command.UserUpdateCommand;
+import com.ocbcmcd.monitoring.dao.IRoleDao;
 import com.ocbcmcd.monitoring.dao.IUserDao;
+import com.ocbcmcd.monitoring.domain.Role;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
@@ -17,8 +21,13 @@ import com.ocbcmcd.monitoring.service.IRegistrationService;
 @Scope("prototype")
 public class RegistrationService implements IRegistrationService {
 	
+	protected Log log = LogFactory.getLog(getClass());
+	
 	@Autowired
 	IUserDao userDao;
+	
+	@Autowired
+	private IRoleDao roleDao;
 	
 	@Autowired
 	UserFactory userFactory;
@@ -75,11 +84,22 @@ public class RegistrationService implements IRegistrationService {
 	@Override
 	public void update(AdminUpdateUserCommand command) throws UserNotFoundException {
 		User user = getUser(command.getId());
+		Role role = null;
+		
 		if (user == null) {
 			throw new UserNotFoundException();
 		} 
 		
+		if (command.isAdminType()) {
+			role = roleDao.getAdminRole();
+		} else {
+			role = roleDao.getRegularUserRole();
+		}
+		
+		user.updateRole(role);
 		user.setPassword(command.getHashedPassword());
+		
+		log.info("users : " + user);
 		userDao.update(user);
 	}
 
