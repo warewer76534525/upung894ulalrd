@@ -18,6 +18,20 @@
 	  <copy file="${web.src.file}" todir="${web.deploy.dir}"/>
   </target>
   
+  <target name="encrypt.config" description="run the project">
+	<exec executable="java">
+		<arg line="-jar tools/config-tools/config-tools.jar encrypt"/>
+	</exec>
+  </target>
+  
+  <target name="change.config" description="run the project">
+	<exec executable="java">
+		<arg line="-jar tools/config-tools/config-tools.jar changevalue"/>
+	</exec>
+  </target>
+  
+  <target name="prepare.config" description="run the project" depends="change.config, encrypt.config"/>
+  
   <target name="init.directory">
 	  <mkdir dir="${file.dir}/incoming"/>
 	  <mkdir dir="${file.dir}/encrypted"/>
