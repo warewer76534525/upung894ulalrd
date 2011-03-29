@@ -19,13 +19,14 @@
 	<div id="header-wrap"><div id="header-content">	
 				
 		<h1 id="logo"><a href="<c:url value="/"></c:url>" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
-		<h2 id="slogan">Put your site slogan here...</h2>		
+		<h2 id="slogan">BANK OCBC NISP - Your Partner For Life</h2>		
 		
 		<div id="header-links">
 			<p>
 				<security:authorize ifAnyGranted="ROLE_PRS_ADM_UPDATE_USER,ROLE_PRS_UPDATE_USR">
 					<security:authentication var="userName" property="name" />
 					<c:url var="url" value="/userView/" />
+					Welcome, 
 					<a href="${url}${userName}">
 						<security:authentication property="name" />
 					</a>
@@ -87,10 +88,7 @@
 		<div class="col float-left space-sep">
 			<p>
 			&copy; copyright 2010 <strong>OCBC NISP</strong><br />
-			<a href="http://www.bluewebtemplates.com/" title="Website Templates">website templates</a> by <a href="http://www.styleshout.com/">styleshout</a> <br />
-
-			Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
-		   	      <a href="http://validator.w3.org/check/referer">XHTML</a>
+			<a href="http://www.ocbcnisp.com/" title="BANK OCBC NISP - Your Partner For Life">BANK OCBC NISP - Your Partner For Life</a> <br />
 			</p>
 		</div>
 		

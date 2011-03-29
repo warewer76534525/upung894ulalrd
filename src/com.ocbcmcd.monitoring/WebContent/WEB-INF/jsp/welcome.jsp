@@ -9,13 +9,12 @@
 			<h1>OCBC McD Monitoring</h1>
 			
             <p>
-				<a href="index.html"><img src="images/sample-image.jpg" width="174" height="140" alt="firefox-gray"  class="float-left" /></a>
-				<strong>EliteCircle</strong> is a free, W3C-compliant, CSS-based website template
-				by <a href="http://www.styleshout.com/">styleshout.com</a>. This work is
-				distributed under the <a rel="license" href="http://creativecommons.org/licenses/by/2.5/">
-				Creative Commons Attribution 2.5  License</a>, which means that you are free to
-				use and modify it for any purpose. All I ask is that you give me credit by including a <strong>link back</strong> to
-				<a href="http://www.styleshout.com/">my website</a>.
+				<a href="index.html"><img src="images/sample-image.jpg" alt="firefox-gray"  class="float-left" /></a>
+				<strong>Bank OCBC NISP</strong> since its establishment in 1941 has been consistently implementing the prudential banking principles and has succeeded to conduct a healthy
+				banking practices and survive through many crises in Indonesia. Along with its aim to be one of the National Bank in 2010 based 
+				on the API (Indonesian Banking Architecture), Bank OCBC NISP continues to develop high quality products and increases its 
+				relations with costumers by opening many new offices in various major cities and districts.
+				
             </p>
 </body>
 </html>

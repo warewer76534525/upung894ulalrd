@@ -41,7 +41,7 @@ public class RegisterController {
 			return "register";
 		else {
 			registrationService.register(command);
-			return "redirect:user/?message=" + REGISTER_MESSAGE_ID;
+			return "redirect:userList/?message=" + REGISTER_MESSAGE_ID;
 		}
 	}
 }
