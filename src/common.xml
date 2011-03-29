@@ -100,7 +100,7 @@
         </manifest>
 		</jar>
 	</target>
-
+	
 	<target name="install.service" depends="package">
 		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
 			<arg line="--WinRun4J:RegisterService" />
