@@ -2,6 +2,8 @@ package com.ocbcmcd.monitoring.web;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.ocbcmcd.monitoring.command.RegistrationCommand;
+import com.ocbcmcd.monitoring.command.UserType;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 import com.ocbcmcd.monitoring.validator.RegistrationValidator;
 
@@ -26,6 +29,12 @@ public class RegisterController {
 	
 	@Autowired
 	private IRegistrationService registrationService;
+	
+	
+	@ModelAttribute("userTypes")
+	public List<UserType> populateUserTypes() {
+		return UserType.getUserTypes();
+	}
 	
 	@RequestMapping(method = GET)
 	public ModelMap setupForm(@RequestParam(required = false) RegistrationCommand command) {

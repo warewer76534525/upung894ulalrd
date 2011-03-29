@@ -48,10 +48,6 @@ public class UserUpdateController {
 			return new ModelAndView("403");
 		}
 		
-		if (command == null) {
-			command = new UserUpdateCommand(user);
-		}
-		
 		return new ModelAndView("user_edit", "command", command);
 	}
 	

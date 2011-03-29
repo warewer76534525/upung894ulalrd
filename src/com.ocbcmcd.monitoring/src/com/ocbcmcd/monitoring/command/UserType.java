@@ -38,8 +38,8 @@ public class UserType {
 
 	public static List<UserType> getUserTypes() {
 		List<UserType> userTypes = new ArrayList<UserType>();
-		UserType admin = new UserType("ADMIN_TYPE", "ADMIN USER");
-		UserType regular = new UserType("REGULAR_TYPE", "REGULAE USER");
+		UserType admin = new UserType(ADMIN_TYPE, "ADMIN USER");
+		UserType regular = new UserType(REGULAR_TYPE, "REGULAE USER");
 		
 		userTypes.add(regular);
 		userTypes.add(admin);

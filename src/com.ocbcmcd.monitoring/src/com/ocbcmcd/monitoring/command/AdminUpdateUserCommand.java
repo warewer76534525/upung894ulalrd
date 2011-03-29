@@ -9,6 +9,8 @@ public class AdminUpdateUserCommand {
 	private String userName;
 	private String password;
 	private String confirmPassword;
+	private String userType;
+	
 	
 	public AdminUpdateUserCommand() {
 		
@@ -62,13 +64,28 @@ public class AdminUpdateUserCommand {
 		}
 		return password;
 	}
+	
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
+	public boolean isAdminType() {
+		return UserType.ADMIN_TYPE.equals(userType);
+	}
+	
+	public boolean isRegularUserType() {
+		return UserType.REGULAR_TYPE.equals(userType);
+	}
 
 	@Override
 	public String toString() {
 		return "AdminUpdateUserCommand [id=" + id + ", userName=" + userName
-				+ ", password=" + password + ", confirmPassword="
-				+ confirmPassword + "]";
+				+ ", userType=" + userType + "]";
 	}
-	
 	
 }

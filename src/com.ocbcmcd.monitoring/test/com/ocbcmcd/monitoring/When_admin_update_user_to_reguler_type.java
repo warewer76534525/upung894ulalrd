@@ -13,7 +13,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ocbcmcd.monitoring.command.UserUpdateCommand;
+import com.ocbcmcd.monitoring.command.AdminUpdateUserCommand;
+import com.ocbcmcd.monitoring.command.UserType;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.query.IUserQuery;
@@ -21,7 +22,7 @@ import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-context.xml")
-public class When_user_update {
+public class When_admin_update_user_to_reguler_type {
 	@Autowired
 	IRegistrationService registrationService;
 	
@@ -31,7 +32,7 @@ public class When_user_update {
 	@Autowired 
 	HibernateTemplate hibernateTemplate;
 	
-	UserUpdateCommand command = null;
+	AdminUpdateUserCommand command = null;
 	
 	@Before
 	public void setUp() {
@@ -39,24 +40,25 @@ public class When_user_update {
 		Logger.getLogger("org.springframework").setLevel(Level.WARN);
 		BasicConfigurator.configure();
 		
-		int userId = 38;
-		String oldPassword = "password";
-		String password = "password";
+		int userId = 26;
+		String password = "password123";
 		
-		command = new UserUpdateCommand();
+		command = new AdminUpdateUserCommand();
 		command.setId(userId);
-		command.setOldPassword(oldPassword);
 		command.setPassword(password);
 		command.setConfirmPassword(password);
-		
+		command.setUserType(UserType.REGULAR_TYPE);
 	}
 	
 	@Test
-	public void should_change_old_password_to_new_password() throws UserNotFoundException {
+	public void should_change_user() throws UserNotFoundException {
+		System.out.println(command);
 		registrationService.update(command);
+		
 		User tempUser = hibernateTemplate.get(User.class, command.getId());
 		Assert.assertEquals(command.getHashedPassword(), tempUser.getPassword());
 		
+		Assert.assertTrue(tempUser.isRegulerUser());
 	}
 
 	

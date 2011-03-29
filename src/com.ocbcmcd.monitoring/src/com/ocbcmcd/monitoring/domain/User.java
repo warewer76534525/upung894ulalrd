@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.ocbcmcd.monitoring.command.UserType;
+
 @Entity 
 @Table(name = "users")
 public class User {
@@ -39,7 +41,7 @@ public class User {
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "user") }, inverseJoinColumns = { @JoinColumn(name = "role") })
 	private Set<Role> userRoles = new HashSet<Role>(0);
 
@@ -117,4 +119,39 @@ public class User {
 	public boolean userNameEquals(String _userName) {
 		return userName.equals(_userName);
 	}
+	
+	public boolean isAdminUser() {
+		for (Role role : userRoles) {
+			if (UserType.ADMIN_TYPE.equals(role.getRoleName())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean isRegulerUser() {
+		for (Role role : userRoles) {
+			if (UserType.REGULAR_TYPE.equals(role.getRoleName())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public void updateRole(Role role) {
+		userRoles = new HashSet<Role>();
+		userRoles.add(role);
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", enabled="
+				+ enabled + ", createdDate=" + createdDate + ", userRoles="
+				+ userRoles + "]";
+	}
+	
+	
+	
 }

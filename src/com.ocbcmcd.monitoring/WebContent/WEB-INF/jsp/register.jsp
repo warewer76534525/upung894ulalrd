@@ -25,6 +25,13 @@
 		<form:password path="confirmPassword" />
 		<form:errors path="confirmPassword" cssClass="error" />
 	</p>
+	<p class="">
+		<label>User Type</label>
+		<form:select path="userType" items="${userTypes}"
+			itemValue="name" itemLabel="description" />
+		<form:errors path="userType" cssClass="error" />
+	</p>
+	
 	<p class=""><input type="submit" value="Submit" /></p>
 </form:form>
 </body>

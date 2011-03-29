@@ -97,7 +97,7 @@ public class UserController {
 		User user = registrationService.getUser(userName);
 		if (user != null) {
 			if (UserSecurity.isGrantedToAdminUserEdit()) {
-				return new ModelAndView("redirect:/adminUser/edit/"+ user.getId());
+				return new ModelAndView("redirect:/adminUserEdit/"+ user.getId());
 			} else {
 				return new ModelAndView("redirect:/userEdit/"+ user.getId());
 			}
