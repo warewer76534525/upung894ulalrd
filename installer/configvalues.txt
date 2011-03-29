@@ -1,6 +1,6 @@
 #FTP
 ftp.host=localhost
-ftp.username=welly
+ftp.username=username
 ftp.password=1234
 
 checked.dir=/fromnisp/CHK
