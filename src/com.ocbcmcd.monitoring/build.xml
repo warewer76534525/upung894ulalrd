@@ -68,9 +68,6 @@
 			<fileset dir="${web.dir}">
 				<include name="**/**.**" />
 			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="**/*.properties" />
-			</fileset>
 		</war>
 		-->
 		<copy todir="${dist.dir}/${name}" preservelastmodified="true">

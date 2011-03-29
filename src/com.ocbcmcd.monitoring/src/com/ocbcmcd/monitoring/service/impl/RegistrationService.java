@@ -99,7 +99,6 @@ public class RegistrationService implements IRegistrationService {
 		user.updateRole(role);
 		user.setPassword(command.getHashedPassword());
 		
-		log.info("users : " + user);
 		userDao.update(user);
 	}
 
