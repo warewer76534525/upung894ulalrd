@@ -65,7 +65,6 @@ public class AdminUserUpdateController {
 			return new ModelAndView("admin_user_edit");
 		else {
 			try {
-				log.info(command);
 				registrationService.update(command);
 				return new ModelAndView("redirect:/adminUserEdit/" + id + "?message=1");
 			} catch (UserNotFoundException e) {

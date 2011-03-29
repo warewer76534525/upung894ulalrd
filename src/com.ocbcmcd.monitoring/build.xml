@@ -67,9 +67,6 @@
 			<fileset dir="${web.dir}">
 				<include name="**/**.**" />
 			</fileset>
-			<fileset dir="${src.dir}">
-				<include name="**/*.properties" />
-			</fileset>
 		</war>
 	</target>	
 
