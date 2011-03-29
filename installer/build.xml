@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <project name="master" basedir=".">
-  <property name="db.dir" location="sql"/>
   <property file="${db.dir}/sql.properties" />
+  <property file="build.properties" />
+  <property name="db.dir" location="sql"/>
   <property name="bin.dir" location="bin"/>
-  <property name="file.dir" location="bin/file-dir"/>
   <property name="lib.dir" value="lib" />
-  <property name="web.deploy.dir" value="C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps" />
-  <property name="web.src.file" value="${bin.dir}\ocbcmcdmonitoring.war" />
+  <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -15,7 +14,9 @@
   </path>
   
   <target name="install.web">
-	  <copy file="${web.src.file}" todir="${web.deploy.dir}"/>
+	  <copy todir="${web.deploy.dir}/ocbcmcdmonitoring">
+		<fileset dir="${web.src.dir}" includes="**"/>
+	  </copy>
   </target>
   
   <target name="encrypt.config" description="run the project">
