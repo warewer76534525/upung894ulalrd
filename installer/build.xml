@@ -3,6 +3,7 @@
   <property name="db.dir" location="sql"/>
   <property file="${db.dir}/sql.properties" />
   <property name="bin.dir" location="bin"/>
+  <property name="file.dir" location="bin/file-dir"/>
   <property name="lib.dir" value="lib" />
   <property name="web.deploy.dir" value="C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps" />
   <property name="web.src.file" value="${bin.dir}\ocbcmcdmonitoring.war" />
@@ -15,6 +16,16 @@
   
   <target name="install.web">
 	  <copy file="${web.src.file}" todir="${web.deploy.dir}"/>
+  </target>
+  
+  <target name="init.directory">
+	  <mkdir dir="${file.dir}/incoming"/>
+	  <mkdir dir="${file.dir}/encrypted"/>
+	  <mkdir dir="${file.dir}/outgoing"/>
+	  <mkdir dir="${file.dir}/processing"/>
+	  <mkdir dir="${file.dir}/failed"/>
+	  <mkdir dir="${file.dir}/ftp-temp"/>
+	  <mkdir dir="${file.dir}/dailyreport"/>
   </target>
   
   <target name="init.database">

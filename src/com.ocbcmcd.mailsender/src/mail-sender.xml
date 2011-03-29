@@ -115,7 +115,7 @@
 		auto-create-local-directory="true" delete-remote-files="true"
 		filename-pattern="*.txt" remote-directory="${ftp.remote.dir}" local-directory="${ftp.temp.dir}">
 		<!-- <si:poller fixed-rate="1000" /> -->
-		<si:poller cron="0 10 22 * * ?" />  
+		<si:poller cron="${endofday.cron}" />  
 	</ftp:inbound-channel-adapter>
 
 	<si:channel id="outboundMail" />
