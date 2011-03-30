@@ -11,17 +11,17 @@ watcher.interval=5000
 
 #OCBC FILE PROPS
 encrypted.ext = .gpg
-incoming.dir = ../file-dir/incoming
-encrypted.dir = ../file-dir/encrypted
-processing.dir = ../file-dir/processing
-outgoing.dir = ../file-dir/outgoing
-daily.report.dir=../file-dir/dailyreport
-failed.dir = ../file-dir/failed
-ftp.temp.dir=../file-dir/ftp-temp
+incoming.dir = bin/file-dir/incoming
+encrypted.dir = bin/file-dir/encrypted
+processing.dir = bin/file-dir/processing
+outgoing.dir = bin/file-dir/outgoing
+daily.report.dir= bin/file-dir/dailyreport
+failed.dir = bin/file-dir/failed
+ftp.temp.dir= bin/file-dir/ftp-temp
 ftp.remote.dir=fromnisp/REPORT
 ftp.remote.dir=tonisp/McD
-encrypted.file.path=../file-dir/encrypted
-incoming.file.path=../file-dir/incoming
+encrypted.file.path= bin/file-dir/encrypted
+incoming.file.path= bin/file-dir/incoming
 public.key.id=McDonald
 
 #CRON JOB
