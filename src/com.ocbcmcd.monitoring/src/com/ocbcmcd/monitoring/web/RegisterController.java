@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.ocbcmcd.monitoring.domain.RegistrationCommand;
+import com.ocbcmcd.monitoring.command.RegistrationCommand;
 import com.ocbcmcd.monitoring.service.IRegistrationService;
 import com.ocbcmcd.monitoring.validator.RegistrationValidator;
 

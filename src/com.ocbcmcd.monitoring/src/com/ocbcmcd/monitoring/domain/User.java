@@ -114,4 +114,7 @@ public class User {
 		return password.equals(_password);
 	}
 	
+	public boolean userNameEquals(String _userName) {
+		return userName.equals(_userName);
+	}
 }

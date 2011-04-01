@@ -18,9 +18,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ocbcmcd.monitoring.command.RegistrationCommand;
 import com.ocbcmcd.monitoring.common.MD5;
 import com.ocbcmcd.monitoring.dao.IUserDao;
-import com.ocbcmcd.monitoring.domain.RegistrationCommand;
 import com.ocbcmcd.monitoring.domain.Role;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.query.IUserQuery;

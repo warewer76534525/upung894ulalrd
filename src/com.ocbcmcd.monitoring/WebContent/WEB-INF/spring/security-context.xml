@@ -7,10 +7,18 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 	<http auto-config='true'>
 		<intercept-url pattern="/log" access="ROLE_PRS_LOG" />
+		<intercept-url pattern="/userList*" access="ROLE_PRS_USER_LIST" />
+		<intercept-url pattern="/userDisable*" access="ROLE_PRS_DISABLE_USR" />
+		<intercept-url pattern="/userEnable*" access="ROLE_PRS_ENABLE_USR" />
+		<intercept-url pattern="/userView*" access="ROLE_PRS_USR_VIEW" />
+		<intercept-url pattern="/userEdit*" access="ROLE_PRS_UPDATE_USR" />
+		<intercept-url pattern="/adminUser*" access="ROLE_PRS_ADM_UPDATE_USER" />
+		<intercept-url pattern="/userCreate*" access="ROLE_PRS_CREATE_USER" />
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<logout />
 		<remember-me/>
+		<access-denied-handler error-page="" />
 	</http>
 
 	<authentication-manager>
@@ -23,12 +31,12 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 					" 
 				
 				authorities-by-username-query="
-					SELECT u.user_name, p.permission_name
+					SELECT u.user_name, CONCAT('ROLE_', p.permission_name)
 					FROM users u
 					INNER JOIN user_role ur ON ur.user = u.id
-					INNER JOIN roles r ON ur.role = r.id
+					INNER JOIN roles r ON r.id=ur.role
 					INNER JOIN role_permission rp ON rp.role=r.id
-					INNER JOIN permissions p ON r.id = rp.permission
+					INNER JOIN permissions p ON p.id = rp.permission
 					WHERE u.user_name = ?
 					"
 				/>

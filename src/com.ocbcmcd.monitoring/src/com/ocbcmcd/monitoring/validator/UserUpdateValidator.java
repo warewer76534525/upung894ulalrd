@@ -11,7 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.ocbcmcd.monitoring.domain.UserUpdateCommand;
+import com.ocbcmcd.monitoring.command.UserUpdateCommand;
 import com.ocbcmcd.monitoring.domain.User;
 
 @Component

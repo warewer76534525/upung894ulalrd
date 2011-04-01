@@ -1,6 +1,7 @@
-package com.ocbcmcd.monitoring.domain;
+package com.ocbcmcd.monitoring.command;
 
 import com.ocbcmcd.monitoring.common.MD5;
+import com.ocbcmcd.monitoring.domain.User;
 
 
 public class UserUpdateCommand {

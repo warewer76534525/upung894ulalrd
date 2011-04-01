@@ -1,8 +1,8 @@
-<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
-	prefix="decorator"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"  %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"  %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -23,8 +23,12 @@
 		
 		<div id="header-links">
 			<p>
-				<security:authorize ifAllGranted="ROLE_PRS_LOG">
-					<security:authentication property="name" /> 
+				<security:authorize ifAnyGranted="ROLE_PRS_ADM_UPDATE_USER,ROLE_PRS_UPDATE_USR">
+					<security:authentication var="userName" property="name" />
+					<c:url var="url" value="/userView/" />
+					<a href="${url}${userName}">
+						<security:authentication property="name" />
+					</a>
 					| <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 				</security:authorize>
 				<security:authorize ifAllGranted="ROLE_ANONYMOUS"> 
@@ -62,8 +66,12 @@
 				<h1>Sidebar Menu</h1>
 				<ul class="sidemenu">
 					<li><a href="<c:url value="/" />">Home</a></li>
+					<security:authorize ifAllGranted="ROLE_PRS_LOG">
 					<li><a href="<c:url value="/log" />">Logs</a></li>
-					<li><a href="<c:url value="/user" />">User</a></li>
+					</security:authorize>
+					<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
+					<li><a href="<c:url value="/userList" />">User</a></li>
+					</security:authorize>
 				</ul>		
 		</div>			
 	

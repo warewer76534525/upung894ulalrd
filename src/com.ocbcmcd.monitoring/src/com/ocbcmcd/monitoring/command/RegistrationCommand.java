@@ -1,4 +1,4 @@
-package com.ocbcmcd.monitoring.domain;
+package com.ocbcmcd.monitoring.command;
 
 public class RegistrationCommand {
 	private String userName;

@@ -8,7 +8,7 @@
 </head>
 <body>
 <c:if test="${not empty param.error}">
-	<font color="red"> Invalid username or password </font>
+	<font color="red"> Invalid username or password ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message} </font>
 </c:if>
 
 <form action="<c:url value="/j_spring_security_check" />" name="signinform" method="post">

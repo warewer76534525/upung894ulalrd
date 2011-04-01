@@ -13,7 +13,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ocbcmcd.monitoring.command.UserUpdateCommand;
+import com.ocbcmcd.monitoring.command.AdminUpdateUserCommand;
 import com.ocbcmcd.monitoring.domain.User;
 import com.ocbcmcd.monitoring.exception.UserNotFoundException;
 import com.ocbcmcd.monitoring.query.IUserQuery;
@@ -21,7 +21,7 @@ import com.ocbcmcd.monitoring.service.IRegistrationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-context.xml")
-public class When_user_update {
+public class When_admin_update_user {
 	@Autowired
 	IRegistrationService registrationService;
 	
@@ -31,7 +31,7 @@ public class When_user_update {
 	@Autowired 
 	HibernateTemplate hibernateTemplate;
 	
-	UserUpdateCommand command = null;
+	AdminUpdateUserCommand command = null;
 	
 	@Before
 	public void setUp() {
@@ -40,12 +40,10 @@ public class When_user_update {
 		BasicConfigurator.configure();
 		
 		int userId = 1;
-		String oldPassword = "password";
 		String password = "password123";
 		
-		command = new UserUpdateCommand();
+		command = new AdminUpdateUserCommand();
 		command.setId(userId);
-		command.setOldPassword(oldPassword);
 		command.setPassword(password);
 		command.setConfirmPassword(password);
 	}

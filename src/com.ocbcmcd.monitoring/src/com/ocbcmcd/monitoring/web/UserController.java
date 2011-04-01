@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,9 +36,9 @@ public class UserController {
 	@Value("${paging.size}")
 	private String _pageSize;
 	
-	@RequestMapping("/user")
+	@RequestMapping("/userList")
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ModelMap list(@RequestParam(required = false) String p, Model model) {
+	public ModelAndView list(@RequestParam(required = false) String p, Model model) {
 		int page = 0;
 		List searchResults = userQuery.getUsers();
 		PagedListHolder pagedListHolder = new PagedListHolder(searchResults);
@@ -54,42 +53,52 @@ public class UserController {
 		int pageSize = Integer.parseInt(_pageSize);
 		pagedListHolder.setPageSize(pageSize);
 
-		return new ModelMap("pagedListHolder", pagedListHolder);
+		return new ModelAndView("user", "pagedListHolder", pagedListHolder);
 	}
 	
-	@RequestMapping("/user/{id}")
+	@RequestMapping("/userDetail/{id}")
 	public ModelAndView detail(@PathVariable("id") int id, Model model) {
 		User user = registrationService.getUser(id);
 		if (user != null) {
 			return new ModelAndView("user_detail", "user", user);
 		} else {
-			return new ModelAndView("redirect:/user/?message=0");
+			return new ModelAndView("404");
 		}
 	}
 	
-	@RequestMapping("/user/disable/{id}")
+	@RequestMapping("/userView/{userName}")
+	public ModelAndView view(@PathVariable("userName") String userName, Model model) {
+		User user = registrationService.getUser(userName);
+		if (user != null) {
+			return new ModelAndView("redirect:/userEdit/"+ user.getId());
+		} else {
+			return new ModelAndView("404");
+		}
+	}
+	
+	@RequestMapping("/userDisable/{id}")
 	public ModelAndView disable(@PathVariable("id") int id, Model model) {
 		String url;
 		try {
 			registrationService.disable(id);
-			url = "redirect:/user/" + id + "?message=" + DISABLE_MESSAGE_ID;
+			url = "redirect:/userDetail/" + id + "?message=" + DISABLE_MESSAGE_ID;
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
-			return new ModelAndView("redirect:/user/?message=0");
+			return new ModelAndView("404");
 		}
 	}
 	
-	@RequestMapping("/user/enable/{id}")
+	@RequestMapping("/userEnable/{id}")
 	public ModelAndView enable(@PathVariable("id") int id, Model model) {
 		String url;
 		try {
 			registrationService.enable(id);
-			url = "redirect:/user/" + id + "/?message=" + ENABLE_MESSAGE_ID;
+			url = "redirect:/userDetail/" + id + "/?message=" + ENABLE_MESSAGE_ID;
 			
 			return new ModelAndView(url);
 		} catch (UserNotFoundException e) {
-			return new ModelAndView("redirect:/user/?message=0");
+			return new ModelAndView("404");
 		}
 	}
 
