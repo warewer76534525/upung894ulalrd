@@ -65,6 +65,7 @@
 			<fileset dir="${src.dir}">
 				<include name="*.xml" />
 				<include name="*.properties" />
+				<include name="*.vm" />
 			</fileset>
 		</copy>
 	</target>

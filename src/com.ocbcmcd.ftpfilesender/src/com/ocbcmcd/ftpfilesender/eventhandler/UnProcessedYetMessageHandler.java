@@ -36,6 +36,9 @@ public class UnProcessedYetMessageHandler {
 	@Value("${encrypted.dir}")
 	private String encryptedDirectory;
 	
+	@Value("${ftp.remote.dir}")
+	private String ftpRemoteDir;
+	
 	@Autowired
 	@Qualifier("outChannel")
 	private DirectChannel ftpChannel;
@@ -53,7 +56,7 @@ public class UnProcessedYetMessageHandler {
 //			jmsTemplate.convertAndSend(processingDestination, new EncryptedFileSending(event.getFileName()));
 			
 			log.info("Remove already exists ftp file : " + event.getFileName());
-			sessionFactory.getSession().remove(event.getFileName() + encryptedExt);
+			sessionFactory.getSession().remove(ftpRemoteDir + File.separator + event.getFileName() + encryptedExt);
 			
 			log.info("Send file again : " + event.getFileName());
 			
