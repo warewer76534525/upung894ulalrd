@@ -1,0 +1,6 @@
+vi bin/confirmwatcher-service/log4j.properties
+vi bin/ftpfilesender-service/log4j.properties
+vi bin/housekeeping-service/log4j.properties
+vi bin/mailsender-service/log4j.properties
+vi bin/ocbcmcdmonitoring/WEB-INF/classes/log4j.properties
+vi bin/sapfilewatcher-service/log4j.properties

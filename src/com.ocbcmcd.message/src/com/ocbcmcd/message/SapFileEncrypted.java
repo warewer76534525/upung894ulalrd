@@ -21,5 +21,11 @@ public class SapFileEncrypted implements Serializable {
 	public Date getTime() {
 		return time;
 	}
+
+	@Override
+	public String toString() {
+		return "SapFileEncrypted [fileName=" + fileName + ", time=" + time
+				+ "]";
+	}
 	
 }

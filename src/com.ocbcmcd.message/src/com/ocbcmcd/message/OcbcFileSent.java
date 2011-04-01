@@ -21,4 +21,10 @@ public class OcbcFileSent implements Serializable {
 	public Date getTime() {
 		return time;
 	}
+
+	@Override
+	public String toString() {
+		return "OcbcFileSent [fileName=" + fileName + ", time=" + time + "]";
+	}
+	
 }

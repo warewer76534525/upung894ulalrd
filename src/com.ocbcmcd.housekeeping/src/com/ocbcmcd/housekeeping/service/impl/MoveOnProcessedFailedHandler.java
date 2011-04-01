@@ -28,7 +28,7 @@ public class MoveOnProcessedFailedHandler implements MessageListener {
 		try {
 			event = (OcbcFileProcessFailed) mapMessage.getObject();
 			log.info("incoming event: " + event);
-			Thread.sleep(1000 * 5);
+			Thread.sleep(1000 * 1);
 			houseKeepingService.moveOnProcessedFailed(event);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);

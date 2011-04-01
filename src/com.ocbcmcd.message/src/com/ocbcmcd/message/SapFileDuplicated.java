@@ -22,5 +22,11 @@ public class SapFileDuplicated implements Serializable {
 	public Date getTime() {
 		return time;
 	}
+
+	@Override
+	public String toString() {
+		return "SapFileDuplicated [fileName=" + fileName + ", time=" + time
+				+ "]";
+	}
 	
 }

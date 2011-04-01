@@ -24,7 +24,6 @@ public class MonitoringService implements IMonitoringService {
 	@Override
 	public void logFileProcessedEvent(OcbcFileProcessedSucessfully event) {
 		LogEvent logEvent = generateProcessedLogEvent(event);
-		log.info(logEvent);
 		logEventDao.save(logEvent);
 	}
 	
