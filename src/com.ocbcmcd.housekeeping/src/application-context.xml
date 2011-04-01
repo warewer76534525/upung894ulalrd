@@ -90,4 +90,36 @@
 		<property name="subscriptionDurable" value="true" />
 		<property name="clientId" value="moveOnProcessedFailedHandler"></property>
 	</bean>
+	
+	<!-- Scheduler CONFIGURATION -->
+	<bean name="beginOfMonth" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.ocbcmcd.housekeeping.scheduller.DirectoryCleanerJob" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="directoryCleaner" value-ref="directoryCleaner" />
+			</map>
+		</property>
+
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="beginOfMonth" />
+		<property name="cronExpression" value="${endOfMonth.cron}" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="beginOfMonth" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
 </beans>
