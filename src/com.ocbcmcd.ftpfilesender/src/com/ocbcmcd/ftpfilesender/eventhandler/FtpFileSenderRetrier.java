@@ -38,10 +38,10 @@ public class FtpFileSenderRetrier {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
-	@Value("${watcher.maxretry}")
+	@Value("${ftp.maxretry}")
 	private int maxRetry;
 	
-	@Value("${watcher.interval}")
+	@Value("${ftp.interval}")
 	private long intervalBetweenRetry;
 	
 	@Autowired

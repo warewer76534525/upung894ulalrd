@@ -8,6 +8,8 @@ checked.dir=/fromnisp/CHK
 #watcher
 watcher.maxretry=5
 watcher.interval=5000
+ftp.maxretry=3
+ftp.interval=8000
 
 #OCBC FILE PROPS
 encrypted.ext = .gpg
