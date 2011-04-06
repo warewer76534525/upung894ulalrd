@@ -7,6 +7,12 @@
   <property name="lib.dir" value="lib" />
   <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
   
+  <property name="confirmwatcher" value="bin/confirmwatcher-service/bin/app" />
+  <property name="ftpfilesender" value="bin/ftpfilesender-service/bin/app" />
+  <property name="housekeeping" value="bin/housekeeping-service/bin/app" />
+  <property name="mailsender" value="bin/mailsender-service/bin/app" />
+  <property name="sapfilewatcher" value="bin/sapfilewatcher-service/bin/app" />
+  
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
 			<include name="mysql.jar" />
@@ -66,5 +72,59 @@
       >
 		<transaction src="${db.dir}/ocbcmcd_clean.sql"/>
 	</sql>
+  </target>
+  
+  <target name="startup" description="start application">
+	<exec executable="bash">
+		<arg line="${confirmwatcher} start"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${ftpfilesender} start"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${housekeeping} start"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${mailsender} start"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${sapfilewatcher} start"/>
+	</exec>
+  </target>
+  
+  <target name="restart" description="restart application">
+	<exec executable="bash">
+		<arg line="${confirmwatcher} restart"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${ftpfilesender} restart"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${housekeeping} restart"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${mailsender} restart"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${sapfilewatcher} restart"/>
+	</exec>
+  </target>
+  
+  <target name="shutdown" description="shutdow application">
+	<exec executable="bash">
+		<arg line="${confirmwatcher} stop"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${ftpfilesender} stop"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${housekeeping} stop"/>
+	</exec>
+		<exec executable="bash">
+		<arg line="${mailsender} stop"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${sapfilewatcher} stop"/>
+	</exec>
   </target>
 </project>

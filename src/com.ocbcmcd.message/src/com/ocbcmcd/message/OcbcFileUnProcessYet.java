@@ -24,7 +24,7 @@ public class OcbcFileUnProcessYet implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OcbcFileProcessedSucessfully [fileName=" + fileName + ", time="
+		return "OcbcFileUnProcessYet [fileName=" + fileName + ", time="
 				+ time + "]";
 	}
 	

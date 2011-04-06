@@ -12,7 +12,11 @@
 
 	<tx:annotation-driven />
 
-	<context:property-placeholder location="application.properties" />
+	<bean
+		class="com.ocbcmcd.config.spring.EncryptedPropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath*:application.properties" />
+	</bean>
+	
 	<context:annotation-config />
 	<context:component-scan base-package="com.ocbcmcd.housekeeping" />
 	

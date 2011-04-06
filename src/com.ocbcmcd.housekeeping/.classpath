@@ -5,22 +5,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/external-lib/activemq-all-5.4.2.jar"/>
 	<classpathentry kind="lib" path="/external-lib/aopalliance-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/external-lib/commons-codec-1.4.jar"/>
-	<classpathentry kind="lib" path="/external-lib/commons-dbcp.jar"/>
-	<classpathentry kind="lib" path="/external-lib/commons-lang.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="/external-lib/commons-pool.jar"/>
-	<classpathentry kind="lib" path="/external-lib/gson-1.4.jar"/>
-	<classpathentry kind="lib" path="/external-lib/jackson-all-1.7.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/jcl-over-slf4j-1.6.1-sources.jar"/>
 	<classpathentry kind="lib" path="/external-lib/jms-1.1.jar"/>
-	<classpathentry kind="lib" path="/external-lib/jstl-1.1.2-sources.jar"/>
-	<classpathentry kind="lib" path="/external-lib/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="/external-lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/external-lib/logback-classic-0.9.27-sources.jar"/>
-	<classpathentry kind="lib" path="/external-lib/logback-core-0.9.27-sources.jar"/>
-	<classpathentry kind="lib" path="/external-lib/lombok.jar"/>
-	<classpathentry kind="lib" path="/external-lib/mysql.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.aop-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.asm-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.aspects-3.0.5.RELEASE.jar"/>
@@ -30,27 +18,17 @@
 	<classpathentry kind="lib" path="/external-lib/org.springframework.core-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.expression-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.instrument-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.instrument.tomcat.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.jdbc-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.jms-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.orm.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.oxm.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.spring-library.libd"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.test-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/external-lib/org.springframework.transaction-3.0.5.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.web.jar"/>
-	<classpathentry kind="lib" path="/external-lib/org.springframework.web.servlet.jar"/>
 	<classpathentry kind="lib" path="/external-lib/quartz-1.8.3.jar"/>
-	<classpathentry kind="lib" path="/external-lib/servlet-api-2.5-sources.jar"/>
-	<classpathentry kind="lib" path="/external-lib/sitemesh-2.4.1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/slf4j-api-1.5.10.jar"/>
 	<classpathentry kind="lib" path="/external-lib/slf4j-log4j12-1.5.10.jar"/>
-	<classpathentry kind="lib" path="/external-lib/standard-1.1.2-sources.jar"/>
-	<classpathentry kind="lib" path="/external-lib/urlrewrite-3.2.0.jar"/>
-	<classpathentry kind="lib" path="/external-lib/xstream-1.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.ocbcmcd.message"/>
 	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.message.jar"/>
 	<classpathentry kind="lib" path="/external-lib/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
+	<classpathentry kind="lib" path="/external-lib/jasypt-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

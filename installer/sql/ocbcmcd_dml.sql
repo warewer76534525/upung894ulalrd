@@ -34,11 +34,11 @@ insert  into `roles`(`id`,`role_name`) values (1,'ROLE_ADMIN'),(2,'ROLE_REGULAR'
 
 /*Data for the table `user_role` */
 
-insert  into `user_role`(`user`,`role`) values (1,1),(22,1),(23,1),(24,1),(26,1),(27,1),(2,2),(25,2);
+insert  into `user_role`(`user`,`role`) values (1,1),(22,1),(23,1),(24,1),(27,1),(38,1),(2,2),(25,2),(26,2);
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`user_name`,`password`,`created_date`,`enabled`) values (1,'admin','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-14 02:33:29',1),(2,'adi','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-14 02:33:29',1),(22,'soni','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-15 12:20:51',1),(23,'yai','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:36:24',1),(24,'robi','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:38:49',1),(25,'kaka','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:40:56',1),(26,'dora','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-28 14:26:39',1),(27,'taufik','93f725a07423fe1c889f448b33d21f46','2011-03-28 14:32:42',1);
+insert  into `users`(`id`,`user_name`,`password`,`created_date`,`enabled`) values (1,'admin','482c811da5d5b4bc6d497ffa98491e38','2011-03-28 21:06:29',1),(2,'adi','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-14 02:33:29',1),(22,'soni','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-15 12:20:51',1),(23,'yai','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:36:24',1),(24,'robi','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:38:49',1),(25,'kaka','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-16 00:40:56',1),(26,'dora','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-28 14:26:39',1),(27,'taufik','93f725a07423fe1c889f448b33d21f46','2011-03-28 14:32:42',1),(38,'koko','5f4dcc3b5aa765d61d8327deb882cf99','2011-03-28 21:06:29',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

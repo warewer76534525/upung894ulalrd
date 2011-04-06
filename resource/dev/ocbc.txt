@@ -1,0 +1,45 @@
+vi /etc/sysconfig/network-script/ifcfg-eth0
+IPADDR
+NETMASK
+GATEWAY
+
+service network restart
+
+
+tail -f /var/logs/sapfilewatcher.log
+tail -f /var/logs/ftpfilesender.log
+tail -f /var/logs/confirmwatcher.log
+tail -f /var/logs/mailsender.log
+tail -f /var/logs/housekeeping.log
+tail -f /var/logs/ocbcmcdmonitoring.log
+
+cd /home/adisembiring/project/ocbcfilesending/installer/
+
+vi bin/housekeeping-service/log4j.properties
+
+#ERP File
+rm -f file-sent-today.txt
+java -jar bin/sapfilewatcher-service/sapfilewatcher-service.jar
+
+#FTP service
+java -jar bin/ftpfilesender-service/ftpfilesender-service.ja
+
+#Confirm WATCHER 
+java -jar bin/confirmwatcher-service/confirmwatcher-service.jar
+
+#House Keeping Service
+java -jar bin/housekeeping-service/housekeeping-service.jar
+
+
+ps -ef| grep "java -jar bin/"
+
+
+sh /usr/local/activemq/bin/activemq stop
+sh /usr/local/activemq/bin/activemq start
+sh /usr/local/tomcat/bin/shutdown.sh
+sh /usr/local/tomcat/bin/startup.sh
+
+#ANT
+ant change.config
+ant prepare.config
+ant install.web

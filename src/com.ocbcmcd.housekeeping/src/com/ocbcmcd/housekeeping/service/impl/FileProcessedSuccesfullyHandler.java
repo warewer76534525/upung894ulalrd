@@ -29,7 +29,7 @@ public class FileProcessedSuccesfullyHandler implements MessageListener {
 			event = (OcbcFileProcessedSucessfully) mapMessage.getObject();
 			log.info("incoming event: " + event);
 			
-			Thread.sleep(1000 * 5);
+			Thread.sleep(1000 * 1);
 			houseKeepingService.moveSuccessFile(event);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);

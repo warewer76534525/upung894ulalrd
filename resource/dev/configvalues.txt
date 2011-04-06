@@ -1,0 +1,50 @@
+#FTP
+ftp.host=192.168.1.8
+ftp.username=admin
+ftp.password=root
+
+checked.dir=/fromnisp/CHK
+
+#watcher
+watcher.maxretry=5
+watcher.interval=5000
+
+#OCBC FILE PROPS
+encrypted.ext = .gpg
+incoming.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/incoming
+encrypted.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/encrypted
+processing.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/processing
+outgoing.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/outgoing
+daily.report.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/dailyreport
+failed.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/failed
+ftp.temp.dir = /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/ftp-temp
+ftp.remote.dir=fromnisp/REPORT
+ftp.remote.dir=tonisp/McD
+encrypted.file.path= /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/encrypted
+incoming.file.path= /home/adisembiring/project/ocbcfilesending/installer/bin/file-dir/incoming
+public.key.id=McDonald
+
+#CRON JOB
+endOfMonth.cron= 0 55 23 L * ?
+endOfMonth.start= 1
+endofday.cron=0 10 22 * * ?
+
+mail.host=smtp.gmail.com
+mail.port=587
+mail.username=triplelands@gmail.com
+mail.password=tripl3lands
+mail.transport.protocol=smtp
+mail.smtp.auth=true
+mail.smtp.starttls.enable=true
+mail.from=triplelands@gmail.com
+mail.to=exception.smsdong@gmail.com
+
+jdbc.url=jdbc:mysql://192.168.1.8/ocbcmcd
+jdbc.username=ocbc
+jdbc.password=ocbc
+
+#CONFIG
+confirmwatcher.config = /home/adisembiring/project/ocbcfilesending/installer/bin/confirmwatcher/application.properties
+ftpfilesender.config = /home/adisembiring/project/ocbcfilesending/installer/bin/ftpfilesender-service/application.properties
+mailsender.config = /home/adisembiring/project/ocbcfilesending/installer/bin/mailsender-service/application.properties
+monitoring.config = /usr/local/tomcat/webapps/ocbcmcdmonitoring/WEB-INF/classes/application.properties

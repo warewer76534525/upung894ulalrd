@@ -13,7 +13,11 @@
 	<tx:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan base-package="com.ocbcmcd" />
-	<context:property-placeholder location="classpath*:*.properties" />
+	
+	<bean
+		class="com.ocbcmcd.config.spring.EncryptedPropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath*:application.properties" />
+	</bean>
 	
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="${jms.brokerURL}" />

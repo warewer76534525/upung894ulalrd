@@ -28,7 +28,7 @@ public class MoveOnProcessingFileHandler implements MessageListener {
 		try {
 			event = (EncryptedFileSending) mapMessage.getObject();
 			log.info("incoming event: " + event);
-			Thread.sleep(1000 * 5);
+			Thread.sleep(1000 * 1);
 			houseKeepingService.moveOnProcessingFile(event);
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);

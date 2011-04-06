@@ -1,0 +1,32 @@
+#Prepare
+clean file send today
+clean database log
+clean directory outgoing, failed
+clean ftp dir
+
+
+#Sucess
+Make Sure All Service is On
+FTP is active
+.NET Stub is Active
+verify:
+- Web
+- Outgoing
+
+#ProcessFailed Chk not found
+.NET Stub is Inactive
+verify
+- Failed
+- Email
+- Web
+
+#Duplicate
+- Failed
+- Web
+
+#FTP Off
+FTP is inactive
+- Sent Failed
+- Email
+- Web
+

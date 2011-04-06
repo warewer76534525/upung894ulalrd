@@ -23,7 +23,19 @@ public class When_encrypt_text {
 		String plainText = textEncryptor.decrypt(myEncryptedText);
 		System.out.println(plainText);
 	}
+	
+	@Test
+	public void should_decrypt_chipper_text() {
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword("1234");
+		
 
+		String plainText = textEncryptor.decrypt("+1sUeXPjhn6/JtSxeU50Cw\\=\\=");
+		System.out.println(plainText);
+	}
+	
+	
+	
 	@Test
 	public void should_get_properties_and_save() throws FileNotFoundException,
 			IOException {
