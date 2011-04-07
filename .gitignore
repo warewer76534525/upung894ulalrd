@@ -6,3 +6,4 @@ classes/
 dist/
 *-service/
 bin/
+/installer/bin-linux-x86-32

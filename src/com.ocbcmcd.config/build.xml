@@ -12,7 +12,7 @@
 		</fileset>
 	</path>
 
-	<target name="clean">
+	<target name="clean" >
 		<delete dir="${build.dir}" />
 		<delete file="${lib.dir}/com.ocbcmcd.config.jar" />
 	</target>
@@ -31,4 +31,8 @@
 	<target name="package" depends="compile" description="Compile project dependency">
 		<jar destfile="${lib.dir}/com.ocbcmcd.config.jar" basedir="${build.dir}" includes="**/*.class" />
 	</target>
+	
+	<condition property="isWindows">
+	    <os  family="windows" />
+	 </condition>
 </project>

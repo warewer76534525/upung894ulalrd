@@ -4,6 +4,8 @@
   <property file="${db.dir}/sql.properties" />
   <property name="installer.dir" location="..\installer"/>
   <property name="dist.dir" location="${installer.dir}\bin"/>
+  <property name="dist.linux-x86-32.dir" location="${installer.dir}/bin-linux-x86-32/" />
+  <property name="dist.linux-x86-64.dir" location="${installer.dir}/bin-linux-x86-64/" />
   <property name="lib.dir" location="ResourceProject"/>
   
   <target name="build.message" depends="build.config">
@@ -15,23 +17,23 @@
   </target>
   
   <target name="build.sapfilewatcher" depends="build.message">
-	<ant dir="com.ocbcmcd.sapfilewatcher" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.sapfilewatcher" target="package.platform" inheritAll="true"/>
   </target>
 
   <target name="build.ftpfilesender" depends="build.message">
-	<ant dir="com.ocbcmcd.ftpfilesender" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.ftpfilesender" target="package.platform" inheritAll="true"/>
   </target>
   
   <target name="build.confirmwatcher" depends="build.message">
-	<ant dir="com.ocbcmcd.confirmwatcher" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.confirmwatcher" target="package.platform" inheritAll="true"/>
   </target>
   
   <target name="build.mailsender" depends="build.message">
-	<ant dir="com.ocbcmcd.mailsender" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.mailsender" target="package.platform" inheritAll="true"/>
   </target>
   
   <target name="build.housekeeping" depends="build.message">
-	<ant dir="com.ocbcmcd.housekeeping" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.housekeeping" target="package.platform" inheritAll="true"/>
   </target>
   
   <target name="build.monitoring" depends="build.message">

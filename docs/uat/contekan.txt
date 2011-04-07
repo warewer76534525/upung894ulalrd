@@ -1,0 +1,15 @@
+#OCBC 32
+cd /home/adi/inst/ocbc32/
+
+cd /home/adisembiring/project/ocbcfilesending/installer/
+
+- LOG
+tail -f nn 1000 /var/logs/sapfilewatcher.log
+tail -f nn 1000 /var/logs/ftpfilesender.log 
+tail -f nn 1000 /var/logs/confirmwatcher.log
+tail -f nn 1000 /var/logs/mailsender.log
+tail -f nn 1000 /var/logs/housekeeping.log
+
+
+sh /usr/local/activemq/bin/activemq start
+sh /usr/local/activemq/bin/activemq stop

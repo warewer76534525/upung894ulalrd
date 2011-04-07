@@ -4,6 +4,9 @@
 	<property name="external.lib.dir" location="../../external-lib" />
 	<property name="internal.lib.dir" location="../../internal-lib" />
 	<property name="dist.dir" location="." />
+	<property name="dist.linux-x86-32.dir" location="${dist.dir}/linux-x86-32/" />
+	<property name="dist.linux-x86-64.dir" location="${dist.dir}/linux-x86-64/" />
+	
 	<property name="build.dir" location="bin" />
 	<property name="lib.dir" location="../com.ocbcmcd.message" />
 	<property name="src.dir" location="src" />
@@ -35,7 +38,7 @@
 	</pathconvert>
 
 	<target name="clean">
-		<delete dir="${build.dir}" />
+		<delete dir="${build.dir}" />	
 	</target>
 
 	<target name="init" depends="clean">
@@ -52,6 +55,8 @@
 
 	<target name="clean-service">
 		<delete dir="${service.dir}" />
+		<delete dir="${linux-x86-32.dir}" />
+		<delete dir="${linux-x86-64.dir}" />
 	</target>
 
 	<target name="init-service" depends="clean-service">
@@ -108,9 +113,6 @@
 		<copy todir="${service.dir}/bin">
 			<fileset dir="${wrapper.dir}/bin">
 			</fileset>
-			<fileset dir="${jsw.dir}" >
-				<include name="*.so" />
-			</fileset>
 		</copy>
 		<copy todir="${service.dir}/conf">
 			<fileset dir="${wrapper.dir}/conf">
@@ -128,6 +130,28 @@
 		</jar>
 	</target>
 	
+	<target name="package-linux-x86-32" description="Package linux-x86-32">
+		<copy todir="${linux-x86-32.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+		<copy todir="${linux-x86-32.dir}/bin">
+			<fileset dir="${jsw.dir}/linux-x86-32" />
+		</copy>
+	</target>
+	
+	<target name="package-linux-x86-64" description="Package linux-x86-64">
+		<copy todir="${linux-x86-64.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+		<copy todir="${linux-x86-64.dir}/bin">
+			<fileset dir="${jsw.dir}/linux-x86-64" />
+		</copy>
+	</target>
+		
+	<target name="package.platform" depends="package, package-linux-x86-32, package-linux-x86-64" description="Package service project">
+		
+	</target>	
+	
 	<target name="install.service" depends="package">
 		<exec dir="${service.dir}" executable="${service.dir}/service.exe">
 			<arg line="--WinRun4J:RegisterService" />
@@ -139,4 +163,6 @@
 			<arg line="--WinRun4J:UnregisterService" />
 		</exec>
 	</target>
+	
 </project>
+
