@@ -12,4 +12,5 @@ tail -f nn 1000 /var/logs/housekeeping.log
 
 
 sh /usr/local/activemq/bin/activemq start
+sh /usr/local/activemq/bin/activemq restart
 sh /usr/local/activemq/bin/activemq stop

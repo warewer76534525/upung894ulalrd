@@ -40,47 +40,37 @@
 		
 		<!-- Menu Tabs -->
 		<ul>
-			<li><a href="<c:url value="/" />" id="current">Home</a></li>
+			
 		</ul>					
 	
 	</div></div>
 				
 	<!-- content-wrap starts here -->
-	<div id="content-wrap"><div id="content">	 
-	
-		<div id="main">		
-			<decorator:body />
-		</div>		
-	
+	<div id="content-wrap">
+		<div id="content">	 
+			<div id="main">		
+				<decorator:body />
+			</div>		
 		
-		<div id="sidebar">	
-		
-				<h1>Search Box</h1>	
-				<form action="#" class="searchform">
-					<p>
-					<input name="search_query" class="textbox" type="text" />
-  					<input name="search" class="button" value="Search" type="submit" />
-					</p>			
-				</form>			
-			
-				<h1>Sidebar Menu</h1>
-				<ul class="sidemenu">
-					<li><a href="<c:url value="/" />" title="">Home</a></li>
-					<security:authorize ifAllGranted="ROLE_PRS_LOG">
-					<li><a href="<c:url value="/logList" />">Logs</a></li>
-					</security:authorize>
-					<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
-					<li><a href="<c:url value="/userList" />">User</a></li>
-					</security:authorize>
-					<security:authorize ifAllGranted="ROLE_PRS_CONFIG">
-					<li><a href="<c:url value="/config" />">Config</a></li>
-					</security:authorize>
-					
-				</ul>		
-		</div>			
-	
+			<div id="sidebar">	
+					<h1>Sidebar Menu</h1>
+					<ul class="sidemenu">
+						<li><a href="<c:url value="/" />" title="">Home</a></li>
+						<security:authorize ifAllGranted="ROLE_PRS_LOG">
+						<li><a href="<c:url value="/logList" />">Logs</a></li>
+						</security:authorize>
+						<security:authorize ifAllGranted="ROLE_PRS_USER_LIST">
+						<li><a href="<c:url value="/userList" />">User</a></li>
+						</security:authorize>
+						<security:authorize ifAllGranted="ROLE_PRS_CONFIG">
+						<li><a href="<c:url value="/config" />">Config</a></li>
+						</security:authorize>
+						
+					</ul>		
+			</div>			
+		</div>
+	</div>
 	<!-- content-wrap ends here -->		
-	</div></div>
 
 	<!-- footer starts here -->	
 	<div id="footer-wrap"><div id="footer-content">

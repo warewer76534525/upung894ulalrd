@@ -332,8 +332,8 @@ input.button {
 /* content */
 #content-wrap {
 	clear: both;
-	background: #FFF url(contentbg.jpg) repeat-y center top;
-	float: left;
+	background: #FFF repeat-y center top;
+	float: right;
 	width: 100%;
 }
 
@@ -389,7 +389,7 @@ input.button {
 	margin: 0 20px 10px 0;
 	padding: 0;
 	width: 590px;
-	float: left;
+	float: right;
 }
 
 #main h1 {
