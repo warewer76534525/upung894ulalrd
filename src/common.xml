@@ -110,10 +110,12 @@
 				<include name="*.jar" />
 			</fileset>
 		</copy>
+		<!--
 		<copy todir="${service.dir}/bin">
 			<fileset dir="${wrapper.dir}/bin">
 			</fileset>
 		</copy>
+		-->
 		<copy todir="${service.dir}/conf">
 			<fileset dir="${wrapper.dir}/conf">
 				<include name="*.conf" />

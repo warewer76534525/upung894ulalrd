@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <project name="master" basedir=".">
+  <property name="db.dir" location="sql"/>
   <property file="${db.dir}/sql.properties" />
   <property file="build.properties" />
-  <property name="db.dir" location="sql"/>
+  
   <property name="bin.dir" location="bin"/>
   <property name="lib.dir" value="lib" />
   <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
@@ -23,6 +24,22 @@
 	  <copy todir="${web.deploy.dir}/ocbcmcdmonitoring">
 		<fileset dir="${web.src.dir}" includes="**"/>
 	  </copy>
+  </target>
+  
+  <target name="init.sys" description="reset state of system" depends="init.database, clean.log, clean.file" />
+  
+  <target name="clean.log">
+	<delete includeemptydirs="true">
+		<fileset dir="${log.dir}" includes="**/*"/>
+	</delete>
+  </target>
+  
+  <target name="clean.file">
+	  <delete includeemptydirs="true">
+		<fileset dir="bin" includes="**/file-sent-today.txt"/>
+		<fileset dir="bin-linux-x86-32" includes="**/file-sent-today.txt"/>
+		<fileset dir="bin-linux-x86-64" includes="**/file-sent-today.txt"/>
+	  </delete>
   </target>
   
   <target name="encrypt.config" description="run the project">
