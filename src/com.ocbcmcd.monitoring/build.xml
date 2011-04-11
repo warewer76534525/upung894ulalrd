@@ -11,10 +11,6 @@
 	<property name="web.dir" value="WebContent" />
 	<property name="webinf.dir" value="WebContent/WEB-INF" />
 
-	<property name="service.dir" value="${dist.dir}/war" />
-	<property name="service.lib.dir" value="WebContent/WEB-INF/lib" />
-	<property name="service.name" value="${name}" />
-
 	<path id="master-classpath">
 		<fileset dir="${external.lib.dir}">
 			<include name="*.jar" />
@@ -40,7 +36,7 @@
 	</target>
 
 
-	<target name="setup" depends="compile" description="Package service project">
+	<target name="setup" depends="compile" description="setup service project">
 		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
@@ -70,12 +66,13 @@
 			</fileset>
 		</war>
 		-->
-		<copy todir="${dist.dir}/${name}" preservelastmodified="true">
+		<echo>${dist.dir}</echo>
+		<copy todir="${dist.web}/${name}" preservelastmodified="true">
 			<fileset dir="${web.dir}">
 				<include name="**/*.*" />
 			</fileset>
 		</copy>
-		<copy todir="${dist.dir}/${name}/WEB-INF/classes/" preservelastmodified="true">
+		<copy todir="${dist.web}/${name}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
 			</fileset>

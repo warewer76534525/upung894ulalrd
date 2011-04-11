@@ -3,6 +3,7 @@
   <property name="db.dir" location="database"/>
   <property file="${db.dir}/sql.properties" />
   <property name="installer.dir" location="..\installer"/>
+  <property name="dist.web" location="${installer.dir}\web"/>
   <property name="dist.dir" location="${installer.dir}\bin"/>
   <property name="dist.linux-x86-32.dir" location="${installer.dir}/bin-linux-x86-32/" />
   <property name="dist.linux-x86-64.dir" location="${installer.dir}/bin-linux-x86-64/" />
@@ -42,15 +43,21 @@
   </target>
   
   <target name="clean.dist">
-	<delete dir="${dist.dir}"/>
+	<delete dir="${dist.linux-x86-32.dir}"/>
+	<delete dir="${dist.linux-x86-64.dir}"/>
+	<delete dir="${dist.win-x86-32.dir}"/>
   </target>
   
   <target name="init.dist" depends="clean.dist">
 	<mkdir dir="${dist.dir}"/>
+	<mkdir dir="${dist.linux-x86-32.dir}"/>
+	<mkdir dir="${dist.linux-x86-64.dir}"/>
+	<mkdir dir="${dist.win-x86-32.dir}"/>
   </target>
   
   <target name="installer" depends="init.dist, build.sapfilewatcher, build.ftpfilesender, 
-	build.confirmwatcher, build.mailsender, build.housekeeping, build.monitoring"/>
-
+	build.confirmwatcher, build.mailsender, build.housekeeping, build.monitoring" >
+	<delete dir="${dist.dir}"/>
+  </target>
   
 </project>

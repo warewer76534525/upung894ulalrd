@@ -5,14 +5,22 @@
   <property file="build.properties" />
   
   <property name="bin.dir" location="bin"/>
+  <property name="web.dir" location="web"/>
   <property name="lib.dir" value="lib" />
-  <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
+  <property name="web.src.dir" value="${web.dir}/ocbcmcdmonitoring" />
   
-  <property name="confirmwatcher" value="bin/confirmwatcher-service/bin/app" />
-  <property name="ftpfilesender" value="bin/ftpfilesender-service/bin/app" />
-  <property name="housekeeping" value="bin/housekeeping-service/bin/app" />
-  <property name="mailsender" value="bin/mailsender-service/bin/app" />
-  <property name="sapfilewatcher" value="bin/sapfilewatcher-service/bin/app" />
+  <property name="confirmwatcher.bin.dir" value="bin/confirmwatcher-service/bin" />
+  <property name="ftpfilesender.bin.dir" value="bin/ftpfilesender-service/bin" />
+  <property name="housekeeping.bin.dir" value="bin/housekeeping-service/bin" />
+  <property name="mailsender.bin.dir" value="bin/mailsender-service/bin" />
+  <property name="sapfilewatcher.bin.dir" value="bin/sapfilewatcher-service/bin" />
+  
+  <property name="confirmwatcher.app" value="${confirmwatcher.bin.dir}/app" />
+  <property name="ftpfilesender.app" value="${ftpfilesender.bin.dir}/app" />
+  <property name="housekeeping.app" value="${housekeeping.bin.dir}/app" />
+  <property name="mailsender.app" value="${mailsender.bin.dir}/app" />
+  <property name="sapfilewatcher.app" value="${sapfilewatcher.bin.dir}/app" />
+  
   
   <path id="sql.classpath">
 		<fileset dir="${lib.dir}">
@@ -93,55 +101,132 @@
   
   <target name="startup" description="start application">
 	<exec executable="bash">
-		<arg line="${confirmwatcher} start"/>
+		<arg line="${confirmwatcher.app} start"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${ftpfilesender} start"/>
+		<arg line="${ftpfilesender.app} start"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${housekeeping} start"/>
+		<arg line="${housekeeping.app} start"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${mailsender} start"/>
+		<arg line="${mailsender.app} start"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${sapfilewatcher} start"/>
+		<arg line="${sapfilewatcher.app} start"/>
 	</exec>
   </target>
   
   <target name="restart" description="restart application">
 	<exec executable="bash">
-		<arg line="${confirmwatcher} restart"/>
+		<arg line="${confirmwatcher.app} restart"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${ftpfilesender} restart"/>
+		<arg line="${ftpfilesender.app} restart"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${housekeeping} restart"/>
+		<arg line="${housekeeping.app} restart"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${mailsender} restart"/>
+		<arg line="${mailsender.app} restart"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${sapfilewatcher} restart"/>
+		<arg line="${sapfilewatcher.app} restart"/>
 	</exec>
   </target>
   
-  <target name="shutdown" description="shutdow application">
+  <target name="shutdown" description="shutdown application">
 	<exec executable="bash">
-		<arg line="${confirmwatcher} stop"/>
+		<arg line="${confirmwatcher.app} stop"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${ftpfilesender} stop"/>
+		<arg line="${ftpfilesender.app} stop"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${housekeeping} stop"/>
-	</exec>
-		<exec executable="bash">
-		<arg line="${mailsender} stop"/>
+		<arg line="${housekeeping.app} stop"/>
 	</exec>
 	<exec executable="bash">
-		<arg line="${sapfilewatcher} stop"/>
+		<arg line="${mailsender.app} stop"/>
+	</exec>
+	<exec executable="bash">
+		<arg line="${sapfilewatcher.app} stop"/>
 	</exec>
   </target>
+  
+  <!-- Install Win Service -->
+  <target name="install.services" description="Install Services">
+	<exec dir="${confirmwatcher.bin.dir}" executable="cmd">
+		<arg line="/c InstallService.bat" />
+	</exec>
+	<exec dir="${ftpfilesender.bin.dir}" executable="cmd">
+		<arg line="/c InstallService.bat" />
+	</exec>
+	<exec dir="${housekeeping.bin.dir}" executable="cmd">
+		<arg line="/c InstallService.bat" />
+	</exec>
+	<exec dir="${mailsender.bin.dir}" executable="cmd">
+		<arg line="/c InstallService.bat" />
+	</exec>
+	<exec dir="${sapfilewatcher.bin.dir}" executable="cmd">
+		<arg line="/c InstallService.bat" />
+	</exec>
+  </target>
+  
+	<target name="uninstall.services" description="Unistall Services">
+		<exec dir="${confirmwatcher.bin.dir}" executable="cmd">
+			<arg line="/c UninstallService.bat" />
+		</exec>
+		<exec dir="${ftpfilesender.bin.dir}" executable="cmd">
+			<arg line="/c UninstallService.bat" />
+		</exec>
+		<exec dir="${housekeeping.bin.dir}" executable="cmd">
+			<arg line="/c UninstallService.bat" />
+		</exec>
+		<exec dir="${mailsender.bin.dir}" executable="cmd">
+			<arg line="/c UninstallService.bat" />
+		</exec>
+		<exec dir="${sapfilewatcher.bin.dir}" executable="cmd">
+			<arg line="/c UninstallService.bat" />
+		</exec>
+	</target>
+	
+	<target name="start.services" description="Unistall Services">
+		<exec dir="${confirmwatcher.bin.dir}" executable="cmd">
+			<arg line="/c StartService.bat" />
+		</exec>
+		<exec dir="${ftpfilesender.bin.dir}" executable="cmd">
+			<arg line="/c StartService.bat" />
+		</exec>
+		<exec dir="${housekeeping.bin.dir}" executable="cmd">
+			<arg line="/c StartService.bat" />
+		</exec>
+		<exec dir="${mailsender.bin.dir}" executable="cmd">
+			<arg line="/c StartService.bat" />
+		</exec>
+		<exec dir="${sapfilewatcher.bin.dir}" executable="cmd">
+			<arg line="/c StartService.bat" />
+		</exec>
+	</target>
+	
+	<target name="stop.services" description="Unistall Services">
+		<exec dir="${confirmwatcher.bin.dir}" executable="cmd">
+			<arg line="/c StopService.bat" />
+		</exec>
+		<exec dir="${ftpfilesender.bin.dir}" executable="cmd">
+			<arg line="/c StopService.bat" />
+		</exec>
+		<exec dir="${housekeeping.bin.dir}" executable="cmd">
+			<arg line="/c StopService.bat" />
+		</exec>
+		<exec dir="${mailsender.bin.dir}" executable="cmd">
+			<arg line="/c StopService.bat" />
+		</exec>
+		<exec dir="${sapfilewatcher.bin.dir}" executable="cmd">
+			<arg line="/c StopService.bat" />
+		</exec>
+	</target>
+		
+	<target name="restart.services" depends="stop.services, start.services" description="Restart Services">
+		
+	</target>
 </project>
