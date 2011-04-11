@@ -6,6 +6,7 @@
 	<property name="dist.dir" location="." />
 	<property name="dist.linux-x86-32.dir" location="${dist.dir}/linux-x86-32/" />
 	<property name="dist.linux-x86-64.dir" location="${dist.dir}/linux-x86-64/" />
+	<property name="dist.win-x86-32.dir" location="${dist.dir}/win-x86-32/" />
 	
 	<property name="build.dir" location="bin" />
 	<property name="lib.dir" location="../com.ocbcmcd.message" />
@@ -149,8 +150,17 @@
 			<fileset dir="${jsw.dir}/linux-x86-64" />
 		</copy>
 	</target>
-		
-	<target name="package.platform" depends="package, package-linux-x86-32, package-linux-x86-64" description="Package service project">
+	
+	<target name="package-win-x86-32" description="Package win-x86-32">
+		<copy todir="${win-x86-32.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+		<copy todir="${win-x86-32.dir}/bin">
+			<fileset dir="${jsw.dir}/win-x86-32" />
+		</copy>
+	</target>
+	
+	<target name="package.platform" depends="package, package-linux-x86-32, package-linux-x86-64, package-win-x86-32" description="Package service platform project">
 		
 	</target>	
 	
