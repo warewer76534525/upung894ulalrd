@@ -10,6 +10,14 @@
 
 	<property name="web.dir" value="WebContent" />
 	<property name="webinf.dir" value="WebContent/WEB-INF" />
+	
+	<property name="service.name" value="ocbcmcdmonitoring" />
+	<property name="service.dir" value="${dist.dir}/${service.name}" />
+	<property name="service.lib.dir" value="${service.dir}/libs" />
+	
+	<property name="linux-x86-32.dir" value="${dist.linux-x86-32.dir}/${service.name}" />
+	<property name="linux-x86-64.dir" value="${dist.linux-x86-64.dir}/${service.name}" />
+	<property name="win-x86-32.dir" value="${dist.win-x86-32.dir}/${service.name}" />
 
 	<path id="master-classpath">
 		<fileset dir="${external.lib.dir}">
@@ -66,13 +74,12 @@
 			</fileset>
 		</war>
 		-->
-		<echo>${dist.dir}</echo>
-		<copy todir="${dist.web}/${name}" preservelastmodified="true">
+		<copy todir="${dist.dir}/${name}" preservelastmodified="true">
 			<fileset dir="${web.dir}">
 				<include name="**/*.*" />
 			</fileset>
 		</copy>
-		<copy todir="${dist.web}/${name}/WEB-INF/classes/" preservelastmodified="true">
+		<copy todir="${dist.dir}/${name}/WEB-INF/classes/" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/*.properties" />
 			</fileset>

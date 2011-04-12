@@ -1,10 +1,11 @@
-- cek diretory and application properties dir
-- cek ftp config
-- cek database config (host, user, pass, dbname)
-- email config
-- change log4j properties
-- cek gpg private key, has been import McDonald key gpg --key-list
-- apache directory
+- init directory
+- configure config values file -> ant change.config / ant prepare.config
+- change log4j
+- change build.properties
+- change sap directory poller to 30 * 1000
+- install web
+- check infrastructure start status (activmq, apache, database, ftp)
+
 
 
 DEV Linux

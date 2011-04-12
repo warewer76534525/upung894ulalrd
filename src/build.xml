@@ -39,7 +39,7 @@
   </target>
   
   <target name="build.monitoring" depends="build.message">
-	<ant dir="com.ocbcmcd.monitoring" target="package" inheritAll="true"/>
+	<ant dir="com.ocbcmcd.monitoring" target="package.platform" inheritAll="true"/>
   </target>
   
   <target name="clean.dist">
