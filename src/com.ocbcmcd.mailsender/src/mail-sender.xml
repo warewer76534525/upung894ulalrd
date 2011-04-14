@@ -88,7 +88,7 @@
 			<value>${ftperror.mail.to}</value>
 		</property>
 		<property name="subject"
-			value="OCBC File Sending - FTP Connection Error" />
+			value="${ftperror.mail.subject}" />
 	</bean>
 
 	<bean id="processFailedMessage" class="org.springframework.mail.SimpleMailMessage">
@@ -99,7 +99,7 @@
 			<value>${processfailed.mail.to}</value>
 		</property>
 		<property name="subject"
-			value="OCBC File Sending - Server Process Failed" />
+			value="${processfailed.mail.to}" />
 	</bean>
 
 	<bean id="ftpErrorEmailService" class="com.ocbcmcd.mailsender.mail.MailService">
@@ -131,6 +131,7 @@
 		<property name="host" value="${ftp.host}" />
 		<property name="username" value="${ftp.username}" />
 		<property name="password" value="${ftp.password}" />
+		<property name="port" value="${ftp.port}" />
 	</bean>
 
 	<ftp:inbound-channel-adapter id="ftpInbound"

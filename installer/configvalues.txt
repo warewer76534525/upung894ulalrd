@@ -2,6 +2,7 @@
 ftp.host=localhost
 ftp.username=username
 ftp.password=1234
+ftp.port=21
 
 checked.dir=/fromnisp/CHK
 
@@ -40,9 +41,15 @@ mail.smtp.auth=true
 mail.smtp.starttls.enable=true
 mail.from=triplelands@gmail.com
 #mail.to=exception.smsdong@gmail.com
+
 ftperror.mail.to=exception.smsdong@gmail.com
+ftperror.mail.subject=OCBC File Sending - FTP Connection Error
+
 processfailed.mail.to=exception.smsdong@gmail.com
+processfailed.mail.subject=OCBC File Sending - Server Process Failed
+
 endofday.mail.to=exception.smsdong@gmail.com
+endofday.mail.subject=OCBC File Sending - OCBC End Of Day Report
 
 jdbc.url=jdbc:mysql://localhost/ocbcmcd
 jdbc.username=ocbc

@@ -33,6 +33,9 @@ public class FileToMailMessageTransformer {
 	@Value("${daily.report.dir}")
 	private String dailyReportDir;
 	
+	@Value("${endofday.mail.subject}")
+	private String mailSubject;
+	
 	@Autowired
 	private VelocityEngine velocityEngine;
 	
@@ -46,7 +49,7 @@ public class FileToMailMessageTransformer {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 		
-		helper.setSubject("OCBC File Sending - End Of Day Reporting");
+		helper.setSubject(mailSubject);
 		helper.setFrom(mailFrom);
 		helper.setTo(mailTo);
 		helper.setText(getEmailContent(FileUtils.readFileToString(destFile)));
