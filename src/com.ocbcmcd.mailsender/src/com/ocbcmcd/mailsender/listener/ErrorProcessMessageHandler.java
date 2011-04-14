@@ -5,6 +5,7 @@ import javax.jms.ObjectMessage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.Message;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ public class ErrorProcessMessageHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
+	@Qualifier("processFailedEmailService")
 	private MailService mailService;
 	
 	@ServiceActivator

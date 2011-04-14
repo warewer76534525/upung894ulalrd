@@ -24,7 +24,7 @@ public class FileToMailMessageTransformer {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Value("${mail.to}")
+	@Value("${endofday.mail.to}")
 	private String mailTo; 
 	
 	@Value("${mail.from}")
@@ -46,6 +46,7 @@ public class FileToMailMessageTransformer {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 		
+		helper.setSubject("OCBC File Sending - End Of Day Reporting");
 		helper.setFrom(mailFrom);
 		helper.setTo(mailTo);
 		helper.setText(getEmailContent(FileUtils.readFileToString(destFile)));
