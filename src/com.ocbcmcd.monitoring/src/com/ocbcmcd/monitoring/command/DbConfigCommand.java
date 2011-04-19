@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ocbcmcd.monitoring.service.impl.IConfigCommand;
 
 public class DbConfigCommand implements IConfigCommand {
@@ -39,8 +41,9 @@ public class DbConfigCommand implements IConfigCommand {
 	public Map<String, String> getEncryptedConfigs() {
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put(ConfigType.JDBC_PASSWORD, password);
-		
+		if (!StringUtils.isBlank(password)) {
+			map.put(ConfigType.JDBC_PASSWORD, password);
+		}
 		
 		return map;
 	}

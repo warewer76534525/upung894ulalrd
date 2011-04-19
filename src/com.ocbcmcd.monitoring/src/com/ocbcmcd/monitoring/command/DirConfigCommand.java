@@ -14,8 +14,6 @@ public class DirConfigCommand implements IConfigCommand {
 	private String outgoingDir;
 	private String dailyReportDir;
 	private String failedDir;
-	private String encryptedFilePath;
-	private String incomingFilePath;
 	private String eomScheduler;
 	private String eomSchedulerStatus;
 	private String eodScheduler;
@@ -46,10 +44,6 @@ public class DirConfigCommand implements IConfigCommand {
 				dailyReportDir = value;
 			} else if (key.equals(ConfigType.FAILED_DIR)) {
 				failedDir = value;
-			} else if (key.equals(ConfigType.ENCRYPTED_FILE_PATH)) {
-				encryptedFilePath = value;
-			} else if (key.equals(ConfigType.INCOMING_FILE_PATH)) {
-				incomingFilePath = value;
 			} else if (key.equals(ConfigType.END_OF_MONTH_CRON)) {
 				eomScheduler = value;
 			} else if (key.equals(ConfigType.END_OF_MONTH_START)) {
@@ -108,14 +102,6 @@ public class DirConfigCommand implements IConfigCommand {
 		this.failedDir = failedDir;
 	}
 
-	public String getIncomingFilePath() {
-		return incomingFilePath;
-	}
-
-	public void setIncomingFilePath(String incomingFilePath) {
-		this.incomingFilePath = incomingFilePath;
-	}
-
 	public String getEomScheduler() {
 		return eomScheduler;
 	}
@@ -131,14 +117,6 @@ public class DirConfigCommand implements IConfigCommand {
 	public void setEomSchedulerStatus(String eomSchedulerStatus) {
 		this.eomSchedulerStatus = eomSchedulerStatus;
 	}
-
-	public String getEncryptedFilePath() {
-		return encryptedFilePath;
-	}
-
-	public void setEncryptedFilePath(String encryptedFilePath) {
-		this.encryptedFilePath = encryptedFilePath;
-	}
 	
 	public String getEodScheduler() {
 		return eodScheduler;
@@ -147,7 +125,7 @@ public class DirConfigCommand implements IConfigCommand {
 	public void setEodScheduler(String eodScheduler) {
 		this.eodScheduler = eodScheduler;
 	}
-
+	
 	
 
 	@Override
@@ -156,9 +134,8 @@ public class DirConfigCommand implements IConfigCommand {
 				+ ", encryptedDir=" + encryptedDir + ", processingDir="
 				+ processingDir + ", outgoingDir=" + outgoingDir
 				+ ", dailyReportDir=" + dailyReportDir + ", failedDir="
-				+ failedDir + ", encryptedFilePath=" + encryptedFilePath
-				+ ", incomingFilePath=" + incomingFilePath + ", eomScheduler="
-				+ eomScheduler + ", eomSchedulerStatus=" + eomSchedulerStatus
+				+ failedDir + ", eomScheduler=" + eomScheduler
+				+ ", eomSchedulerStatus=" + eomSchedulerStatus
 				+ ", eodScheduler=" + eodScheduler + "]";
 	}
 
@@ -178,8 +155,6 @@ public class DirConfigCommand implements IConfigCommand {
 		map.put(ConfigType.OUTGOING_DIR, outgoingDir);
 		map.put(ConfigType.DAILY_REPORT_DIR, dailyReportDir);
 		map.put(ConfigType.FAILED_DIR, failedDir);
-		map.put(ConfigType.ENCRYPTED_FILE_PATH, encryptedFilePath);
-		map.put(ConfigType.INCOMING_FILE_PATH, incomingFilePath);
 		map.put(ConfigType.END_OF_MONTH_CRON, eomScheduler);
 		map.put(ConfigType.END_OF_MONTH_START, eomSchedulerStatus);
 		map.put(ConfigType.END_OF_DAY_CRON, eodScheduler);

@@ -30,8 +30,6 @@ public class When_directory_config_update {
 		_dirConfig.setOutgoingDir("bin/file-dir/outgoingx");
 		_dirConfig.setDailyReportDir("bin/file-dir/dailyreportx");
 		_dirConfig.setFailedDir("bin/file-dir/failedx");
-		_dirConfig.setEncryptedFilePath("bin/file-dir/encryptedx");
-		_dirConfig.setIncomingFilePath("bin/file-dir/incomingx");
 		_dirConfig.setEomScheduler("0 55 23 L * ?x");
 		_dirConfig.setEomSchedulerStatus("1x");
 		_dirConfig.setEodScheduler("0 10 22 * * ?x");
@@ -50,8 +48,6 @@ public class When_directory_config_update {
 		Assert.assertNotNull(dirConfig.getOutgoingDir());
 		Assert.assertNotNull(dirConfig.getDailyReportDir());
 		Assert.assertNotNull(dirConfig.getFailedDir());
-		Assert.assertNotNull(dirConfig.getEncryptedFilePath());
-		Assert.assertNotNull(dirConfig.getIncomingFilePath());
 		Assert.assertNotNull(dirConfig.getEomScheduler());
 		Assert.assertNotNull(dirConfig.getEomSchedulerStatus());
 		Assert.assertNotNull(dirConfig.getEodScheduler());
@@ -68,8 +64,6 @@ public class When_directory_config_update {
 		Assert.assertEquals(dirConfig.getOutgoingDir(), _dirConfig.getOutgoingDir());
 		Assert.assertEquals(dirConfig.getDailyReportDir(), _dirConfig.getDailyReportDir());
 		Assert.assertEquals(dirConfig.getFailedDir(), _dirConfig.getFailedDir());
-		Assert.assertEquals(dirConfig.getEncryptedFilePath(), _dirConfig.getEncryptedFilePath());
-		Assert.assertEquals(dirConfig.getIncomingFilePath(), _dirConfig.getIncomingFilePath());
 		Assert.assertEquals(dirConfig.getEomScheduler(), _dirConfig.getEomScheduler());
 		Assert.assertEquals(dirConfig.getEomSchedulerStatus(), _dirConfig.getEomSchedulerStatus());
 		Assert.assertEquals(dirConfig.getEodScheduler(), _dirConfig.getEodScheduler());

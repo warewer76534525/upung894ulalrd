@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ocbcmcd.monitoring.command.MailConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

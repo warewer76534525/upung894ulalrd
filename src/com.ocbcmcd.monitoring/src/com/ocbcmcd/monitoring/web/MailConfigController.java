@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ocbcmcd.monitoring.command.FtpConfigCommand;
+import com.ocbcmcd.monitoring.command.MailConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
-import com.ocbcmcd.monitoring.validator.FtpConfigValidator;
+import com.ocbcmcd.monitoring.validator.MailConfigValidator;
 
 @Controller
-@RequestMapping("/ftpConfig")
-public class FtpConfigController {
+@RequestMapping("/mailConfig")
+public class MailConfigController {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
-	private ConfigurerService ftpConfigurerService;
+	private ConfigurerService mailConfigurerService;
 
 	@Autowired
-	private FtpConfigValidator validator;
+	private MailConfigValidator validator;
 	
 	@RequestMapping(method = GET)
-	public ModelAndView setupForm(@RequestParam(required = false) FtpConfigCommand command) {
+	public ModelAndView setupForm(@RequestParam(required = false) MailConfigCommand command) {
 		if (command == null) {
-			command = ftpConfigurerService.getFtpConfig();
+			command = mailConfigurerService.getMailConfig();
 		}
 		
-		return new ModelAndView("ftp_config", "command", command);
+		return new ModelAndView("mail_config", "command", command);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute("command") FtpConfigCommand command, BindingResult result, SessionStatus status) {
+	public String submitForm(@ModelAttribute("command") MailConfigCommand command, BindingResult result, SessionStatus status) {
 		validator.validate(command, result);
 		
 		if (result.hasErrors()) {
 			log.info("there is error");
 			log.info(result.getAllErrors());
-			return "ftp_config";
+			return "mail_config";
 		} else {
-			ftpConfigurerService.saveConfig(command);
+			mailConfigurerService.saveConfig(command);
 			log.info("executed succesfully");
-			return "redirect:ftpConfig/?message=1";
+			return "redirect:mailConfig/?message=1";
 		}
 	}
 	

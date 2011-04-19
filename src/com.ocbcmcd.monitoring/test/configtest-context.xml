@@ -162,8 +162,6 @@
 				<value>outgoing.dir</value>
 				<value>daily.report.dir</value>
 				<value>failed.dir</value>
-				<value>encrypted.file.path</value>
-				<value>incoming.file.path</value>
 				<value>endOfMonth.cron</value> 
 				<value>endOfMonth.start</value>
 				<value>endofday.cron</value>

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ocbcmcd.monitoring.service.impl.IConfigCommand;
 
 public class FtpConfigCommand implements IConfigCommand {
@@ -134,7 +136,10 @@ public class FtpConfigCommand implements IConfigCommand {
 		map.put(ConfigType.FTP_HOST, host);
 		map.put(ConfigType.FTP_PORT, port);
 		map.put(ConfigType.FTP_USERNAME, userName);
-		map.put(ConfigType.FTP_PASSWORD, password);
+		
+		if (!StringUtils.isEmpty(password)) {
+			map.put(ConfigType.FTP_PASSWORD, password);
+		}
 		
 		return map;
 	}

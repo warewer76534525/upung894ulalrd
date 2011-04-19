@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.ocbcmcd.monitoring.MailConfigCommand;
 import com.ocbcmcd.monitoring.command.DbConfigCommand;
 import com.ocbcmcd.monitoring.command.DirConfigCommand;
 import com.ocbcmcd.monitoring.command.FtpConfigCommand;
+import com.ocbcmcd.monitoring.command.MailConfigCommand;
 
 public class ConfigurerService {
 	private List<String> configList = new ArrayList<String>();

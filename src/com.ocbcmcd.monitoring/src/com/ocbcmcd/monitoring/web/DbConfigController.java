@@ -14,42 +14,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ocbcmcd.monitoring.command.FtpConfigCommand;
+import com.ocbcmcd.monitoring.command.DbConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
-import com.ocbcmcd.monitoring.validator.FtpConfigValidator;
+import com.ocbcmcd.monitoring.validator.DbConfigValidator;
 
 @Controller
-@RequestMapping("/ftpConfig")
-public class FtpConfigController {
+@RequestMapping("/dbConfig")
+public class DbConfigController {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
-	private ConfigurerService ftpConfigurerService;
+	private ConfigurerService dbConfigurerService;
 
 	@Autowired
-	private FtpConfigValidator validator;
+	private DbConfigValidator validator;
 	
 	@RequestMapping(method = GET)
-	public ModelAndView setupForm(@RequestParam(required = false) FtpConfigCommand command) {
+	public ModelAndView setupForm(@RequestParam(required = false) DbConfigCommand command) {
 		if (command == null) {
-			command = ftpConfigurerService.getFtpConfig();
+			command = dbConfigurerService.getDbConfig();
 		}
 		
-		return new ModelAndView("ftp_config", "command", command);
+		return new ModelAndView("db_config", "command", command);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute("command") FtpConfigCommand command, BindingResult result, SessionStatus status) {
+	public String submitForm(@ModelAttribute("command") DbConfigCommand command, BindingResult result, SessionStatus status) {
 		validator.validate(command, result);
 		
 		if (result.hasErrors()) {
-			log.info("there is error");
 			log.info(result.getAllErrors());
-			return "ftp_config";
+			return "db_config";
 		} else {
-			ftpConfigurerService.saveConfig(command);
-			log.info("executed succesfully");
-			return "redirect:ftpConfig/?message=1";
+			dbConfigurerService.saveConfig(command);
+			return "redirect:dbConfig/?message=1";
 		}
 	}
 	

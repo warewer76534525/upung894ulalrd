@@ -12,7 +12,7 @@ public class EncryptedFileTransformer {
 	
 	private static final char NEW_LINE = '\n';
 	
-	@Value("${encrypted.file.path}")
+	@Value("${encrypted.dir}")
 	private String encryptedFilePath;
 	
 	@Value("${public.key.id}")

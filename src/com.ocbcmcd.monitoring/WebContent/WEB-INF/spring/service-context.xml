@@ -101,4 +101,78 @@
 			</list>
 		</constructor-arg>
 	</bean>
+	
+	<bean id="ftpConfigurerServiceFactory" class="com.ocbcmcd.monitoring.service.impl.ConfigurerServiceFactory">
+		<constructor-arg name="configList">
+			<list>
+				<value>ftp.host</value>
+				<value>ftp.port</value>
+				<value>ftp.username</value>
+				<value>ftp.password</value>
+				<value>ftp.remote.dir</value>
+				<value>checked.dir</value>
+				<value>ftp.report.dir</value>
+				<value>ftp.maxretry</value>
+				<value>ftp.interval</value>
+				<value>watcher.maxretry</value>
+				<value>watcher.interval</value>
+			</list>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="ftpConfigurerService" class="com.ocbcmcd.monitoring.service.impl.ConfigurerService" factory-bean="ftpConfigurerServiceFactory" factory-method="createConfigurerService" />
+	
+	<bean id="mailConfigurerServiceFactory" class="com.ocbcmcd.monitoring.service.impl.ConfigurerServiceFactory">
+		<constructor-arg name="configList">
+			<list>
+				<value>mail.host</value>
+				<value>mail.port</value>
+				<value>mail.username</value>
+				<value>mail.password</value>
+				<value>mail.transport.protocol</value>
+				<value>mail.smtp.auth</value>
+				<value>mail.smtp.starttls.enable</value>
+				<value>mail.from</value>
+				<value>mail.to.eod</value>
+				<value>mail.eod.subject</value>
+				<value>mail.to.processed.failed</value>
+				<value>mail.processed.failed.subject</value>
+				<value>mail.to.sent.failed</value>
+				<value>mail.sent.failed.subject</value>
+			</list>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="mailConfigurerService" class="com.ocbcmcd.monitoring.service.impl.ConfigurerService" factory-bean="mailConfigurerServiceFactory" factory-method="createConfigurerService" />
+	
+	<bean id="dbConfigurerServiceFactory" class="com.ocbcmcd.monitoring.service.impl.ConfigurerServiceFactory">
+		<constructor-arg name="configList">
+			<list>
+				<value>jdbc.url</value>
+				<value>jdbc.username</value>
+				<value>jdbc.password</value>
+			</list>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="dbConfigurerService" class="com.ocbcmcd.monitoring.service.impl.ConfigurerService" factory-bean="dbConfigurerServiceFactory" factory-method="createConfigurerService" />
+	
+	<bean id="dirConfigurerServiceFactory" class="com.ocbcmcd.monitoring.service.impl.ConfigurerServiceFactory">
+		<constructor-arg name="configList">
+			<list>
+				<value>incoming.dir</value>
+				<value>encrypted.dir</value>
+				<value>processing.dir</value>
+				<value>outgoing.dir</value>
+				<value>daily.report.dir</value>
+				<value>failed.dir</value>
+				<value>endOfMonth.cron</value> 
+				<value>endOfMonth.start</value>
+				<value>endofday.cron</value>
+			</list>
+		</constructor-arg>
+	</bean>	
+	
+	<bean id="dirConfigurerService" class="com.ocbcmcd.monitoring.service.impl.ConfigurerService" factory-bean="dirConfigurerServiceFactory" factory-method="createConfigurerService" />
+	
 </beans>

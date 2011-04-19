@@ -42,7 +42,7 @@
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
 	</target>
-
+	
 
 	<target name="setup" depends="compile" description="setup service project">
 		<copy todir="${web.dir}/WEB-INF/classes/" preservelastmodified="true">

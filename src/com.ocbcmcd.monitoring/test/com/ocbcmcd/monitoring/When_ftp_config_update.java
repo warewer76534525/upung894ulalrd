@@ -17,7 +17,7 @@ import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
 public class When_ftp_config_update {
 	
 	@Autowired
-	private ConfigurerService configConfigurerService;
+	private ConfigurerService ftpConfigurerService;
 	FtpConfigCommand _ftpConfig;
 	
 	@Before
@@ -38,7 +38,7 @@ public class When_ftp_config_update {
 	
 	@Test
 	public void should_able_to_display_list_smtp_config() {
-		FtpConfigCommand ftpConfig = configConfigurerService.getFtpConfig();
+		FtpConfigCommand ftpConfig = ftpConfigurerService.getFtpConfig();
 		
 		System.out.println(ftpConfig);
 		Assert.assertNotNull(ftpConfig.getHost());
@@ -56,8 +56,8 @@ public class When_ftp_config_update {
 	
 	@Test
 	public void should_change_ftp_config_value() {
-		configConfigurerService.saveConfig(_ftpConfig);
-		FtpConfigCommand ftpConfig = configConfigurerService.getFtpConfig();
+		ftpConfigurerService.saveConfig(_ftpConfig);
+		FtpConfigCommand ftpConfig = ftpConfigurerService.getFtpConfig();
 		
 		System.out.println(ftpConfig.getHost());
 		Assert.assertEquals(ftpConfig.getHost(), _ftpConfig.getHost());

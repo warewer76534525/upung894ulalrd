@@ -1,10 +1,11 @@
-package com.ocbcmcd.monitoring;
+package com.ocbcmcd.monitoring.command;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.ocbcmcd.monitoring.command.ConfigType;
+import org.apache.commons.lang.StringUtils;
+
 import com.ocbcmcd.monitoring.service.impl.IConfigCommand;
 
 public class MailConfigCommand implements IConfigCommand {
@@ -178,8 +179,11 @@ public class MailConfigCommand implements IConfigCommand {
 		map.put(ConfigType.MAIL_HOST, host);
 		map.put(ConfigType.MAIL_PORT, port);
 		map.put(ConfigType.MAIL_USERNAME, userName);
-		map.put(ConfigType.MAIL_PASSWORD, password);
 		map.put(ConfigType.MAIL_TRANSPORT_PROTOCOL, smtpProtocol);
+		
+		if (!StringUtils.isBlank(password)) {
+			map.put(ConfigType.MAIL_PASSWORD, password);
+		}
 		
 		return map;
 	}

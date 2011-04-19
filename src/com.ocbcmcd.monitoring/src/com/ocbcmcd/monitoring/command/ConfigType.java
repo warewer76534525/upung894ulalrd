@@ -6,13 +6,14 @@ public class ConfigType {
 	public static final String	FTP_USERNAME	="ftp.username";
 	public static final String	FTP_PASSWORD	="ftp.password";
 	public static final String	FTP_REMOTE_DIR	="ftp.remote.dir";
+	public static final String  FTP_PORT = "ftp.port";
 	public static final String	CHECKED_DIR	="checked.dir";
 	public static final String	FTP_REPORT_DIR	="ftp.report.dir";
 	public static final String	FTP_MAXRETRY	="ftp.maxretry";
 	public static final String	FTP_INTERVAL	="ftp.interval";
 	public static final String	WATCHER_MAXRETRY	="watcher.maxretry";
 	public static final String	WATCHER_INTERVAL	="watcher.interval";
-	public static final String  FTP_PORT = "ftp.port";
+	
 
 	public static final String	MAIL_HOST	="mail.host";
 	public static final String	MAIL_PORT	="mail.port";
@@ -39,8 +40,6 @@ public class ConfigType {
 	public static final String	OUTGOING_DIR	="outgoing.dir";
 	public static final String	DAILY_REPORT_DIR	="daily.report.dir";
 	public static final String	FAILED_DIR	="failed.dir";
-	public static final String	ENCRYPTED_FILE_PATH	="encrypted.file.path";
-	public static final String	INCOMING_FILE_PATH	="incoming.file.path";
 	public static final String	END_OF_MONTH_CRON	="endOfMonth.cron"; 
 	public static final String	END_OF_MONTH_START	="endOfMonth.start";
 	public static final String  END_OF_DAY_CRON = "endofday.cron";
