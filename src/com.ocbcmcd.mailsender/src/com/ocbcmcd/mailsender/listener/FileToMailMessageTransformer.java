@@ -24,17 +24,17 @@ public class FileToMailMessageTransformer {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Value("${endofday.mail.to}")
+	@Value("${mail.to.eod}")
 	private String mailTo; 
+	
+	@Value("${mail.eod.subject}")
+	private String mailSubject;
 	
 	@Value("${mail.from}")
 	private String mailFrom;
 	
 	@Value("${daily.report.dir}")
 	private String dailyReportDir;
-	
-	@Value("${endofday.mail.subject}")
-	private String mailSubject;
 	
 	@Autowired
 	private VelocityEngine velocityEngine;

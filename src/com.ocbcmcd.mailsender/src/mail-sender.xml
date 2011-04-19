@@ -85,10 +85,10 @@
 			<value>${mail.from}</value>
 		</property>
 		<property name="to">
-			<value>${ftperror.mail.to}</value>
+			<value>${mail.to.sent.failed}</value>
 		</property>
 		<property name="subject"
-			value="${ftperror.mail.subject}" />
+			value="${mail.sent.failed.subject}" />
 	</bean>
 
 	<bean id="processFailedMessage" class="org.springframework.mail.SimpleMailMessage">
@@ -96,10 +96,10 @@
 			<value>${mail.from}</value>
 		</property>
 		<property name="to">
-			<value>${processfailed.mail.to}</value>
+			<value>${mail.to.processed.failed}</value>
 		</property>
 		<property name="subject"
-			value="${processfailed.mail.to}" />
+			value="${mail.processed.failed.subject}" />
 	</bean>
 
 	<bean id="ftpErrorEmailService" class="com.ocbcmcd.mailsender.mail.MailService">
