@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,39 +24,38 @@ public class FileToMailMessageTransformer {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Value("${mail.to}")
+	@Value("${endofday.mail.to}")
 	private String mailTo; 
 	
 	@Value("${mail.from}")
 	private String mailFrom;
 	
-	@Value("${mail.eodSubject}")
-	private String eodSubject;
-	
 	@Value("${daily.report.dir}")
 	private String dailyReportDir;
+	
+	@Value("${endofday.mail.subject}")
+	private String mailSubject;
 	
 	@Autowired
 	private VelocityEngine velocityEngine;
 	
-	protected Log log = LogFactory.getLog(getClass());
-	
 	@Transformer
 	public MailMessage transformFileToString(File file) throws Exception {
+		
 		File destFile = new File(dailyReportDir, file.getName());
 		FileUtils.moveFile(file, destFile);
 		
 		MimeMessage message = mailSender.createMimeMessage();
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
-		helper.setSubject(eodSubject);
+		
+		helper.setSubject(mailSubject);
 		helper.setFrom(mailFrom);
 		helper.setTo(mailTo);
 		helper.setText(getEmailContent(FileUtils.readFileToString(destFile)));
 		
 		helper.addAttachment(file.getName(), new FileSystemResource(destFile));
 		
-		log.info("EOD email report created");
 		return new MimeMailMessage(message);
 	}
 

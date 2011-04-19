@@ -80,15 +80,38 @@
 		</property>
 	</bean>
 
-	<bean id="alertMailMessage" class="org.springframework.mail.SimpleMailMessage">
+	<bean id="ftpErrorMessage" class="org.springframework.mail.SimpleMailMessage">
 		<property name="from">
 			<value>${mail.from}</value>
 		</property>
 		<property name="to">
-			<value>${mail.to}</value>
+			<value>${ftperror.mail.to}</value>
 		</property>
 		<property name="subject"
-			value="OCBC File Sending - Exception occurred. Please investigate" />
+			value="${ftperror.mail.subject}" />
+	</bean>
+
+	<bean id="processFailedMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from">
+			<value>${mail.from}</value>
+		</property>
+		<property name="to">
+			<value>${processfailed.mail.to}</value>
+		</property>
+		<property name="subject"
+			value="${processfailed.mail.to}" />
+	</bean>
+
+	<bean id="ftpErrorEmailService" class="com.ocbcmcd.mailsender.mail.MailService">
+		<constructor-arg name="mailSender" ref="mailSender"/>
+		<constructor-arg name="velocityEngine" ref="velocityEngine"/>
+		<constructor-arg name="alertMailMessage" ref="ftpErrorMessage"/>
+	</bean>
+
+	<bean id="processFailedEmailService" class="com.ocbcmcd.mailsender.mail.MailService">
+		<constructor-arg name="mailSender" ref="mailSender"/>
+		<constructor-arg name="velocityEngine" ref="velocityEngine"/>
+		<constructor-arg name="alertMailMessage" ref="processFailedMessage"/>
 	</bean>
 
 	<bean id="velocityEngine"
@@ -108,6 +131,7 @@
 		<property name="host" value="${ftp.host}" />
 		<property name="username" value="${ftp.username}" />
 		<property name="password" value="${ftp.password}" />
+		<property name="port" value="${ftp.port}" />
 	</bean>
 
 	<ftp:inbound-channel-adapter id="ftpInbound"

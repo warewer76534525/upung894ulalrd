@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -16,15 +15,26 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 public class MailService {
 	protected Log log = LogFactory.getLog(getClass());
 	
-    @Autowired
+    //@Autowired
     private MailSender mailSender;
     
-    @Autowired
+    //@Autowired
     private VelocityEngine velocityEngine;
     
-    @Autowired
+    //@Autowired
     private SimpleMailMessage alertMailMessage;
-	
+    
+    public MailService() {
+    	
+	}
+    
+	public MailService(MailSender mailSender, VelocityEngine velocityEngine,
+			SimpleMailMessage alertMailMessage) {
+		this.mailSender = mailSender;
+		this.velocityEngine = velocityEngine;
+		this.alertMailMessage = alertMailMessage;
+	}
+
 	private String getMessageContent(String fileName, String errorMessage, String stackTrace) {
 		Map model = new HashMap();
         model.put("fileName", fileName);
