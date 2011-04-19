@@ -54,6 +54,10 @@ public class EncryptedConfigurationService {
 	public void setAndEncryptProperty(String key, String value) {
 		persistenceProperties.setProperty(key, encryptConfigValue(value));
 	}
+	
+	public void setProperty(String key, String value) {
+		persistenceProperties.setProperty(key, value);
+	}
 
 	public void encryptPropertyValues(String... keys) {
 		for (String key : keys) {

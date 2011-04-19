@@ -67,10 +67,10 @@
 	<classpathentry kind="lib" path="/external-lib/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="lib" path="/external-lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="/external-lib/jasypt-1.7.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.ocbcmcd.config.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-security-config-3.1.0.RC1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-security-core-3.1.0.RC1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-security-taglibs-3.1.0.RC1.jar"/>
 	<classpathentry kind="lib" path="/external-lib/spring-security-web-3.1.0.RC1.jar"/>
+	<classpathentry kind="lib" path="/internal-lib/com.ocbcmcd.config.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

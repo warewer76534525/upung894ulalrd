@@ -1,5 +1,7 @@
 #Prepare
 clean file send today
+rm -f -R bin/file-dir/
+
 clean database log
 clean directory outgoing, failed
 clean ftp dir
@@ -29,4 +31,15 @@ FTP is inactive
 - Sent Failed
 - Email
 - Web
+
+
+#set date
+date +%Y%m%d -s "20110412"
+
+#House
+date +%Y%m%d -s "20110430"
+date +%T -s "23:53:00"
+
+#EOD
+date +%T -s "22:08:00"
 

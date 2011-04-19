@@ -189,5 +189,25 @@
 
 
 	<!-- End Tomcat tasks -->
-
+	
+	<target name="package-linux-x86-32" description="Package linux-x86-32">
+		<copy todir="${linux-x86-32.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+	</target>
+	
+	<target name="package-linux-x86-64" description="Package linux-x86-64">
+		<copy todir="${linux-x86-64.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+	</target>
+	
+	<target name="package-win-x86-32" description="Package win-x86-32">
+		<copy todir="${win-x86-32.dir}">
+			<fileset dir="${service.dir}" />
+		</copy>
+	</target>
+	
+	<target name="package.platform" depends="package, package-linux-x86-32, package-linux-x86-64, package-win-x86-32" description="Package services platform project" />
+	
 </project>

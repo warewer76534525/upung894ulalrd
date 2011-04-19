@@ -7,7 +7,7 @@
   <property name="bin.dir" location="bin"/>
   <property name="web.dir" location="web"/>
   <property name="lib.dir" value="lib" />
-  <property name="web.src.dir" value="${web.dir}/ocbcmcdmonitoring" />
+  <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
   
   <property name="confirmwatcher.bin.dir" value="bin/confirmwatcher-service/bin" />
   <property name="ftpfilesender.bin.dir" value="bin/ftpfilesender-service/bin" />
@@ -80,7 +80,7 @@
       userid="${jdbc.username}"
       password="${jdbc.password}"
       print="true"
-      url="jdbc:mysql://localhost/mysql"
+      url="${jdbc.url}"
       >
 		<transaction src="${db.dir}/ocbcmcd_ddl.sql"/>
 		<transaction src="${db.dir}/ocbcmcd_dml.sql"/>
@@ -93,7 +93,7 @@
       userid="${jdbc.username}"
       password="${jdbc.password}"
       print="true"
-      url="jdbc:mysql://localhost/mysql"
+      url="${jdbc.url}"
       >
 		<transaction src="${db.dir}/ocbcmcd_clean.sql"/>
 	</sql>

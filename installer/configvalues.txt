@@ -2,8 +2,10 @@
 ftp.host=localhost
 ftp.username=username
 ftp.password=1234
-
 checked.dir=/fromnisp/CHK
+ftp.temp.dir= bin/file-dir/ftp-temp
+ftp.report.dir=fromnisp/REPORT
+ftp.remote.dir=tonisp/McD
 
 #watcher
 watcher.maxretry=5
@@ -19,9 +21,6 @@ processing.dir = bin/file-dir/processing
 outgoing.dir = bin/file-dir/outgoing
 daily.report.dir= bin/file-dir/dailyreport
 failed.dir = bin/file-dir/failed
-ftp.temp.dir= bin/file-dir/ftp-temp
-ftp.remote.dir=fromnisp/REPORT
-ftp.remote.dir=tonisp/McD
 encrypted.file.path= bin/file-dir/encrypted
 incoming.file.path= bin/file-dir/incoming
 public.key.id=McDonald
@@ -39,7 +38,13 @@ mail.transport.protocol=smtp
 mail.smtp.auth=true
 mail.smtp.starttls.enable=true
 mail.from=triplelands@gmail.com
-mail.to=exception.smsdong@gmail.com
+mail.to.eod=exception.smsdong@gmail.com
+mail.eod.subject=EOD Subject
+mail.to.processed.failed=exception.smsdong@gmail.com
+mail.processed.failed.subject=Process Failed Subject
+mail.to.sent.failed=exception.smsdong@gmail.com
+mail.sent.failed.subject=Sent Failed Subject
+
 
 jdbc.url=jdbc:mysql://localhost/ocbcmcd
 jdbc.username=ocbc

@@ -1,6 +1,6 @@
 package com.ocbcmcd.monitoring.command;
 
-public class ConfigCommand {
+public class OldConfigCommand {
 	private String configName;
 	private String configValue;
 

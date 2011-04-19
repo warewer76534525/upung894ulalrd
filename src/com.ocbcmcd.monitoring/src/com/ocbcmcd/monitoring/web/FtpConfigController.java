@@ -4,8 +4,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,43 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.ocbcmcd.config.service.EncryptedConfigurationService;
+import com.ocbcmcd.monitoring.command.FtpConfigCommand;
 import com.ocbcmcd.monitoring.command.OldConfigCommand;
-import com.ocbcmcd.monitoring.validator.ConfigValidator;
 
 @Controller
-@RequestMapping("/config")
-public class ConfigController {
+@RequestMapping("/ftpConfig")
+public class FtpConfigController {
 	protected Log log = LogFactory.getLog(getClass());
 	
-	@Autowired
-	private ConfigValidator validator;
 	
-	@Autowired()
-	@Qualifier("monitoringConfigurationService")
-	private EncryptedConfigurationService monitoringConfService;
-	
-	@Autowired()
-	@Qualifier("confirmWatcherConfigurationService")
-	private EncryptedConfigurationService confirmWatcherConfService;
-	
-	@Autowired()
-	@Qualifier("ftpFileConfigurationService")
-	private EncryptedConfigurationService ftpFileConfService;
-	
-	@Autowired()
-	@Qualifier("mailSenderConfigurationService")
-	private EncryptedConfigurationService mailSenderConfService;
-
 	@RequestMapping(method = GET)
-	public ModelMap setupForm(@RequestParam(required = false) OldConfigCommand command) {
-		command = new OldConfigCommand();
+	public ModelMap setupForm(@RequestParam(required = false) FtpConfigCommand command) {
+		command = new FtpConfigCommand();
 		return new ModelMap("command", command);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String submitForm(@ModelAttribute("command") OldConfigCommand command, BindingResult result, SessionStatus status) {
-		validator.validate(command, result);
+		/*validator.validate(command, result);
 		
 		if (result.hasErrors())
 			return "config";
@@ -62,7 +41,8 @@ public class ConfigController {
 			mailSenderConfService.setAndEncryptProperty(command.getConfigName(), command.getConfigValue());
 			
 			return "redirect:config/?message=1";
-		}
+		}*/
+		return null;
 	}
 	
 }

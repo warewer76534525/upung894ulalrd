@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.ocbcmcd.monitoring.command.ConfigCommand;
+import com.ocbcmcd.monitoring.command.OldConfigCommand;
  
 @Component
 @Scope("prototype")
@@ -18,7 +18,7 @@ public class ConfigValidator  implements Validator {
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return ConfigCommand.class.isAssignableFrom(clazz);
+		return OldConfigCommand.class.isAssignableFrom(clazz);
 	}
 
 	@Override

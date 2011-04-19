@@ -16,3 +16,4 @@ sh /usr/local/activemq/bin/activemq restart
 sh /usr/local/activemq/bin/activemq stop
 
 sh /usr/local/tomcat/bin/startup.sh
+sh /usr/local/tomcat/bin/shutdown.sh

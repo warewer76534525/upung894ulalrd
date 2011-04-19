@@ -18,6 +18,7 @@ import com.ocbcmcd.monitoring.service.IRegistrationService;
 public class When_inexists_user_disabled {
 	@Autowired
 	IRegistrationService registrationService;
+	
 	private int userId;
 	
 	@Before
