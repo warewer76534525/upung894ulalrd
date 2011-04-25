@@ -5,6 +5,9 @@
 - change sap directory poller to 30 * 1000
 - install web
 - check infrastructure start status (activmq, apache, database, ftp)
+- install service  (in case using windows, service user logon in services.msc)
+- startup service
+
 
 
 

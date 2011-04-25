@@ -21,7 +21,7 @@
 
 	<si:channel id="erpFileChannel" />
 
-	<file:inbound-channel-adapter prevent-duplicates="false" directory="${incoming.file.path}"
+	<file:inbound-channel-adapter prevent-duplicates="false" directory="${incoming.dir}"
 		channel="erpFileChannel">
 		<si:poller fixed-rate="10000" />
 	</file:inbound-channel-adapter>

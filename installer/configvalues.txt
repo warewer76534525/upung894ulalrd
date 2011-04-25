@@ -1,6 +1,6 @@
 #FTP
 ftp.host=localhost
-ftp.username=username
+ftp.username=welly
 ftp.password=1234
 ftp.port=21
 
@@ -14,17 +14,15 @@ ftp.interval=8000
 
 #OCBC FILE PROPS
 encrypted.ext = .gpg
-incoming.dir = bin/file-dir/incoming
-encrypted.dir = bin/file-dir/encrypted
-processing.dir = bin/file-dir/processing
-outgoing.dir = bin/file-dir/outgoing
-daily.report.dir= bin/file-dir/dailyreport
-failed.dir = bin/file-dir/failed
-ftp.temp.dir= bin/file-dir/ftp-temp
-ftp.remote.dir=fromnisp/REPORT
+incoming.dir = D:/ocbc/ocbc32/bin/file-dir/incoming
+encrypted.dir = D:/ocbc/ocbc32/bin/file-dir/encrypted
+processing.dir = D:/ocbc/ocbc32/bin/file-dir/processing
+outgoing.dir = D:/ocbc/ocbc32/bin/file-dir/outgoing
+daily.report.dir= D:/ocbc/ocbc32/bin/file-dir/dailyreport
+failed.dir = D:/ocbc/ocbc32/bin/file-dir/failed
+ftp.temp.dir= D:/ocbc/ocbc32/bin/file-dir/ftp-temp
+ftp.report.dir=fromnisp/REPORT
 ftp.remote.dir=tonisp/McD
-encrypted.file.path= bin/file-dir/encrypted
-incoming.file.path= bin/file-dir/incoming
 public.key.id=McDonald
 
 #CRON JOB
@@ -40,16 +38,13 @@ mail.transport.protocol=smtp
 mail.smtp.auth=true
 mail.smtp.starttls.enable=true
 mail.from=triplelands@gmail.com
-#mail.to=exception.smsdong@gmail.com
 
-ftperror.mail.to=exception.smsdong@gmail.com
-ftperror.mail.subject=OCBC File Sending - FTP Connection Error
-
-processfailed.mail.to=exception.smsdong@gmail.com
-processfailed.mail.subject=OCBC File Sending - Server Process Failed
-
-endofday.mail.to=exception.smsdong@gmail.com
-endofday.mail.subject=OCBC File Sending - OCBC End Of Day Report
+mail.sent.failed.subject=OCBC File Sending - FTP Connection Error
+mail.to.sent.failed=exception.smsdong@gmail.com
+mail.to.processed.failed=exception.smsdong@gmail.com
+mail.processed.failed.subject=OCBC File Sending - Server Process Failed
+mail.to.eod=exception.smsdong@gmail.com
+mail.eod.subject=OCBC File Sending - OCBC End Of Day Report
 
 jdbc.url=jdbc:mysql://localhost/ocbcmcd
 jdbc.username=ocbc

@@ -57,7 +57,7 @@ public class ERPFileListener {
 			
 			jmsTemplate.convertAndSend(new SapFileEncrypted(encryptedFile.getName().replaceAll(encryptedExt,"")));	
 		} catch (FileAlreadySentException e) {
-			log.error("File is duplicate", e);
+			log.error("File " + file.getName() + " is duplicate");
 			jmsTemplate.convertAndSend(duplicateFileDestination, new SapFileDuplicated(file.getName()));
 		} catch (Exception e) {
 			log.error(e);

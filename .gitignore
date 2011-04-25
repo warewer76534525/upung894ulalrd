@@ -5,10 +5,17 @@ classes/
 *.war
 dist/
 *-service/
-bin/
 /installer/bin-linux-x86-32
 /installer/web
 /installer/bin-win-x86-32
 /installer/bin-linux-x86-64
 /docs/manual/File Sending Application Manual Document v1.0.0.part1.rar
 /docs/manual/File Sending Application Manual Document v1.0.0.part2.rar
+/src/com.ocbcmcd.config/bin
+/src/com.ocbcmcd.confirmwatcher/bin
+/src/com.ocbcmcd.ftpfilesender/bin
+/src/com.ocbcmcd.housekeeping/bin
+/src/com.ocbcmcd.mailsender/bin
+/src/com.ocbcmcd.message/bin
+/src/com.ocbcmcd.monitoring/bin
+/src/com.ocbcmcd.sapfilewatcher/bin

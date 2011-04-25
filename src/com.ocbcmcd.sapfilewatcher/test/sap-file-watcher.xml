@@ -22,7 +22,7 @@
 	 
 	<si:channel id="erpFileChannel" />
 
-	<file:inbound-channel-adapter directory="${incoming.file.path}"
+	<file:inbound-channel-adapter directory="${encrypted.dir}"
 		channel="erpFileChannel" filename-pattern="*.*">
 		<si:poller fixed-rate="1000" />
 	</file:inbound-channel-adapter>

@@ -11,14 +11,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ocbcmcd.monitoring.command.MailConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
+import com.ocbcmcd.monitoring.service.impl.ServiceController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/configtest-context.xml")
 public class When_mail_config_update {
 	
-	@Autowired
-	private ConfigurerService mailConfigurerService;
+	
+	@Autowired private ConfigurerService mailConfigurerService;
+	@Autowired private ServiceController serviceController;
+	
 	private MailConfigCommand _mailConfig;
+	
 	
 	@Before
 	public void setUp() {
@@ -81,5 +85,13 @@ public class When_mail_config_update {
 		Assert.assertEquals(mailConfig.getEodSubject(), _mailConfig.getEodSubject());
 		Assert.assertEquals(mailConfig.getProcessedFailedSubject(), _mailConfig.getProcessedFailedSubject());
 		Assert.assertEquals(mailConfig.getSentFailedSubject(), _mailConfig.getSentFailedSubject());
+	}
+	
+	@Test
+	public void should_restart_email_service() {
+		//mailConfigurerService.saveConfig(_mailConfig);
+		String returnVal = serviceController.restartService();
+		
+		Assert.assertEquals(returnVal, ServiceController.SUCCESS);
 	}
 }

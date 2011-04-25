@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.MailConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
+import com.ocbcmcd.monitoring.service.impl.ServiceController;
 import com.ocbcmcd.monitoring.validator.MailConfigValidator;
 
 @Controller
@@ -23,11 +24,9 @@ import com.ocbcmcd.monitoring.validator.MailConfigValidator;
 public class MailConfigController {
 	protected Log log = LogFactory.getLog(getClass());
 	
-	@Autowired
-	private ConfigurerService mailConfigurerService;
-
-	@Autowired
-	private MailConfigValidator validator;
+	@Autowired private ConfigurerService mailConfigurerService;	
+	@Autowired private ServiceController serviceController;
+	@Autowired private MailConfigValidator validator;
 	
 	@RequestMapping(method = GET)
 	public ModelAndView setupForm(@RequestParam(required = false) MailConfigCommand command) {
@@ -43,12 +42,11 @@ public class MailConfigController {
 		validator.validate(command, result);
 		
 		if (result.hasErrors()) {
-			log.info("there is error");
 			log.info(result.getAllErrors());
 			return "mail_config";
 		} else {
 			mailConfigurerService.saveConfig(command);
-			log.info("executed succesfully");
+			serviceController.restartService();
 			return "redirect:mailConfig/?message=1";
 		}
 	}

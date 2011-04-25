@@ -20,6 +20,9 @@ public class DirectoryCleaner implements IDirectoryCleaner {
 	@Value("${failed.dir}")
 	private String failedDirectory;
 	
+	@Value("${outgoing.dir}")
+	private String outgoingDirectory;
+	
 	@Value("${endOfMonth.start}")
 	private String startStatus;
 
@@ -27,6 +30,7 @@ public class DirectoryCleaner implements IDirectoryCleaner {
 	public void clean() throws IOException {
 		if (isStart()) {
 			FileUtils.cleanDirectory(new File(failedDirectory));
+			FileUtils.cleanDirectory(new File(outgoingDirectory));
 		} else {
 			log.info("Clean directory status is stop");
 		}

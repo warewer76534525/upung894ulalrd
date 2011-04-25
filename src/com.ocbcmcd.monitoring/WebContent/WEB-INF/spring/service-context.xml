@@ -175,4 +175,7 @@
 	
 	<bean id="dirConfigurerService" class="com.ocbcmcd.monitoring.service.impl.ConfigurerService" factory-bean="dirConfigurerServiceFactory" factory-method="createConfigurerService" />
 	
+	<bean id="serviceController" class="com.ocbcmcd.monitoring.service.impl.ServiceController">
+		<constructor-arg name="execDir" value="${instler.dir}/mailsender-service/bin" />
+	</bean>
 </beans>
