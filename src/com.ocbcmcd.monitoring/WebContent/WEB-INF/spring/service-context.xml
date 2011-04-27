@@ -102,6 +102,24 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="sapConfigurationService" class="com.ocbcmcd.config.service.EncryptedConfigurationService">
+		<constructor-arg name="location" value="${sapfilewatcher.config}" />
+		<constructor-arg name="encryptedKeyLists">
+			<list>
+
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="houseConfigurationService" class="com.ocbcmcd.config.service.EncryptedConfigurationService">
+		<constructor-arg name="location" value="${housekeeping.config}" />
+		<constructor-arg name="encryptedKeyLists">
+			<list>
+
+			</list>
+		</constructor-arg>
+	</bean>
+	
 	<bean id="ftpConfigurerServiceFactory" class="com.ocbcmcd.monitoring.service.impl.ConfigurerServiceFactory">
 		<constructor-arg name="configList">
 			<list>

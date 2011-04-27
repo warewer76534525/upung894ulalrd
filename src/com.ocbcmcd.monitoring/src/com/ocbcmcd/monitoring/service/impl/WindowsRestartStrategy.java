@@ -41,8 +41,8 @@ public class WindowsRestartStrategy implements IRestartStrategy {
 		int exitCode;
 		
 		try {
+			exitCode = CommandLineUtils.executeCommandLine(stopCl, consumer, stderr);
 		    exitCode = CommandLineUtils.executeCommandLine(startCl, consumer, stderr);
-		    exitCode = CommandLineUtils.executeCommandLine(stopCl, consumer, stderr);
 		    log.info(exitCode);
 		} catch ( CommandLineException ex ) {
 		   ex.printStackTrace();

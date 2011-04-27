@@ -30,7 +30,7 @@ public class EncryptedConfigurationService {
 		persistenceProperties.setProperty(key, encryptConfigValue(value));
 	}
 
-	private boolean isPropertyExists(String key) {
+	public boolean isPropertyExists(String key) {
 		String value = persistenceProperties.getPlainProperty(key);
 		
 		return StringUtils.hasText(value);

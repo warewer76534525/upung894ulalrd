@@ -39,14 +39,14 @@
 		<form:errors path="outgoingDir" cssClass="error" />
 	</p>
 	<p class="">
-		<label>Daily Report Directory</label>
-		<form:input  size="60" path="dailyReportDir" />
-		<form:errors path="dailyReportDir" cssClass="error" />
-	</p>
-	<p class="">
 		<label>Failed Directory</label>
 		<form:input  size="60" path="failedDir" />
 		<form:errors path="failedDir" cssClass="error" />
+	</p>
+	<p class="">
+		<label>Daily Report Directory</label>
+		<form:input  size="60" path="dailyReportDir" />
+		<form:errors path="dailyReportDir" cssClass="error" />
 	</p>
 	<p class="">
 		<label>End Of Month Cron Tab</label>

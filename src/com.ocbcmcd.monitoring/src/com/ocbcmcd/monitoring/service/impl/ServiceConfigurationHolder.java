@@ -47,7 +47,8 @@ public class ServiceConfigurationHolder {
 	public void setProperty(String configName, String configValue) {
 		
 		for (EncryptedConfigurationService encryptedConfigurationService : configurationServices) {
-			encryptedConfigurationService.setProperty(configName, configValue);
+			if (encryptedConfigurationService.isPropertyExists(configName))
+				encryptedConfigurationService.setProperty(configName, configValue);
 		}
 		
 	}
@@ -74,9 +75,10 @@ public class ServiceConfigurationHolder {
 		}
 	}
 
-	private void setAndEncryptProperty(String key, String value) {
+	private void setAndEncryptProperty(String configName, String value) {
 		for (EncryptedConfigurationService encryptedConfigurationService : configurationServices) {
-			encryptedConfigurationService.setAndEncryptProperty(key, value);
+			if (encryptedConfigurationService.isPropertyExists(configName))
+				encryptedConfigurationService.setAndEncryptProperty(configName, value);
 		}
 	}
 }

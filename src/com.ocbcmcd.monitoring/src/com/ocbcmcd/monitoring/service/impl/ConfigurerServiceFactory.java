@@ -28,6 +28,12 @@ public class ConfigurerServiceFactory {
 	@Qualifier("mailSenderConfigurationService")
 	private EncryptedConfigurationService mailSenderConfigurationService;
 	
+	@Autowired()
+	private EncryptedConfigurationService sapConfigurationService;
+	
+	@Autowired()
+	private EncryptedConfigurationService houseConfigurationService;
+	
 	public ConfigurerServiceFactory(List<String> configList) {
 		this.configList = configList;
 	}
@@ -40,6 +46,8 @@ public class ConfigurerServiceFactory {
 		configurationServiceProviders.add(ftpFileConfService);
 		configurationServiceProviders.add(monitoringConfService);
 		configurationServiceProviders.add(mailSenderConfigurationService);
+		configurationServiceProviders.add(sapConfigurationService);
+		configurationServiceProviders.add(houseConfigurationService);
 		
 		serviceConfigurationList = new ServiceConfigurationHolder(configurationServiceProviders);
 		ConfigurerService service = new ConfigurerService(configList, serviceConfigurationList);
