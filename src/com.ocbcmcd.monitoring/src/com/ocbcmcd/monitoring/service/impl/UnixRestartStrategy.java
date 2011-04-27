@@ -25,20 +25,19 @@ public class UnixRestartStrategy implements IRestartStrategy {
 		StreamConsumer consumer = new StreamConsumer() {
 		    public void consumeLine( String line ) {
 		    	restartLog += line + "\n";
+		    	log.info(line);
 		    }
 		};
 
 		StreamConsumer stderr = new StreamConsumer() {
 		    public void consumeLine( String line ) {
 		    	restartLog += line + "\n";
+		    	log.info(line);
 		    }
 		};
-
-		int exitCode;
 		
 		try {
-		    exitCode = CommandLineUtils.executeCommandLine(cl, consumer, stderr);
-		    log.info(exitCode);
+		    CommandLineUtils.executeCommandLine(cl, consumer, stderr);
 		} catch ( CommandLineException ex ) {
 		   ex.printStackTrace();
 		}
