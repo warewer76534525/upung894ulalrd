@@ -20,17 +20,17 @@
 <form:form method="post" modelAttribute="command" action="${url}" >
 	<p class="">
 		<label>URL</label>
-		<form:input path="url" />
+		<form:input  size="60" path="url" />
 		<form:errors path="url" cssClass="error" />
 	</p>
 	<p class="">
 		<label>User Name</label>
-		<form:input path="userName" />
+		<form:input  size="60" path="userName" />
 		<form:errors path="userName" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Password</label>
-		<form:password path="password" />
+		<form:password size="60" path="password" />
 		<form:errors path="password" cssClass="error" />
 	</p>
 	<p class=""><input type="submit" value="Submit" /></p>

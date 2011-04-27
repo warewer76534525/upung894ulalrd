@@ -20,67 +20,67 @@
 <form:form method="post" modelAttribute="command" action="${url}" >
 	<p class="">
 		<label>Host</label>
-		<form:input path="host" />
+		<form:input  size="60" path="host" />
 		<form:errors path="host" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Port</label>
-		<form:input path="port" />
+		<form:input  size="60" path="port" />
 		<form:errors path="port" cssClass="error" />
 	</p>
 	<p class="">
 		<label>User Name</label>
-		<form:input path="userName" />
+		<form:input  size="60" path="userName" />
 		<form:errors path="userName" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Password</label>
-		<form:password path="password" />
+		<form:password size="60" path="password" />
 		<form:errors path="password" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Smtp Protocol</label>
-		<form:input path="smtpProtocol" />
+		<form:input  size="60" path="smtpProtocol" />
 		<form:errors path="smtpProtocol" cssClass="error" />
 	</p>
 	<p class="">
 		<label>SMTP Authentication</label>
-		<form:input path="smtpAuth" />
+		<form:input  size="60" path="smtpAuth" />
 		<form:errors path="smtpAuth" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Email From</label>
-		<form:input path="from" />
+		<form:input  size="60" path="from" />
 		<form:errors path="from" cssClass="error" />
 	</p>
 	<p class="">
 		<label>To Eod Email</label>
-		<form:input path="toEod" />
+		<form:input  size="60" path="toEod" />
 		<form:errors path="toEod" cssClass="error" />
 	</p>
 	<p class="">
 		<label>EOD Email Subject</label>
-		<form:input path="eodSubject" />
+		<form:input  size="60" path="eodSubject" />
 		<form:errors path="eodSubject" cssClass="error" />
 	</p>
 	<p class="">
 		<label>To Processed Failed</label>
-		<form:input path="toProcessedFailed" />
+		<form:input  size="60" path="toProcessedFailed" />
 		<form:errors path="toProcessedFailed" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Processed Failed Subject</label>
-		<form:input path="processedFailedSubject" />
+		<form:input  size="60" path="processedFailedSubject" />
 		<form:errors path="processedFailedSubject" cssClass="error" />
 	</p>
 	<p class="">
 		<label>To Sent Failed</label>
-		<form:input path="toSentFailed" />
+		<form:input  size="60" path="toSentFailed" />
 		<form:errors path="toSentFailed" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Sent Failed Subject</label>
-		<form:input path="sentFailedSubject" />
+		<form:input  size="60" path="sentFailedSubject" />
 		<form:errors path="sentFailedSubject" cssClass="error" />
 	</p>
 	<p class=""><input type="submit" value="Submit" /></p>

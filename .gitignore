@@ -19,3 +19,4 @@ dist/
 /src/com.ocbcmcd.message/bin
 /src/com.ocbcmcd.monitoring/bin
 /src/com.ocbcmcd.sapfilewatcher/bin
+/installer/bin

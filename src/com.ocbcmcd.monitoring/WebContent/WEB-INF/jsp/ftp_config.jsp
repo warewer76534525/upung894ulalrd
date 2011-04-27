@@ -20,57 +20,57 @@
 <form:form method="post" modelAttribute="command" action="${url}" >
 	<p class="">
 		<label>Host</label>
-		<form:input path="host" />
+		<form:input size="60" path="host" />
 		<form:errors path="host" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Port</label>
-		<form:input path="port" />
+		<form:input size="60" path="port" />
 		<form:errors path="port" cssClass="error" />
 	</p>
 	<p class="">
 		<label>User Name</label>
-		<form:input path="userName" />
+		<form:input size="60" path="userName" />
 		<form:errors path="userName" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Password</label>
-		<form:password path="password" />
+		<form:password size="60" path="password" />
 		<form:errors path="password" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Remote Directory</label>
-		<form:input path="remoteDir" />
+		<form:input size="60" path="remoteDir" />
 		<form:errors path="remoteDir" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Chk Directory</label>
-		<form:input path="chkDir" />
+		<form:input size="60" path="chkDir" />
 		<form:errors path="chkDir" cssClass="error" />
 	</p>
 	<p class="">
 		<label>Report Directory</label>
-		<form:input path="reportDir" />
+		<form:input size="60" path="reportDir" />
 		<form:errors path="reportDir" cssClass="error" />
 	</p>
 	<p class="">
 		<label>FTP Send max retry</label>
-		<form:input path="maxRetry" />
+		<form:input size="60" path="maxRetry" />
 		<form:errors path="maxRetry" cssClass="error" />
 	</p>
 	<p class="">
 		<label>FTP Retry Send Interval</label>
-		<form:input path="retryInterval" />
+		<form:input size="60" path="retryInterval" />
 		<form:errors path="retryInterval" cssClass="error" />
 	</p>
 	<p class="">
 		<label>CHK Watcher max retry</label>
-		<form:input path="watcherRetry" />
+		<form:input size="60" path="watcherRetry" />
 		<form:errors path="watcherRetry" cssClass="error" />
 	</p>
 	<p class="">
 		<label>CHK Watcher retry interval</label>
-		<form:input path="watcherInterval" />
+		<form:input size="60" path="watcherInterval" />
 		<form:errors path="watcherInterval" cssClass="error" />
 	</p>
 	

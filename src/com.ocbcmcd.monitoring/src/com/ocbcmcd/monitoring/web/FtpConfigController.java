@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.FtpConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
+import com.ocbcmcd.monitoring.service.impl.ServiceController;
 import com.ocbcmcd.monitoring.validator.FtpConfigValidator;
 
 @Controller
@@ -28,6 +29,9 @@ public class FtpConfigController {
 
 	@Autowired
 	private FtpConfigValidator validator;
+	
+	@Autowired 
+	private ServiceController serviceController;
 	
 	@RequestMapping(method = GET)
 	public ModelAndView setupForm(@RequestParam(required = false) FtpConfigCommand command) {
@@ -48,7 +52,7 @@ public class FtpConfigController {
 			return "ftp_config";
 		} else {
 			ftpConfigurerService.saveConfig(command);
-			log.info("executed succesfully");
+			serviceController.restartService();
 			return "redirect:ftpConfig/?message=1";
 		}
 	}

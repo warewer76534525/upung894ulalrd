@@ -19,36 +19,11 @@
 <c:url value="/config" var="url" ></c:url>
 <form:form method="post" modelAttribute="command" action="${url}" >
 	<p class="">
-		<label>Config Name</label>
-		 <select name="configName">
-		 	<option value="">select</option>
-		    <optgroup label="DATABASE">
-		      <option value="jdbc.url">db url</option>
-		      <option value="jdbc.username">db user</option>
-		      <option value="jdbc.password">db password</option>
-		    </optgroup>
-		    <optgroup label="FTP">
-		      <option value="ftp.host">ftp host</option>
-		      <option value="ftp.username">ftp user</option>
-		      <option value="ftp.password">ftp password</option>
-		    </optgroup>
-		    <optgroup label="SMTP">
-		      <option value="mail.host">smtp host</option>
-		      <option value="mail.port">smtp port</option>
-		      <option value="mail.username">smtp user</option>
-		      <option value="mail.password">smtp password</option>
-		      <option value="mail.from">smtp from</option>
-		      <option value="mail.to">smtp to</option>
-		    </optgroup>
-		  </select>
-		<form:errors path="configName" cssClass="error" />
+		<a href="<c:url value="/mailConfig" />"> Email Config </a> <br/>
+		<a href="<c:url value="/ftpConfig" />"> FTP Config </a> <br/>
+		<a href="<c:url value="/dirConfig" />"> Directory Config </a> <br/>
+		<a href="<c:url value="/dbConfig" />"> Database Config </a> <br/>
 	</p>
-	<p class="">
-		<label>Config Value</label>
-		<form:password path="configValue" />
-		<form:errors path="configValue" cssClass="error" />
-	</p>
-	<p class=""><input type="submit" value="Submit" /></p>
 </form:form>
 </body>
 </html>

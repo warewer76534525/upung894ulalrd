@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ocbcmcd.monitoring.command.DirConfigCommand;
 import com.ocbcmcd.monitoring.service.impl.ConfigurerService;
+import com.ocbcmcd.monitoring.service.impl.ServiceController;
 import com.ocbcmcd.monitoring.validator.DirConfigValidator;
 
 @Controller
@@ -28,6 +29,9 @@ public class DirConfigController {
 
 	@Autowired
 	private DirConfigValidator validator;
+	
+	@Autowired 
+	private ServiceController serviceController;
 	
 	@RequestMapping(method = GET)
 	public ModelAndView setupForm(@RequestParam(required = false) DirConfigCommand command) {
@@ -47,6 +51,7 @@ public class DirConfigController {
 			return "dir_config";
 		} else {
 			dirConfigurerService.saveConfig(command);
+			serviceController.restartService();
 			return "redirect:dirConfig/?message=1";
 		}
 	}

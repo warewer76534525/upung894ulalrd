@@ -67,7 +67,7 @@ if exist "%_WRAPPER_EXE%" goto conf
 echo Unable to locate a Wrapper executable using any of the following names:
 echo %_WRAPPER_L_EXE%
 echo %_WRAPPER_EXE%
-pause
+rem pause
 goto :eof
 
 rem
@@ -87,5 +87,5 @@ rem
 :startup
 "%_WRAPPER_EXE%" -p %_WRAPPER_CONF%
 if not errorlevel 1 goto :eof
-pause
+rem pause
 

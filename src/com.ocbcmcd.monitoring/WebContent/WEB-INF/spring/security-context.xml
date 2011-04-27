@@ -29,6 +29,18 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 		<intercept-url pattern="/config/*" access="ROLE_PRS_CONFIG" />
 		<intercept-url pattern="/config*" access="ROLE_PRS_CONFIG" />
 		
+		<intercept-url pattern="/mailConfig/*" access="ROLE_PRS_CONFIG" />
+		<intercept-url pattern="/mailConfig*" access="ROLE_PRS_CONFIG" />
+		
+		<intercept-url pattern="/ftpConfig/*" access="ROLE_PRS_CONFIG" />
+		<intercept-url pattern="/ftpConfig*" access="ROLE_PRS_CONFIG" />
+		
+		<intercept-url pattern="/dirConfig/*" access="ROLE_PRS_CONFIG" />
+		<intercept-url pattern="/dirConfig*" access="ROLE_PRS_CONFIG" />
+		
+		<intercept-url pattern="/dbConfig/*" access="ROLE_PRS_CONFIG" />
+		<intercept-url pattern="/dbConfig*" access="ROLE_PRS_CONFIG" />
+		
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=true" />
 		<logout />
