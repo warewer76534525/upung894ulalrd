@@ -14,13 +14,13 @@ ftp.interval=8000
 
 #OCBC FILE PROPS
 encrypted.ext = .gpg
-incoming.dir = D:/ocbc/ocbc32/bin/file-dir/incoming
-encrypted.dir = D:/ocbc/ocbc32/bin/file-dir/encrypted
-processing.dir = D:/ocbc/ocbc32/bin/file-dir/processing
-outgoing.dir = D:/ocbc/ocbc32/bin/file-dir/outgoing
-daily.report.dir= D:/ocbc/ocbc32/bin/file-dir/dailyreport
-failed.dir = D:/ocbc/ocbc32/bin/file-dir/failed
-ftp.temp.dir= D:/ocbc/ocbc32/bin/file-dir/ftp-temp
+incoming.dir = C:/erpfile/incoming
+encrypted.dir = C:/erpfile/encrypted
+processing.dir = C:/erpfile/processing
+outgoing.dir = C:/erpfile/outgoing
+daily.report.dir= C:/erpfile/dailyreport
+failed.dir = C:/erpfile/failed
+ftp.temp.dir= C:/erpfile/ftp-temp
 ftp.report.dir=fromnisp/REPORT
 ftp.remote.dir=tonisp/McD
 public.key.id=McDonald

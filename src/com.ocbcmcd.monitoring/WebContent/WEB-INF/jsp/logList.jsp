@@ -39,7 +39,7 @@ $(function() {
 <h1>Log Event</h1>
 
 
-<c:url value="/log/?${requestString}" var="pagedLink">
+<c:url value="/logList/?${requestString}" var="pagedLink">
 	<c:param name="p" value="~" />
 </c:url>
 
