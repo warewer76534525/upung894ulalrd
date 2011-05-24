@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td>Created</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${user.createdDate}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${user.createdDate}" /></td>
 		</tr>
 		<tr>
 			<td>Status</td>

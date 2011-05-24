@@ -1,5 +1,9 @@
 package com.ocbcmcd.monitoring.stub;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -27,5 +31,11 @@ public class EmailValidatorTest {
 	public void testMultipleEmail() {
 		String simpleEmail = "adi@gmail.com,sembiring.adi@gmail.com";
 		Assert.assertTrue(validator.validate(simpleEmail));
+	}
+	
+	@Test
+	public void convertDate() {
+		DateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(formater.format(new Date()));
 	}
 }

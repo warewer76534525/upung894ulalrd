@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td>Time</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${log.time}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${log.time}" /></td>
 		</tr>
 		<tr>
 			<td>Description</td>

@@ -48,7 +48,7 @@
 	<c:forEach items="${pagedListHolder.pageList}" var="user">
 		<tr>
 			<td><a href="<c:url value="/userDetail/${user.id}" />"><c:out value="${user.userName}"></c:out></a></td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${user.createdDate}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${user.createdDate}" /></td>
 			<td><c:out value="${user.enabled}"></c:out></td>
 		</tr>
 	</c:forEach>

@@ -71,7 +71,7 @@ $(function() {
 		<tr>
 			<td><a href="<c:url value="/logDetail/${log.id}" />">${log.fileName}</a></td>
 			<td>${log.type}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${log.time}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${log.time}" /></td>
 		</tr>
 	</c:forEach>
 </table>
