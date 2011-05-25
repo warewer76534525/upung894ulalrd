@@ -85,9 +85,11 @@ public class FtpConfirmationWatcher {
 				} else if (currentRetryCount == maxRetry) {
 					log.info("Retry reached max publish ocbcfileprocecssfailed for : " + fileName);
 
+					confirmationChecker.removeOriginalFile(fileName);
+					
 					jmsTemplate.convertAndSend(processFailedDestination,  new OcbcFileProcessFailed(
 							fileName));
-
+					
 					this.cancel();
 				} else {
 					log.info("Confirmation file not exist yet for : " + fileName);

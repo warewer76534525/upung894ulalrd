@@ -21,12 +21,16 @@ public class ChkConfirmationChecker {
 		log.info("chk file name : " + chkFileName);
 		
 		if (fileChecker.fileExist(chkFileName)) {
-			fileChecker.deleteFile(chkFileName);
+			fileChecker.deleteConfirmationFile(chkFileName);
 			return ConfirmationStatus.Success;
 		}
 		
 		fileChecker.close();
 		
 		return ConfirmationStatus.Unavailable;
+	}
+
+	public void removeOriginalFile(String fileName) throws Exception {
+		fileChecker.deleteOriginalFile(fileName);
 	}
 }
