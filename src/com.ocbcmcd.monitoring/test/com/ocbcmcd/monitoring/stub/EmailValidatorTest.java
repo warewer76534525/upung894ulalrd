@@ -35,7 +35,7 @@ public class EmailValidatorTest {
 	
 	@Test
 	public void convertDate() {
-		DateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat formater = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		System.out.println(formater.format(new Date()));
 	}
 }
