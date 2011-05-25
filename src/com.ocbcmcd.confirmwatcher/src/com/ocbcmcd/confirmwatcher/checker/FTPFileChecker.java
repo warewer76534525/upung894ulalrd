@@ -17,6 +17,9 @@ public class FTPFileChecker {
 	@Value("${checked.dir}")
 	private String checkDirectory;
 	
+	@Value("${upload.dir}")
+	private String uploadDirectory;
+	
 	public boolean fileExist(String fileName) throws Exception {
 		
 		Session session = getSession();
@@ -36,17 +39,25 @@ public class FTPFileChecker {
 		return session;
 	}
 
-	public void deleteFile(String fileName) throws Exception {
+	public void deleteConfirmationFile(String fileName) throws Exception {
+		deleteFile(checkDirectory, fileName);
+	}
+	
+	private void deleteFile(String dir, String fileName) throws Exception {
 		Session session = getSession();
 		
 		try { 
-			session.remove(checkDirectory + "/" + fileName);
+			session.remove(dir + "/" + fileName);
 		} catch (Exception e) {
-			session.remove(checkDirectory + "\\" + fileName);
+			session.remove(dir + "\\" + fileName);
 		}
 	}
 
 	public void close() {
 		session.close();
+	}
+
+	public void deleteOriginalFile(String fileName) throws Exception {
+		deleteFile(uploadDirectory, fileName);
 	}
 }

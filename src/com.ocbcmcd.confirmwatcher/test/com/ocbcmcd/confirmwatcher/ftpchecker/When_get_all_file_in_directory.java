@@ -43,7 +43,7 @@ public class When_get_all_file_in_directory {
 		FTPFileChecker fileChecker = context.getBean(FTPFileChecker.class);
 		Assert.assertTrue(fileChecker.fileExist("movie-hunt.txt.chk"));
 		
-		fileChecker.deleteFile("movie-hunt.txt.chk");
+		fileChecker.deleteConfirmationFile("movie-hunt.txt.chk");
 		
 		Assert.assertFalse(fileChecker.fileExist("movie-hunt.txt.chk"));
 	}
@@ -54,7 +54,7 @@ public class When_get_all_file_in_directory {
 		FTPFileChecker fileChecker = context.getBean(FTPFileChecker.class);
 		Assert.assertTrue(fileChecker.fileExist("movie-hunt.txt"));
 		
-		fileChecker.deleteFile("movie-hunt.txt");
+		fileChecker.deleteConfirmationFile("movie-hunt.txt");
 		
 		Assert.assertFalse(fileChecker.fileExist("movie-hunt.txt"));
 	}
