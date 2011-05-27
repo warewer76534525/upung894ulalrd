@@ -39,7 +39,6 @@ public class EncryptedFileMessageHandler {
 			log.info("Received event encrypteed : " + event.getFileName());
 			
 			jmsTemplate.convertAndSend(processingDestination, new EncryptedFileSending(event.getFileName()));
-			
 			fileSenderRetrier.guaranteedSendFile(event.getFileName());
 			
 		} catch (JMSException e) {

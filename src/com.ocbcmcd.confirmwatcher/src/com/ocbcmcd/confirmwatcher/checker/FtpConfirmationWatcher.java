@@ -1,5 +1,6 @@
 package com.ocbcmcd.confirmwatcher.checker;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,23 +27,23 @@ public class FtpConfirmationWatcher {
 
 	@Autowired
 	private JmsTemplate jmsTemplate;
-	
+
 	@Autowired
 	@Qualifier("notProcessYetDestination")
 	private Destination notProcessedYetDestination;
-	
+
 	@Autowired
 	@Qualifier("processFailedDestination")
 	private Destination processFailedDestination;
-	
+
 	@Value("${watcher.maxretry}")
 	private int maxRetry;
-	
+
 	@Value("${watcher.interval}")
 	private long intervalBetweenRetry;
 
 	public void watchForFile(final String fileName) throws Exception {
-		
+
 		Timer timer = new Timer();
 
 		TimerTask timerTask = new RetryJobTask(maxRetry, fileName);
@@ -75,7 +76,7 @@ public class FtpConfirmationWatcher {
 
 				if (status == ConfirmationStatus.Success) {
 					log.info("Confirmation file received for : " + fileName);
-					
+
 					jmsTemplate
 							.convertAndSend(new OcbcFileProcessedSucessfully(
 									fileName));
@@ -83,19 +84,25 @@ public class FtpConfirmationWatcher {
 					this.cancel();
 
 				} else if (currentRetryCount == maxRetry) {
-					log.info("Retry reached max publish ocbcfileprocecssfailed for : " + fileName);
+					log.info("Retry reached max publish ocbcfileprocecssfailed for : "
+							+ fileName);
 
-					confirmationChecker.removeOriginalFile(fileName);
-					
-					jmsTemplate.convertAndSend(processFailedDestination,  new OcbcFileProcessFailed(
-							fileName));
-					
+					try {
+						confirmationChecker.removeOriginalFile(fileName);
+					} catch (IOException e) {
+						log.error(e.getMessage(), e);
+					}
+
+					jmsTemplate.convertAndSend(processFailedDestination,
+							new OcbcFileProcessFailed(fileName));
+
 					this.cancel();
 				} else {
-					log.info("Confirmation file not exist yet for : " + fileName);
+					log.info("Confirmation file not exist yet for : "
+							+ fileName);
 
-					jmsTemplate.convertAndSend(notProcessedYetDestination, new OcbcFileUnProcessYet(
-							fileName));
+					jmsTemplate.convertAndSend(notProcessedYetDestination,
+							new OcbcFileUnProcessYet(fileName));
 				}
 
 				log.info("Status : " + status);

@@ -1,5 +1,7 @@
 package com.ocbcmcd.confirmwatcher.checker;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FTPFileChecker {
+	
+	protected Log log = LogFactory.getLog(FTPFileChecker.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -17,8 +22,11 @@ public class FTPFileChecker {
 	@Value("${checked.dir}")
 	private String checkDirectory;
 	
-	@Value("${upload.dir}")
+	@Value("${ftp.remote.dir}")
 	private String uploadDirectory;
+	
+	@Value("${encrypted.ext}")
+	private String encryptedExt;
 	
 	public boolean fileExist(String fileName) throws Exception {
 		
@@ -49,6 +57,7 @@ public class FTPFileChecker {
 		try { 
 			session.remove(dir + "/" + fileName);
 		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 			session.remove(dir + "\\" + fileName);
 		}
 	}
@@ -58,6 +67,6 @@ public class FTPFileChecker {
 	}
 
 	public void deleteOriginalFile(String fileName) throws Exception {
-		deleteFile(uploadDirectory, fileName);
+		deleteFile(uploadDirectory, fileName + encryptedExt);
 	}
 }

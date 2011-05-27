@@ -14,6 +14,7 @@ import org.springframework.integration.Message;
 import org.springframework.integration.MessageHandlingException;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
+import org.springframework.integration.file.remote.session.Session;
 import org.springframework.integration.file.remote.session.SessionFactory;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.jms.support.JmsUtils;
@@ -50,12 +51,16 @@ public class UnProcessedYetMessageHandler {
 			Message<File> fileMessage =  MessageBuilder.withPayload(new File(encryptedDirectory, event.getFileName() + encryptedExt)).build();
 			
 			log.info("Remove already exists ftp file : " + event.getFileName());
-			sessionFactory.getSession().remove(ftpRemoteDir + File.separator + event.getFileName() + encryptedExt);
+			
+			Session ftpSession = sessionFactory.getSession();
+			ftpSession.remove(ftpRemoteDir + File.separator + event.getFileName() + encryptedExt);
+			ftpSession.close();
 			
 			log.info("Send file again : " + event.getFileName());
 			
 			ftpChannel.send(fileMessage);
 			log.info("Ftp file successfully : sent");
+			
 		} catch (JMSException e) {
 			throw JmsUtils.convertJmsAccessException(e);
 		} catch (MessageHandlingException e) {
