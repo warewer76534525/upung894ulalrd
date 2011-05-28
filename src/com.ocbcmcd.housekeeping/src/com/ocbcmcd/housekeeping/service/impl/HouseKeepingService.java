@@ -113,7 +113,7 @@ public class HouseKeepingService implements IHouseKeepingService {
 			}
 			FileUtils.moveFile(source, destination);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.error(e.getMessage(), e);
 		}
 	}
 	
