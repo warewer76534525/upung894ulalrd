@@ -29,8 +29,9 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="initialSize" value="10" />
-		<property name="maxActive" value="5" />
-		<property name="maxWait" value="5000" />
+		<property name="maxActive" value="8" />
+		<property name="maxIdle" value="8"></property>
+		<property name="maxWait" value="10000" />
 	</bean>
 
 	<bean id="jdbcTransactionManager"
