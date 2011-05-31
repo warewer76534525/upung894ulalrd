@@ -42,7 +42,7 @@ public class User {
 	private Date createdDate;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "user") }, inverseJoinColumns = { @JoinColumn(name = "role") })
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user") }, inverseJoinColumns = { @JoinColumn(name = "role") })
 	private Set<Role> userRoles = new HashSet<Role>(0);
 
 	public User() {
