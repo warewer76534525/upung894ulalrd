@@ -48,10 +48,14 @@ public class FileToMailMessageTransformer {
 		MimeMessage message = mailSender.createMimeMessage();
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
-		
 		helper.setSubject(mailSubject);
 		helper.setFrom(mailFrom);
-		helper.setTo(mailTo);
+		//helper.setTo(mailTo);
+		
+		String[] mailTos = mailTo.split(",");
+		for (String to : mailTos) {
+			helper.addTo(to.trim());
+		}
 		helper.setText(getEmailContent(FileUtils.readFileToString(destFile)));
 		
 		helper.addAttachment(file.getName(), new FileSystemResource(destFile));
