@@ -22,8 +22,8 @@
 	<!-- header starts here -->
 	<div id="header-wrap"><div id="header-content">	
 				
-		<h1 id="logo"><a href="<c:url value="/"></c:url>" title="">OCBC McD <span class="orange">File Sender Monitoring</span></a></h1>	
-		<h2 id="slogan">BANK OCBC NISP - Your Partner For Life</h2>		
+		<h1 id="logo"><a href="" title="">FILE SENDING MONITORING</a></h1>		
+		<div id="logo2"></div>			
 		
 		<div id="header-links">
 			<p>

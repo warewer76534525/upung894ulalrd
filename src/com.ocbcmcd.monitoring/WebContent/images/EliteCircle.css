@@ -23,7 +23,7 @@ body {
 	font: normal .70em/1.7em Verdana, 'Trebuchet MS', Tahoma, sans-serif;
 	color: #555;
 	text-align: center;
-	background: #180700;
+	
 }
 
 /* links */
@@ -231,9 +231,9 @@ input.button {
 
 /* header */
 #header-wrap {
-	height: 160px;
+	height: 120px;
 	text-align: left;
-	background: #FFF url(headerbg.jpg) repeat-x 0 0;
+	background: #FFF url(nisphbg.jpg) repeat-x 0 0;
 }
 
 #header-content {
@@ -244,17 +244,27 @@ input.button {
 
 #header-content #logo {
 	position: absolute;
-	font: normal 40px/65px Georgia, "Times New Roman", Times, serif;
+	font: normal 30px/55px Georgia, "Times New Roman", Times, serif;
 	letter-spacing: -1px;
 	color: #FFF;
-	background: #3F1204 url(logobg.jpg) repeat-x left top;
-	border: 1px solid #4E460F;
 	height: 65px;
 	padding: 0 10px;
 	margin: 0;
 	/* change the values of left and top to adjust the position of the logo */
 	top: 18px;
 	left: 0px;
+}
+
+#header-content #logo2 {
+	position: absolute;
+	top: 25px;
+	right: 10px;
+	height: 44px;
+	width: 260px;
+	color: #8E5F2F;
+	font-size: 90%;
+	background: url(logo.gif) no-repeat;
+	height: 65px;
 }
 
 #header-content #logo a {
@@ -422,7 +432,7 @@ input.button {
 	padding: 2.5em 0;
 	font: normal .95em 'Trebuchet MS', Tahoma, sans-serif;
 	text-align: left;
-	background: url(footerbg.jpg) repeat-x 0 0;
+	background: url(nispftbg.jpg) repeat-x 0 0;
 	color: #CCC;
 	width: 100%;
 	float: left;
