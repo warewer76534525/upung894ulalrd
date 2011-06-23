@@ -14,7 +14,6 @@
 <form action="<c:url value="/j_spring_security_check" />" name="signinform" method="post">
 	<p class=""><label>Your Username</label><input type="text" name="j_username" value="" /></p>
 	<p class=""><label>Your Password</label><input type="password" name="j_password" value="" /></p>
-	<p class="agree"><input type="checkbox" id="remember_me" name="_spring_security_remember_me" /> Remember me</p>
 	<p class=""><input type="submit" value="Login" /> <input type="reset" value="Reset" /> </p>
 </form>
 
