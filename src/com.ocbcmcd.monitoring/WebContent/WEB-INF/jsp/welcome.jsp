@@ -7,8 +7,6 @@
 </head>
 <body>
 			<a name="TemplateInfo"></a>				
-			<h1>OCBC NISP - McD Monitoring</h1>
-			
             <p>
 				<a href="<c:url value="/" />"><img src="images/sample-image.jpg" alt="firefox-gray"  class="float-left" /></a>
             </p>
