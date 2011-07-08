@@ -85,7 +85,8 @@ img.float-right {
 }
 
 img.float-left {
-	margin: 5px 15px 5px 0px;
+	border: none;
+	margin: 5px 0px 5px 0px;
 }
 
 code {
