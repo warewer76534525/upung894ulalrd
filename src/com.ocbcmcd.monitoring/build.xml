@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 
-<project name="ocbcmcdmonitoring" basedir=".">
+<project name="ocbcnispmonitoring" basedir=".">
 	<import file="..\common.xml" />
 
 	<property file="build.properties" />
 	<property file="src/scheduller.properties" />
 
-	<property name="name" value="ocbcmcdmonitoring" />
+	<property name="name" value="ocbcnispmonitoring" />
 
 	<property name="web.dir" value="WebContent" />
 	<property name="webinf.dir" value="WebContent/WEB-INF" />
 	
-	<property name="service.name" value="ocbcmcdmonitoring" />
+	<property name="service.name" value="ocbcnispmonitoring" />
 	<property name="service.dir" value="${dist.dir}/${service.name}" />
 	<property name="service.lib.dir" value="${service.dir}/libs" />
 	

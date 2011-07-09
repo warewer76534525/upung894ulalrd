@@ -7,7 +7,7 @@
   <property name="bin.dir" location="bin"/>
   <property name="web.dir" location="web"/>
   <property name="lib.dir" value="lib" />
-  <property name="web.src.dir" value="${bin.dir}/ocbcmcdmonitoring" />
+  <property name="web.src.dir" value="${bin.dir}/ocbcnispmonitoring" />
   
   <property name="confirmwatcher.bin.dir" value="bin/confirmwatcher-service/bin" />
   <property name="ftpfilesender.bin.dir" value="bin/ftpfilesender-service/bin" />
@@ -29,7 +29,7 @@
   </path>
   
   <target name="install.web">
-	  <copy todir="${web.deploy.dir}/ocbcmcdmonitoring">
+	  <copy todir="${web.deploy.dir}/ocbcnispmonitoring">
 		<fileset dir="${web.src.dir}" includes="**"/>
 	  </copy>
   </target>

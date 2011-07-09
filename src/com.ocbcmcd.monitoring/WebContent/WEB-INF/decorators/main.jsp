@@ -81,8 +81,7 @@
 	
 		<div class="col float-left space-sep">
 			<p>
-			&copy; copyright 2010 <strong>OCBC NISP</strong><br />
-			<a href="http://www.ocbcnisp.com/" title="BANK OCBC NISP - Your Partner For Life">BANK OCBC NISP</a> <br />
+			&copy; copyright 2011 <strong>OCBC NISP</strong><br />
 			</p>
 		</div>
 		
