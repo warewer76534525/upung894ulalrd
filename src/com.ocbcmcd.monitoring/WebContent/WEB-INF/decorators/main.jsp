@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="<% out.print(request.getContextPath()); %>/images/EliteCircleIE.css" type="text/css" />
 	<![endif]-->
 	
-	<title>OCBC McD Monitoring - <decorator:title default="OCBC McD Monitoring" /></title>
+	<title>OCBCNISP FILE SENDING MONITORING - <decorator:title default="OCBC McD Monitoring" /></title>
 	<decorator:head />
 </head>
 
