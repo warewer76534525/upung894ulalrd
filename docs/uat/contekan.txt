@@ -6,9 +6,9 @@ cd /home/adisembiring/project/ocbcfilesending/installer/
 - LOG
 tail -f nn 1000 /var/logs/sapfilewatcher.log
 tail -f nn 1000 /var/logs/ftpfilesender.log 
-tail -f nn 1000 /var/logs/confirmwatcher.log
-tail -f nn 1000 /var/logs/mailsender.log
 tail -f nn 1000 /var/logs/housekeeping.log
+tail -f nn 1000 /var/logs/mailsender.log
+tail -f nn 1000 /var/logs/confirmwatcher.log
 
 
 sh /usr/local/activemq/bin/activemq start
@@ -17,3 +17,12 @@ sh /usr/local/activemq/bin/activemq stop
 
 sh /usr/local/tomcat/bin/startup.sh
 sh /usr/local/tomcat/bin/shutdown.sh
+
+
+
+NISP Env Test:
+FTP
+Host: 
+User:
+Passwrod:
+Port: 

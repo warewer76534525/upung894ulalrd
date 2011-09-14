@@ -1,0 +1,61 @@
+#FTP
+ftp.host=192.168.1.8
+ftp.username=admin
+ftp.password=root
+ftp.port=21
+
+#watcher
+watcher.maxretry=5
+watcher.interval=5000
+ftp.maxretry=3
+ftp.interval=8000
+
+#OCBC FILE PROPS
+encrypted.ext = .gpg
+incoming.dir = /home/ocbc/ocbcfilesending/bin/file-dir/incoming
+encrypted.dir = /home/ocbc/ocbcfilesending/bin/file-dir/encrypted
+processing.dir = /home/ocbc/ocbcfilesending/bin/file-dir/processing
+outgoing.dir = /home/ocbc/ocbcfilesending/bin/file-dir/outgoing
+daily.report.dir = /home/ocbc/ocbcfilesending/bin/file-dir/dailyreport
+failed.dir = /home/ocbc/ocbcfilesending/bin/file-dir/failed
+ftp.temp.dir = /home/ocbc/ocbcfilesending/bin/file-dir/ftp-temp
+ftp.report.dir=fromnisp/REPORT
+checked.dir=/fromnisp/CHK
+ftp.remote.dir=tonisp/McD
+
+public.key.id=McDonald
+
+#CRON JOB
+endOfMonth.cron= 0 55 23 L * ?
+endOfMonth.start= 1
+endofday.cron=0 10 22 * * ?
+
+mail.host=smtp.gmail.com
+mail.port=587
+mail.username=triplelands@gmail.com
+mail.password=tripl3lands
+mail.transport.protocol=smtp
+mail.smtp.auth=true
+mail.smtp.starttls.enable=true
+mail.from=triplelands@gmail.com
+
+mail.sent.failed.subject=OCBC File Sending - FTP Connection Error
+mail.to.sent.failed=exception.smsdong@gmail.com
+mail.to.processed.failed=exception.smsdong@gmail.com
+mail.processed.failed.subject=OCBC File Sending - Server Process Failed
+mail.to.eod=exception.smsdong@gmail.com
+mail.eod.subject=OCBC File Sending - OCBC End Of Day Report
+
+jdbc.url=jdbc:mysql://192.168.1.8/ocbcmcd
+jdbc.username=ocbc
+jdbc.password=ocbc
+
+#CONFIG
+sapfilewatcher.config = /home/ocbc/ocbcfilesending/bin/sapfilewatcher-service/application.properties
+ftpfilesender.config = /home/ocbc/ocbcfilesending/bin/ftpfilesender-service/application.properties
+confirmwatcher.config = /home/ocbc/ocbcfilesending/bin/confirmwatcher-service/application.properties
+mailsender.config = /home/ocbc/ocbcfilesending/bin/mailsender-service/application.properties
+housekeeping.config = /home/ocbc/ocbcfilesending/bin/housekeeping-service/application.properties
+monitoring.config = /home/ocbc/ocbcfilesending/bin/ocbcmcdmonitoring/WEB-INF/classes/application.properties
+
+instler.dir = /home/ocbc/ocbcfilesending/bin/
