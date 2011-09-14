@@ -19,7 +19,7 @@
 				<value>confirmwatcher-service</value>
 				<value>ftpfilesender-service</value>
 				<value>housekeeping-service</value>
-				<value>ocbcmcdmonitoring/WEB-INF/classes</value>
+				<value>ocbcnispmonitoring/WEB-INF/classes</value>
 			</array>
 		</constructor-arg>
 		<constructor-arg name="configName" value="application.properties"/>
@@ -35,7 +35,7 @@
 				<value>confirmwatcher-service</value>
 				<value>ftpfilesender-service</value>
 				<value>housekeeping-service</value>
-				<value>ocbcmcdmonitoring/WEB-INF/classes</value>
+				<value>ocbcnispmonitoring/WEB-INF/classes</value>
 			</array>
 		</constructor-arg>
 		<constructor-arg name="configName" value="application.properties"/>
